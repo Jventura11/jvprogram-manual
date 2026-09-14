@@ -10,6 +10,10 @@ sin instalar ni iniciar sesión.
 |---|---|
 | `index.html` | Cómo funcionan todas las pantallas: capturar, buscar, filtrar, exportar, atajos |
 | `produccion.html` | Las diez pantallas de producción, de corte a embarque |
+| `calidad.html` | Inspecciones y los tres catálogos de calidad |
+| `lineas.html` | Pantallas de TV por línea y la captura diaria que las alimenta |
+| `catalogos.html` | Plantilla, áreas, supervisores, markers y usuarios |
+| `datos.html` | Master Plan, tiempos, cancelados y los tres reportes |
 | `preguntas.html` | Mensajes del sistema, qué hacer cuando algo no aparece, y preguntas frecuentes |
 | `estilo.css` | Hoja de estilo única, con tema claro y oscuro |
 | `buscar.js` | Buscador dentro de cada página. No consulta nada externo |
@@ -47,12 +51,14 @@ Para agregar una pantalla nueva, copiar un bloque `<div class="pantalla" id="...
 de `produccion.html`, cambiarle el contenido, y agregar el enlace correspondiente en
 el `<nav>` de las tres páginas.
 
-## Qué falta
+## Estado
 
-- Calidad (inspecciones, escaneo, catálogos de defectos y partes)
-- Catálogos (plantilla de personal, áreas, supervisores, markers)
-- Reportes y Base de datos (Master Plan, tiempos, cancelados, usuarios)
-- Pantallas de línea y captura diaria
+Las treinta pantallas del sistema están cubiertas. Lo que puede mejorar:
+
+- Capturas de pantalla (hoy no lleva ninguna, a propósito: ver la regla de arriba
+  antes de agregar una).
+- Una guía corta de primer día para alguien que nunca ha usado el sistema.
+- Traducción, si alguna vez hace falta.
 
 ---
 
