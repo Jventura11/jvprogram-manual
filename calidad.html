@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calidad · Manual de JV Program</title>
+<meta name="description" content="Inspecciones de calidad: captura, escaneo rápido y catálogos de defectos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<div class="envoltura">
+
+<aside class="lado">
+  <a class="titulo" href="index.html">Manual de JV&nbsp;Program</a>
+  <div class="sub">Versión 5.0</div>
+  <input type="search" id="buscar" placeholder="Buscar en esta página…" aria-label="Buscar en esta página">
+  <nav aria-label="Índice">
+    <h4>Empezar aquí</h4>
+    <a href="index.html">Cómo funcionan todas las pantallas</a>
+    <h4>Por módulo</h4>
+    <a href="produccion.html">Producción</a>
+    <a class="aqui" href="calidad.html">Calidad</a>
+    <a href="lineas.html">Pantallas de línea</a>
+    <a href="catalogos.html">Catálogos y usuarios</a>
+    <a href="datos.html">Base de datos y reportes</a>
+    <h4>Cuando algo falla</h4>
+    <a href="preguntas.html">Errores y preguntas frecuentes</a>
+  </nav>
+</aside>
+
+<main>
+  <div class="portada">
+    <p class="eyebrow">Por módulo</p>
+    <h1>Calidad</h1>
+    <p class="entrada">Tres pantallas para capturar inspecciones y tres catálogos que las
+      alimentan. Todas siguen las reglas de
+      <a href="index.html">Cómo funcionan todas las pantallas</a>.</p>
+  </div>
+
+  <h2 id="tres-formas">Tres formas de capturar lo mismo</h2>
+  <p>Las inspecciones se pueden capturar de tres maneras, según dónde estés y qué tan
+    rápido necesites ir:</p>
+  <div class="tabla-caja">
+  <table>
+    <thead><tr><th>Pantalla</th><th>Para qué</th><th>Cuándo usarla</th></tr></thead>
+    <tbody>
+      <tr><td>Escaneo Inspección</td><td>Captura rápida con pistola</td><td>En el piso, una tras otra</td></tr>
+      <tr><td>Inspección final</td><td>Captura, consulta y corrección</td><td>Para buscar, corregir o exportar</td></tr>
+      <tr><td>Inspección Cut/Sew</td><td>Inspección de corte y costura</td><td>Es otra etapa, con menos campos</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- ===================================================== -->
+  <div class="pantalla" id="escaneo-inspeccion">
+    <p class="ruta">Menú · <b>Calidad</b> › Escaneo Inspección</p>
+    <h2 style="margin-top:0">Escaneo Inspección</h2>
+    <p>La pantalla de piso: nómina una vez y después WO tras WO.</p>
+
+    <h3>Qué se captura</h3>
+    <div class="tabla-caja">
+    <table>
+      <thead><tr><th>Campo</th><th>¿Obligatorio?</th><th>Notas</th></tr></thead>
+      <tbody>
+        <tr><td>Auditor (nómina)</td><td>Sí</td><td>Se teclea una vez y se queda puesto.</td></tr>
+        <tr><td>WO</td><td>Sí</td><td>Se escanea.</td></tr>
+        <tr><td>Resultado</td><td>Sí</td><td>Aprobado o no aprobado.</td></tr>
+        <tr><td>Qty auditada</td><td>Sí</td><td>Cuántas piezas se revisaron.</td></tr>
+        <tr><td>Qty rechazada</td><td>Sí</td><td>Si no hubo rechazos, <strong>escribe 0</strong>. No se puede dejar vacío.</td></tr>
+        <tr><td>Defecto · Parte · Unificación</td><td>No</td><td>Se eligen de sus catálogos.</td></tr>
+        <tr><td>Línea / mesa · Ubicación · Comentarios</td><td>No</td><td></td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="ojo">
+      <b>Cero no es lo mismo que vacío</b>
+      <p>Si la inspección salió sin rechazos, hay que escribir <strong>0</strong> en Qty
+        rechazada. Dejarlo vacío no significa cero para el sistema: significa que falta el
+        dato, y no deja guardar.</p>
+    </div>
+
+    <h3>Mensajes que puede dar</h3>
+    <div class="mensajes">
+      <div class="mensaje">
+        <div class="dice">Falta el numero de nomina del auditor.</div>
+        <p class="quiere"><b>Qué pasó:</b> se escaneó una WO antes de poner la nómina.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">Falta la cantidad rechazada. Si no hubo rechazos, escribe 0.</div>
+        <p class="quiere"><b>Qué pasó:</b> el mensaje lo dice todo. Es el error más común de
+          esta pantalla.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">La cantidad auditada no puede ser negativa.</div>
+        <p class="quiere"><b>Qué pasó:</b> casi siempre un escaneo mal leído en el cuadro
+          equivocado. Borra y vuelve a capturar.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================== -->
+  <div class="pantalla" id="inspeccion-final">
+    <p class="ruta">Menú · <b>Calidad</b> › Inspección final</p>
+    <h2 style="margin-top:0">Inspección final</h2>
+    <p>Los mismos datos que el escaneo, pero con lista, filtros, exportación y corrección.
+      Es la pantalla para <strong>revisar y arreglar</strong>.</p>
+
+    <h3>Filtros propios</h3>
+    <p>Además de los de siempre (Week, WO, Item, PO, Customer), tiene tres que solo existen
+      aquí:</p>
+    <ul>
+      <li><strong>Resultado</strong> — aprobadas, no aprobadas o todas.</li>
+      <li><strong>Defecto</strong> y <strong>Unificación</strong> — para ver todo lo que salió
+        con un mismo problema.</li>
+      <li><strong>Fecha inicio / Fecha fin</strong> — por fecha de inspección, no por semana
+        de producción. Son cosas distintas.</li>
+    </ul>
+
+    <div class="ojo">
+      <b>Week y Fecha no son lo mismo</b>
+      <p><strong>Week</strong> es la semana de producción de la orden: cuándo se tenía que
+        fabricar. <strong>Fecha</strong> es el día en que alguien hizo la inspección. Una
+        orden de una semana vieja se puede inspeccionar hoy.</p>
+    </div>
+  </div>
+
+  <!-- ===================================================== -->
+  <div class="pantalla" id="inspeccion-cutsew">
+    <p class="ruta">Menú · <b>Calidad</b> › Inspección Cut/Sew</p>
+    <h2 style="margin-top:0">Inspección Cut/Sew</h2>
+    <p>La inspección de corte y costura. Pide menos datos que la final: WO, auditor, defecto
+      y las dos cantidades.</p>
+    <p>Se busca y se corrige igual que las demás.</p>
+  </div>
+
+  <!-- ===================================================== -->
+  <div class="pantalla" id="catalogos-calidad">
+    <p class="ruta">Menú · <b>Calidad</b> › Actualizador de Defectos · de Partes · Unificadores</p>
+    <h2 style="margin-top:0">Los tres catálogos de calidad</h2>
+    <p>Son las listas de las que la captura elige. Las tres viven en la misma pantalla,
+      en pestañas: <strong>Defectos</strong>, <strong>Partes del mueble</strong> y
+      <strong>Unificaciones</strong>.</p>
+
+    <h3>Qué se captura</h3>
+    <p>Cada renglón lleva un <strong>código</strong> y una <strong>descripción</strong>. El
+      código es el número con el que la captura de calidad lo identifica, así que no puede
+      quedar vacío ni ser negativo.</p>
+
+    <div class="yerro">
+      <b>Cuidado al cambiar un código ya usado</b>
+      <p>Si cambias el código de un defecto que ya se usó en inspecciones anteriores, las
+        inspecciones viejas quedan apuntando a otro lado. Para corregir un nombre, cambia la
+        <em>descripción</em> y deja el código como está.</p>
+    </div>
+
+    <div class="mensajes">
+      <div class="mensaje">
+        <div class="dice">Falta el codigo. Es el numero por el que la captura de calidad lo identifica.</div>
+        <p class="quiere"><b>Qué pasó:</b> el código es obligatorio en los tres catálogos.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">El codigo no puede ser negativo.</div>
+        <p class="quiere"><b>Qué pasó:</b> se coló un signo de menos.</p>
+      </div>
+    </div>
+  </div>
+  <div id="sinresultados">No hay nada con esa palabra en esta página.</div>
+
+  <footer>
+    <p>Manual de JV Program 5.0 · VLR México. Los ejemplos de este manual son ficticios:
+      no corresponden a órdenes, clientes ni personas reales.</p>
+  </footer>
+</main>
+
+</div>
+<script src="buscar.js"></script>
+</body>
+</html>

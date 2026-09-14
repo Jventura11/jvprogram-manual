@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Catálogos y usuarios · Manual de JV Program</title>
+<meta name="description" content="Plantilla de personal, áreas, supervisores, markers y usuarios del sistema.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<div class="envoltura">
+
+<aside class="lado">
+  <a class="titulo" href="index.html">Manual de JV&nbsp;Program</a>
+  <div class="sub">Versión 5.0</div>
+  <input type="search" id="buscar" placeholder="Buscar en esta página…" aria-label="Buscar en esta página">
+  <nav aria-label="Índice">
+    <h4>Empezar aquí</h4>
+    <a href="index.html">Cómo funcionan todas las pantallas</a>
+    <h4>Por módulo</h4>
+    <a href="produccion.html">Producción</a>
+    <a href="calidad.html">Calidad</a>
+    <a href="lineas.html">Pantallas de línea</a>
+    <a class="aqui" href="catalogos.html">Catálogos y usuarios</a>
+    <a href="datos.html">Base de datos y reportes</a>
+    <h4>Cuando algo falla</h4>
+    <a href="preguntas.html">Errores y preguntas frecuentes</a>
+  </nav>
+</aside>
+
+<main>
+  <div class="portada">
+    <p class="eyebrow">Por módulo</p>
+    <h1>Catálogos y usuarios</h1>
+    <p class="entrada">Las listas de las que todo lo demás se alimenta. Se tocan poco, pero
+      cuando están mal, el problema aparece en otras pantallas y cuesta relacionarlo.</p>
+  </div>
+
+  <h2 id="por-que-importan">Por qué importan más de lo que parece</h2>
+  <p>Cuando en una lista sale una orden <strong>sin nombre de operador</strong> o
+    <strong>sin área</strong>, casi nunca es un error de esa pantalla: es que el empleado no
+    tiene área o supervisor en el catálogo. La captura fue correcta; lo que falta es el dato
+    de aquí.</p>
+
+  <div class="ojo">
+    <b>Si algo sale sin nombre, empieza por Plantilla</b>
+    <p>Es la causa más común de "este registro está incompleto". Busca el número de nómina en
+      <strong>Catálogos › Plantilla</strong> y revisa que tenga área, subárea, equipo y
+      supervisor.</p>
+  </div>
+
+  <div class="pantalla" id="plantilla">
+    <p class="ruta">Menú · <b>Catálogos</b> › Plantilla</p>
+    <h2 style="margin-top:0">Plantilla de personal</h2>
+    <p>Quién trabaja, en qué área y con qué supervisor. Es el catálogo que más se consulta.</p>
+    <h3>Qué se captura</h3>
+    <div class="tabla-caja">
+    <table>
+      <thead><tr><th>Campo</th><th>¿Obligatorio?</th></tr></thead>
+      <tbody>
+        <tr><td>Número de nómina</td><td>Sí</td></tr>
+        <tr><td>Nombre completo</td><td>Sí</td></tr>
+        <tr><td>Área</td><td>Sí</td></tr>
+        <tr><td>Subárea</td><td>Sí</td></tr>
+        <tr><td>Equipo de trabajo</td><td>Sí</td></tr>
+        <tr><td>Supervisor</td><td>Sí</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="mensajes">
+      <div class="mensaje">
+        <div class="dice">Falta el area. Si el combo esta vacio, no hay claves dadas de alta en tbCLAVES.</div>
+        <p class="quiere"><b>Qué pasó:</b> si la lista de áreas aparece vacía, el problema no
+          es este empleado: es que no hay áreas dadas de alta. Ve a
+          <a href="#areas">Áreas</a> primero.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">Falta el supervisor.</div>
+        <p class="quiere"><b>Qué pasó:</b> sin supervisor, las órdenes de este empleado no se
+          pueden agrupar por línea ni aparecer en el tablero correcto.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pantalla" id="areas">
+    <p class="ruta">Menú · <b>Catálogos</b> › Áreas</p>
+    <h2 style="margin-top:0">Áreas de operación</h2>
+    <p>Las etapas del proceso y su orden.</p>
+    <h3>Qué se captura</h3>
+    <ul>
+      <li><strong>Código de operación</strong> y <strong>código alterno</strong> — obligatorios.</li>
+      <li><strong>Descripción</strong> — el nombre que se ve en las demás pantallas.</li>
+      <li><strong>Fase</strong> — el lugar de esta operación dentro de la secuencia. No puede
+        ser negativa.</li>
+      <li><strong>Área</strong> — a cuál pertenece.</li>
+    </ul>
+    <div class="yerro">
+      <b>Cambiar un código de operación afecta al histórico</b>
+      <p>Los registros viejos apuntan a estos códigos. Para corregir un nombre, cambia la
+        <em>descripción</em>, no el código.</p>
+    </div>
+  </div>
+
+  <div class="pantalla" id="supervisores">
+    <p class="ruta">Menú · <b>Catálogos</b> › Supervisores</p>
+    <h2 style="margin-top:0">Supervisores</h2>
+    <p>Número de nómina y nombre completo. Los dos obligatorios.</p>
+    <div class="ojo">
+      <b>El nombre tiene que coincidir exacto</b>
+      <p>Las pantallas de línea identifican a su línea por el <strong>nombre del
+        supervisor</strong>. Si aquí se corrige un nombre —una coma, un acento, un espacio de
+        más— la pantalla de esa línea puede dejar de encontrar sus órdenes. Avisa antes de
+        cambiar uno.</p>
+    </div>
+  </div>
+
+  <div class="pantalla" id="markers">
+    <p class="ruta">Menú · <b>Catálogos</b> › Clasificación Markers</p>
+    <h2 style="margin-top:0">Clasificación de markers</h2>
+    <p>El marcador, su estilo, su código y su clasificación. El <strong>marcador</strong> y la
+      <strong>clasificación</strong> son obligatorios; el marcador es el nombre por el que lo
+      identifica el master plan.</p>
+  </div>
+
+  <div class="pantalla" id="usuarios">
+    <p class="ruta">Menú · <b>Base de datos</b> › Usuarios</p>
+    <h2 style="margin-top:0">Usuarios del sistema</h2>
+    <p>Quién puede entrar a JV Program y qué puede ver. Es una pantalla de administración.</p>
+    <h3>Qué se captura</h3>
+    <div class="tabla-caja">
+    <table>
+      <thead><tr><th>Campo</th><th>¿Obligatorio?</th><th>Notas</th></tr></thead>
+      <tbody>
+        <tr><td>Número de empleado</td><td>Sí</td><td>Lo liga con la plantilla.</td></tr>
+        <tr><td>Nombre completo</td><td>Sí</td><td></td></tr>
+        <tr><td>Nombre de usuario</td><td>Sí</td><td>Con el que entra a la aplicación.</td></tr>
+        <tr><td>Contraseña</td><td>Sí al dar de alta</td><td>Al editar se puede dejar vacía para no cambiarla.</td></tr>
+        <tr><td>Rol</td><td>Sí</td><td>Define qué menús ve.</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="ojo">
+      <b>Sin rol, el usuario no entra</b>
+      <p>El rol es el que decide qué menús aparecen. Un usuario sin rol se queda sin ningún
+        permiso y no puede usar el sistema, aunque su usuario y contraseña sean correctos.</p>
+    </div>
+    <div class="ojo">
+      <b>Dos usuarios no deben llamarse igual</b>
+      <p>Si dos personas comparten el mismo nombre de usuario, mientras tengan contraseñas
+        distintas cada una entra como la misma. Revisa que no se repitan.</p>
+    </div>
+  </div>
+  <div id="sinresultados">No hay nada con esa palabra en esta página.</div>
+  <footer>
+    <p>Manual de JV Program 5.0 · VLR México. Los ejemplos de este manual son ficticios:
+      no corresponden a órdenes, clientes ni personas reales.</p>
+  </footer>
+</main>
+</div>
+<script src="buscar.js"></script>
+</body>
+</html>

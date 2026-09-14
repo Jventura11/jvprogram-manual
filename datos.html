@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Base de datos y reportes · Manual de JV Program</title>
+<meta name="description" content="Master Plan, tiempos, cancelados y los tres reportes de consulta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<div class="envoltura">
+
+<aside class="lado">
+  <a class="titulo" href="index.html">Manual de JV&nbsp;Program</a>
+  <div class="sub">Versión 5.0</div>
+  <input type="search" id="buscar" placeholder="Buscar en esta página…" aria-label="Buscar en esta página">
+  <nav aria-label="Índice">
+    <h4>Empezar aquí</h4>
+    <a href="index.html">Cómo funcionan todas las pantallas</a>
+    <h4>Por módulo</h4>
+    <a href="produccion.html">Producción</a>
+    <a href="calidad.html">Calidad</a>
+    <a href="lineas.html">Pantallas de línea</a>
+    <a href="catalogos.html">Catálogos y usuarios</a>
+    <a class="aqui" href="datos.html">Base de datos y reportes</a>
+    <h4>Cuando algo falla</h4>
+    <a href="preguntas.html">Errores y preguntas frecuentes</a>
+  </nav>
+</aside>
+
+<main>
+  <div class="portada">
+    <p class="eyebrow">Por módulo</p>
+    <h1>Base de datos y reportes</h1>
+    <p class="entrada">Aquí viven las dos pantallas que funcionan <em>distinto</em> al resto —
+      se editan como una hoja de cálculo — y los tres reportes, que solo consultan.</p>
+  </div>
+
+  <h2 id="hoja-de-calculo">Las pantallas tipo hoja de cálculo</h2>
+  <p><strong>Master Plan</strong> y <strong>Tiempos Producción</strong> no tienen panel arriba.
+    Se escribe <strong>directamente sobre la lista</strong>, como en Excel. Cambia todo lo que
+    quieras y al final guardas una sola vez.</p>
+
+  <ol class="pasos">
+    <li>Busca con los filtros de arriba (<kbd>F5</kbd>).</li>
+    <li>Escribe sobre las celdas que quieras cambiar. Puedes cambiar varias filas.</li>
+    <li>Para borrar filas: selecciónalas y presiona <kbd>Supr</kbd>. Quedan
+      <em>marcadas</em>, todavía no se borran.</li>
+    <li><kbd>Ctrl</kbd>+<kbd>S</kbd> o <strong>Guardar</strong>. Se aplican los cambios y los
+      borrados marcados, todo junto.</li>
+  </ol>
+
+  <div class="ojo">
+    <b>Solo se manda lo que tocaste</b>
+    <p>Aunque tengas 3,000 filas en pantalla, guardar solo manda las que modificaste. No hay
+      riesgo de reescribir lo que no tocaste.</p>
+  </div>
+
+  <div class="yerro">
+    <b>Si cierras sin guardar, se pierde</b>
+    <p>Los cambios viven en tu pantalla hasta que das Guardar. Cerrar la ventana, volver a
+      buscar, o que se cierre la sesión por inactividad, los descarta.</p>
+  </div>
+
+  <div class="pantalla" id="master-plan">
+    <p class="ruta">Menú · <b>Base de datos</b> › Master Plan</p>
+    <h2 style="margin-top:0">Master Plan</h2>
+    <p>El plan maestro: todas las órdenes con sus datos. Es la tabla central del sistema.</p>
+    <p>Se busca por los filtros de arriba y se edita como hoja de cálculo. El filtro rápido de
+      abajo busca dentro de lo ya cargado, por WO, item, PO, cliente o estatus.</p>
+    <div class="yerro">
+      <b>Es la tabla de la que todo lo demás depende</b>
+      <p>Las cantidades, semanas de producción y categorías que están aquí alimentan los
+        tableros, los reportes y las pantallas de línea. Un cambio aquí se ve en todas partes.
+        Si no estás seguro, pregunta antes de guardar.</p>
+    </div>
+  </div>
+
+  <div class="pantalla" id="tiempos">
+    <p class="ruta">Menú · <b>Base de datos</b> › Tiempos Producción</p>
+    <h2 style="margin-top:0">Tiempos Producción</h2>
+    <p>Los tiempos estándar por item. También es hoja de cálculo, y tiene un botón más:
+      <strong>agregar un renglón vacío</strong> para capturar un item nuevo.</p>
+    <p class="chico">De estos tiempos sale el SAM Promedio que se ve en las pantallas de
+      línea.</p>
+  </div>
+
+  <div class="pantalla" id="cancelados">
+    <p class="ruta">Menú · <b>Base de datos</b> › Cancelados</p>
+    <h2 style="margin-top:0">Órdenes canceladas</h2>
+    <p>Esta sí es una pantalla de captura normal, con panel arriba: se registra la cancelación
+      de una WO, y se puede eliminar la cancelación si fue un error.</p>
+    <p>La casilla de arriba alterna entre <strong>las últimas capturadas</strong> y el
+      <strong>histórico completo</strong>.</p>
+  </div>
+
+  <h2 id="reportes">Los tres reportes</h2>
+  <p>Los reportes <strong>solo consultan</strong>. No se puede capturar ni corregir nada desde
+    ellos: sirven para ver y exportar.</p>
+  <p>Los tres se manejan igual: pones los criterios arriba, <kbd>F5</kbd> para ejecutar,
+    <kbd>Esc</kbd> para devolver los criterios a su valor por omisión, y
+    <kbd>Ctrl</kbd>+<kbd>F</kbd> para filtrar sobre lo que ya está en pantalla sin volver a
+    consultar el servidor.</p>
+
+  <div class="tabla-caja">
+  <table>
+    <thead><tr><th>Reporte</th><th>Qué muestra</th></tr></thead>
+    <tbody>
+      <tr><td>Seguimiento de Órdenes</td><td>Por dónde va cada orden en el proceso, con quién la trabajó en cada etapa</td></tr>
+      <tr><td>Reporte Master</td><td>El plan maestro con sus avances</td></tr>
+      <tr><td>Reporte Empaque-Frame</td><td>Lo empacado, para cuadrar contra embarque</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="ojo">
+    <b>Exportar guarda lo que se ve</b>
+    <p>En los tres, el Excel sale con los filtros aplicados. Si filtraste en pantalla, exporta
+      lo filtrado. Para el reporte completo, limpia el filtro rápido antes de exportar.</p>
+  </div>
+  <div id="sinresultados">No hay nada con esa palabra en esta página.</div>
+  <footer>
+    <p>Manual de JV Program 5.0 · VLR México. Los ejemplos de este manual son ficticios:
+      no corresponden a órdenes, clientes ni personas reales.</p>
+  </footer>
+</main>
+</div>
+<script src="buscar.js"></script>
+</body>
+</html>

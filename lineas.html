@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pantallas de línea · Manual de JV Program</title>
+<meta name="description" content="Las pantallas de TV por línea de costura y la captura diaria que las alimenta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<div class="envoltura">
+
+<aside class="lado">
+  <a class="titulo" href="index.html">Manual de JV&nbsp;Program</a>
+  <div class="sub">Versión 5.0</div>
+  <input type="search" id="buscar" placeholder="Buscar en esta página…" aria-label="Buscar en esta página">
+  <nav aria-label="Índice">
+    <h4>Empezar aquí</h4>
+    <a href="index.html">Cómo funcionan todas las pantallas</a>
+    <h4>Por módulo</h4>
+    <a href="produccion.html">Producción</a>
+    <a href="calidad.html">Calidad</a>
+    <a class="aqui" href="lineas.html">Pantallas de línea</a>
+    <a href="catalogos.html">Catálogos y usuarios</a>
+    <a href="datos.html">Base de datos y reportes</a>
+    <h4>Cuando algo falla</h4>
+    <a href="preguntas.html">Errores y preguntas frecuentes</a>
+  </nav>
+</aside>
+
+<main>
+  <div class="portada">
+    <p class="eyebrow">Por módulo</p>
+    <h1>Pantallas de línea</h1>
+    <p class="entrada">Una pantalla de TV por línea de costura, encendida todo el día, con los
+      indicadores que antes se llevaban a mano. Y la pantalla donde el supervisor captura los
+      tres datos que el sistema no puede adivinar.</p>
+  </div>
+
+  <h2 id="como-funciona">Cómo funciona, en una frase</h2>
+  <p>La pantalla de TV <strong>no se toca</strong>: se abre en la mañana y se refresca sola
+    cada cinco minutos. Lo único que alguien hace todos los días es capturar Operadores,
+    Eficiencia y Faltas de su línea.</p>
+
+  <h2 id="de-donde-salen">De dónde sale cada número</h2>
+  <div class="tabla-caja">
+  <table>
+    <thead><tr><th>Indicador</th><th>De dónde sale</th></tr></thead>
+    <tbody>
+      <tr><td>Operadores</td><td>Captura diaria del supervisor</td></tr>
+      <tr><td>Eficiencia&nbsp;%</td><td>Captura diaria del supervisor</td></tr>
+      <tr><td>Faltas</td><td>Captura diaria del supervisor</td></tr>
+      <tr><td>Min. Turno</td><td>Automático: 540 minutos de lunes a jueves, 450 el viernes, desde las 7:00</td></tr>
+      <tr><td>SAM Promedio</td><td>Calculado. Es el tiempo estándar por pieza de la categoría de producto de la línea</td></tr>
+      <tr><td>Min. Disponibles</td><td>Operadores × Min. Turno × Eficiencia</td></tr>
+      <tr><td>Capacidad Productiva</td><td>Min. Disponibles ÷ SAM Promedio</td></tr>
+      <tr><td>Real Asignado</td><td>Lo escaneado hoy en <a href="produccion.html#asignacion-costura">Asignación Costura</a></td></tr>
+      <tr><td>Por Asignar</td><td>Capacidad Productiva − Real Asignado</td></tr>
+      <tr><td>Calidad</td><td>Las inspecciones de hoy de las órdenes de esa línea</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="ojo">
+    <b>El SAM cambia por producto, no por línea</b>
+    <p>Dos líneas que hacen el mismo tipo de producto tienen el mismo SAM. Una almohada lleva
+      muchos menos minutos que un cuerpo, así que una línea de almohadas asigna cientos de
+      piezas donde otra asigna decenas. <strong>No significa que vaya más rápido</strong>: el
+      producto es otro.</p>
+  </div>
+
+  <!-- ===================================================== -->
+  <div class="pantalla" id="captura-diaria">
+    <p class="ruta">Menú · <b>Pantallas</b> › Captura diaria (Operadores / Eficiencia)</p>
+    <h2 style="margin-top:0">Captura diaria</h2>
+    <p>Los tres datos del día, por línea. Toma menos de un minuto.</p>
+
+    <h3>Cómo se usa</h3>
+    <ol class="pasos">
+      <li>Revisa que la <strong>fecha</strong> de arriba sea la de hoy. Si no, cámbiala y da
+        <strong>Cargar</strong>.</li>
+      <li>Busca el renglón de tu línea.</li>
+      <li>Escribe <strong>Operadores</strong>, <strong>Eficiencia&nbsp;%</strong> y
+        <strong>Faltas</strong>.</li>
+      <li>Da clic en <strong>Guardar</strong>.</li>
+    </ol>
+    <p>Las demás columnas de la tabla — Min. Turno, SAM Promedio, Real Asignado — son de solo
+      lectura: están ahí para que veas el efecto de lo que capturas, pero no se escriben.</p>
+
+    <h3>Qué se puede escribir</h3>
+    <div class="tabla-caja">
+    <table>
+      <thead><tr><th>Campo</th><th>Valores válidos</th></tr></thead>
+      <tbody>
+        <tr><td>Operadores</td><td>Cero o más. No admite negativos.</td></tr>
+        <tr><td>Eficiencia %</td><td>Entre 0 y 100.</td></tr>
+        <tr><td>Faltas</td><td>Cero o más.</td></tr>
+        <tr><td>Min. Turno (manual)</td><td>Entre 0 y 1440. Ver abajo.</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="ojo">
+      <b>Capturar dos veces el mismo día no duplica</b>
+      <p>Si te equivocaste, corrige el renglón y guarda otra vez. El sistema reemplaza la
+        captura del día en vez de agregar una nueva.</p>
+    </div>
+
+    <h3>El sábado que sí se trabaja</h3>
+    <p>El sistema supone que sábado y domingo no hay turno, así que esos días los minutos
+      salen en cero y los indicadores no se calculan. Para un sábado excepcional:</p>
+    <ol class="pasos">
+      <li>Marca la casilla <strong>Ver Min. Turno (manual)</strong>.</li>
+      <li>Aparece una columna más. Escribe ahí los minutos que sí se trabajaron.</li>
+      <li>Guarda.</li>
+    </ol>
+    <p class="chico">Solo aplica a ese día y a esa línea. No cambia los demás sábados.</p>
+
+    <h3>Mensajes que puede dar</h3>
+    <div class="mensajes">
+      <div class="mensaje">
+        <div class="dice">La eficiencia debe estar entre 0 y 100.</div>
+        <p class="quiere"><b>Qué pasó:</b> se capturó como decimal (0.85) en vez de porcentaje
+          (85), o se pasó de 100.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">Los minutos de turno (manual) deben estar entre 0 y 1440 (24 horas).</div>
+        <p class="quiere"><b>Qué pasó:</b> se escribieron horas en vez de minutos. Media
+          jornada son 270, no 4.5.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">El numero de operadores no puede ser negativo.</div>
+        <p class="quiere"><b>Qué pasó:</b> se coló un signo de menos.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================== -->
+  <div class="pantalla" id="pantalla-tv">
+    <p class="ruta">Menú · <b>Pantallas</b> › (nombre de la línea)</p>
+    <h2 style="margin-top:0">La pantalla de TV</h2>
+    <p>Se abre una vez, se deja en pantalla completa, y no se vuelve a tocar.</p>
+
+    <h3>Para dejarla encendida</h3>
+    <ol class="pasos">
+      <li>Entra con la cuenta destinada a las pantallas, no con la tuya.</li>
+      <li>Abre la línea desde el menú <strong>Pantallas</strong>.</li>
+      <li>Déjala. Se refresca sola cada cinco minutos.</li>
+    </ol>
+
+    <div class="ojo">
+      <b>Usa la cuenta de pantallas, no la tuya</b>
+      <p>Hay una cuenta hecha solo para esto, que únicamente puede abrir las pantallas de
+        línea. Si dejas abierta tu sesión en una TV del piso, cualquiera que pase puede
+        capturar con tu usuario.</p>
+    </div>
+
+    <h3>Si ves campos en blanco</h3>
+    <p>Operadores, Eficiencia, Min. Disponibles y Capacidad Productiva salen en blanco
+      mientras nadie haya hecho la captura diaria. <strong>Es a propósito</strong>: un cero
+      diría que hay cero operadores; el blanco dice que todavía no se captura. En cuanto se
+      capture, aparecen solos en el siguiente refresco.</p>
+
+    <h3>Si el número de piezas se ve bajo</h3>
+    <p>Lo primero que hay que revisar es el campo de línea en
+      <a href="produccion.html#asignacion-costura">Asignación Costura</a>. Si ahí se escaneó
+      un código de barras por error, esas piezas no se cuentan en ninguna línea y no dan
+      error.</p>
+  </div>
+  <div id="sinresultados">No hay nada con esa palabra en esta página.</div>
+
+  <footer>
+    <p>Manual de JV Program 5.0 · VLR México. Los ejemplos de este manual son ficticios:
+      no corresponden a órdenes, clientes ni personas reales.</p>
+  </footer>
+</main>
+
+</div>
+<script src="buscar.js"></script>
+</body>
+</html>
