@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Producción · Manual de JV Program</title>
+<meta name="description" content="Corte, preparación, costura, empaque y embarque: qué captura cada pantalla y cómo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<div class="envoltura">
+
+<aside class="lado">
+  <a class="titulo" href="index.html">Manual de JV&nbsp;Program</a>
+  <div class="sub">Versión 5.0</div>
+  <input type="search" id="buscar" placeholder="Buscar en esta página…" aria-label="Buscar en esta página">
+  <nav aria-label="Índice">
+    <h4>Empezar aquí</h4>
+    <a href="index.html">Cómo funcionan todas las pantallas</a>
+    <h4>Producción</h4>
+    <a class="aqui" href="#asignacion-corte">Asignación Corte</a>
+    <a class="aqui" href="#cortado">Cortado</a>
+    <a class="aqui" href="#asignacion-preparacion">Asignación Preparación</a>
+    <a class="aqui" href="#kanban-costura">KANBAN Costura</a>
+    <a class="aqui" href="#asignacion-costura">Asignación Costura</a>
+    <a class="aqui" href="#costurado">Costurado</a>
+    <a class="aqui" href="#escaneo-empaque">Escaneo Empaque</a>
+    <a class="aqui" href="#registro-empacado">Registro Empacado</a>
+    <a class="aqui" href="#escaneo-contenedor">Escaneo En Contenedor</a>
+    <a class="aqui" href="#registro-contenedor">Registro En Contenedor</a>
+    <h4>Cuando algo falla</h4>
+    <a href="preguntas.html">Errores y preguntas frecuentes</a>
+  </nav>
+</aside>
+
+<main>
+  <div class="portada">
+    <p class="eyebrow">Por módulo</p>
+    <h1>Producción</h1>
+    <p class="entrada">Las diez pantallas que siguen a una orden desde que se corta hasta que
+      sube al contenedor. Todas se manejan con las reglas de
+      <a href="index.html">Cómo funcionan todas las pantallas</a>; aquí va solo lo propio de
+      cada una.</p>
+  </div>
+
+  <h2 id="el-recorrido">El recorrido de una orden</h2>
+  <p>Las pantallas están en el mismo orden en que una WO pasa por la planta. Cada etapa
+    tiene dos: una para <strong>asignar</strong> (quién lo va a hacer) y otra para
+    <strong>registrar</strong> (ya se hizo).</p>
+  <div class="tabla-caja">
+  <table>
+    <thead><tr><th>Etapa</th><th>Se asigna en</th><th>Se registra en</th></tr></thead>
+    <tbody>
+      <tr><td>Corte</td><td>Asignación Corte</td><td>Cortado</td></tr>
+      <tr><td>Preparación</td><td>Asignación Preparación</td><td>KANBAN Costura</td></tr>
+      <tr><td>Costura</td><td>Asignación Costura</td><td>Costurado</td></tr>
+      <tr><td>Empaque</td><td>—</td><td>Escaneo Empaque · Registro Empacado</td></tr>
+      <tr><td>Embarque</td><td>—</td><td>Escaneo En Contenedor · Registro En Contenedor</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="ojo">
+    <b>Asignar y registrar no son lo mismo</b>
+    <p>La asignación dice <em>quién</em> va a trabajar una orden y en qué mesa o línea. El
+      registro dice que <em>ya se hizo</em>. Por eso las pantallas de registro no piden
+      operador: lo sacan de la asignación de esa misma WO.</p>
+  </div>
+
+  <!-- ============================ CORTE ============================ -->
+  <div class="pantalla" id="asignacion-corte">
+    <p class="ruta">Menú · <b>Corte</b> › Asignación Corte</p>
+    <h2 style="margin-top:0">Asignación Corte</h2>
+    <p>Dice quién va a cortar una orden y en qué mesa.</p>
+
+    <h3>Qué se captura</h3>
+    <div class="tabla-caja">
+    <table>
+      <thead><tr><th>Campo</th><th>¿Obligatorio?</th><th>Notas</th></tr></thead>
+      <tbody>
+        <tr><td>WO</td><td>Sí</td><td>Se puede escanear.</td></tr>
+        <tr><td>Mesa de corte</td><td>No</td><td>El número de mesa.</td></tr>
+        <tr><td>Operador</td><td>Sí</td><td>Número de nómina.</td></tr>
+        <tr><td>Operador 2</td><td>No</td><td>La pareja, si la hay. Déjalo vacío si trabaja solo.</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>Mensajes que puede dar</h3>
+    <div class="mensajes">
+      <div class="mensaje">
+        <div class="dice">Falta la WO.</div>
+        <p class="quiere"><b>Qué pasó:</b> el campo de WO quedó vacío. Escanéala o escríbela.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">Falta el numero de nomina del operador.</div>
+        <p class="quiere"><b>Qué pasó:</b> no se puede asignar un corte sin decir a quién. El
+          segundo operador sí puede quedar vacío; el primero no.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">El numero de nomina del segundo operador no puede ser negativo.</div>
+        <p class="quiere"><b>Qué pasó:</b> se coló un signo de menos, casi siempre por un
+          escaneo mal leído. Borra el campo y vuelve a capturarlo.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pantalla" id="cortado">
+    <p class="ruta">Menú · <b>Corte</b> › Cortado</p>
+    <h2 style="margin-top:0">Cortado</h2>
+    <p>Registra que una orden ya se cortó.</p>
+
+    <h3>Qué se captura</h3>
+    <p>Solo la <strong>WO</strong>. Nada más.</p>
+
+    <div class="ojo">
+      <b>Esta pantalla no captura operador ni mesa</b>
+      <p>El operador, la pareja y la mesa que ves en la lista salen de la
+        <a href="#asignacion-corte">Asignación de Corte</a> de esa WO. Si están mal, se
+        corrigen allá, no aquí.</p>
+    </div>
+
+    <h3>Si una orden no aparece</h3>
+    <p>Un corte de una WO que todavía no tiene asignación <strong>sí se guarda y sí se ve</strong>:
+      los datos del operador simplemente salen vacíos. Es un caso normal, no un error.</p>
+  </div>
+
+  <!-- ======================== PREPARACIÓN ========================== -->
+  <div class="pantalla" id="asignacion-preparacion">
+    <p class="ruta">Menú · <b>Preparación</b> › Asignación Preparación</p>
+    <h2 style="margin-top:0">Asignación Preparación</h2>
+    <p>El kanban de preparación: quién prepara qué, y su clasificación.</p>
+
+    <h3>Qué se captura</h3>
+    <div class="tabla-caja">
+    <table>
+      <thead><tr><th>Campo</th><th>¿Obligatorio?</th><th>Notas</th></tr></thead>
+      <tbody>
+        <tr><td>WO</td><td>Sí</td><td></td></tr>
+        <tr><td>Preparador</td><td>Sí</td><td>Número de nómina.</td></tr>
+        <tr><td>Preparador 2</td><td>No</td><td></td></tr>
+        <tr><td>Clasificación</td><td>No</td><td>Se elige de la lista.</td></tr>
+        <tr><td>Marker</td><td>No</td><td>También sirve como filtro de búsqueda.</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="ojo">
+      <b>Sobre la columna «Asignado»</b>
+      <p>En esta pantalla verás una columna que dice si la orden está asignada o no. El
+        sistema ya la muestra con el sentido correcto. Si algún reporte viejo la muestra al
+        revés, repórtalo — no cambies la captura para compensarlo.</p>
+    </div>
+
+    <h3>Mensajes que puede dar</h3>
+    <div class="mensajes">
+      <div class="mensaje">
+        <div class="dice">Falta el numero de nomina del preparador.</div>
+        <p class="quiere"><b>Qué pasó:</b> igual que en corte, el primer preparador es
+          obligatorio y el segundo no.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pantalla" id="kanban-costura">
+    <p class="ruta">Menú · <b>Preparación</b> › KANBAN Costura</p>
+    <h2 style="margin-top:0">KANBAN Costura</h2>
+    <p>Registra que la preparación de una orden ya está hecha y pasa a costura.</p>
+    <h3>Qué se captura</h3>
+    <p>La <strong>WO</strong>. El preparador sale de la asignación.</p>
+  </div>
+
+  <!-- ========================== COSTURA ============================ -->
+  <div class="pantalla" id="asignacion-costura">
+    <p class="ruta">Menú · <b>Costura</b> › Asignación Costura</p>
+    <h2 style="margin-top:0">Asignación Costura</h2>
+    <p>Quién cose una orden y en qué línea. <strong>Es la pantalla que alimenta las pantallas
+      de TV de las líneas</strong>: lo que se capture aquí es lo que aparece como
+      «Real Asignado» en el tablero de esa línea, el mismo día.</p>
+
+    <h3>Qué se captura</h3>
+    <div class="tabla-caja">
+    <table>
+      <thead><tr><th>Campo</th><th>¿Obligatorio?</th><th>Notas</th></tr></thead>
+      <tbody>
+        <tr><td>WO</td><td>Sí</td><td></td></tr>
+        <tr><td>Línea / mesa</td><td>No</td><td>Ver el aviso de abajo.</td></tr>
+        <tr><td>Operador</td><td>Sí</td><td>Número de nómina de quien cose.</td></tr>
+        <tr><td>Operador 2</td><td>No</td><td></td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="yerro">
+      <b>El campo de línea hay que capturarlo bien</b>
+      <p>Si se escanea un código de barras en el cuadro de la línea, o se escribe algo que no
+        es un número de línea, esas piezas <strong>no aparecen en el tablero de ninguna
+        línea</strong>. No dan error: simplemente no se cuentan en ningún lado.</p>
+      <p>Si el tablero de una línea muestra menos piezas de las que esperas, esto es lo
+        primero que hay que revisar.</p>
+    </div>
+  </div>
+
+  <div class="pantalla" id="costurado">
+    <p class="ruta">Menú · <b>Costura</b> › Costurado</p>
+    <h2 style="margin-top:0">Costurado</h2>
+    <p>Registra que una orden ya se cosió. Es lo que el tablero de línea cuenta como
+      producción real del día.</p>
+    <h3>Qué se captura</h3>
+    <p>La <strong>WO</strong>. El operador y la línea salen de la asignación de costura.</p>
+  </div>
+
+  <!-- ========================== EMPAQUE ============================ -->
+  <div class="pantalla" id="escaneo-empaque">
+    <p class="ruta">Menú · <b>Empaque</b> › Escaneo Empaque</p>
+    <h2 style="margin-top:0">Escaneo Empaque</h2>
+    <p>La pantalla rápida de piso: una caja tras otra, sin soltar la pistola.</p>
+
+    <h3>Cómo se usa</h3>
+    <ol class="pasos">
+      <li>Al empezar el turno, teclea tu <strong>número de nómina</strong>. Se queda puesto.</li>
+      <li>Escanea la <strong>WO</strong>.</li>
+      <li>Captura el número de caja, cuántas cajas y cuántas piezas por caja.</li>
+      <li><kbd>Ctrl</kbd>+<kbd>S</kbd> o <strong>GUARDAR</strong>. Dice
+        <em>«Listo. Escanea la siguiente WO»</em> y queda lista para la que sigue.</li>
+    </ol>
+    <p>Arriba a la derecha lleva la cuenta de cuántas cajas van en la sesión y cuál fue la
+      última registrada, para que puedas comprobar sin dejar de trabajar.</p>
+
+    <h3>Mensajes que puede dar</h3>
+    <div class="mensajes">
+      <div class="mensaje">
+        <div class="dice">Teclea la nomina del empacador y despues escanea la WO.</div>
+        <p class="quiere"><b>Qué pasó:</b> se escaneó una WO antes de poner la nómina. Escribe
+          la nómina primero; después ya no la vuelves a pedir.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">Falta el numero de caja.</div>
+        <p class="quiere"><b>Qué pasó:</b> el número de caja es obligatorio.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">Falta la cantidad de cajas. / Faltan las piezas por caja.</div>
+        <p class="quiere"><b>Qué pasó:</b> las dos cantidades son obligatorias y ninguna puede
+          ser negativa.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pantalla" id="registro-empacado">
+    <p class="ruta">Menú · <b>Empaque</b> › Registro Empacado</p>
+    <h2 style="margin-top:0">Registro Empacado</h2>
+    <p>La misma información que el escaneo, pero con la lista completa, filtros y exportación.
+      Es la pantalla para <strong>consultar y corregir</strong>; la de escaneo es para capturar
+      rápido.</p>
+    <p>Para corregir una caja: búscala, doble clic para subirla al panel, corrige y guarda.</p>
+  </div>
+
+  <!-- ========================= EMBARQUE ============================ -->
+  <div class="pantalla" id="escaneo-contenedor">
+    <p class="ruta">Menú · <b>Empaque</b> › Escaneo En Contenedor</p>
+    <h2 style="margin-top:0">Escaneo En Contenedor</h2>
+    <p>Registra que una orden ya subió al contenedor. Funciona igual que el escaneo de
+      empaque: nómina una vez, y después WO tras WO.</p>
+
+    <h3>Qué se captura</h3>
+    <div class="tabla-caja">
+    <table>
+      <thead><tr><th>Campo</th><th>¿Obligatorio?</th><th>Notas</th></tr></thead>
+      <tbody>
+        <tr><td>WO</td><td>Sí</td><td></td></tr>
+        <tr><td>Referencia del contenedor</td><td>Sí</td><td>Sin ella no se puede guardar.</td></tr>
+        <tr><td>Nómina</td><td>Sí</td><td>Se teclea una vez al empezar.</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="mensajes">
+      <div class="mensaje">
+        <div class="dice">Falta la referencia del contenedor.</div>
+        <p class="quiere"><b>Qué pasó:</b> es el único dato que esta pantalla exige además de
+          la WO, porque es lo que amarra la orden a un embarque.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pantalla" id="registro-contenedor">
+    <p class="ruta">Menú · <b>Empaque</b> › Registro En Contenedor</p>
+    <h2 style="margin-top:0">Registro En Contenedor</h2>
+    <p>La versión de consulta y corrección del embarque: lista completa, filtros, exportación
+      y edición por doble clic.</p>
+    <p>Es la pantalla donde se revisa qué órdenes quedaron dentro de un contenedor antes de
+      cerrarlo.</p>
+  </div>
+
+  <div id="sinresultados">No hay nada con esa palabra en esta página.</div>
+
+  <footer>
+    <p>Manual de JV Program 5.0 · VLR México. Los ejemplos de este manual son ficticios:
+      no corresponden a órdenes, clientes ni personas reales.</p>
+  </footer>
+</main>
+
+</div>
+<script src="buscar.js"></script>
+</body>
+</html>

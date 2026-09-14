@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Errores y preguntas · Manual de JV Program</title>
+<meta name="description" content="Qué significa cada mensaje del sistema y respuestas a las dudas más comunes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<div class="envoltura">
+
+<aside class="lado">
+  <a class="titulo" href="index.html">Manual de JV&nbsp;Program</a>
+  <div class="sub">Versión 5.0</div>
+  <input type="search" id="buscar" placeholder="Buscar en esta página…" aria-label="Buscar en esta página">
+  <nav aria-label="Índice">
+    <h4>Empezar aquí</h4>
+    <a href="index.html">Cómo funcionan todas las pantallas</a>
+    <h4>Por módulo</h4>
+    <a href="produccion.html">Producción</a>
+    <h4>Cuando algo falla</h4>
+    <a class="aqui" href="#mensajes">Mensajes del sistema</a>
+    <a class="aqui" href="#no-aparece">No aparece lo que busco</a>
+    <a class="aqui" href="#preguntas">Preguntas frecuentes</a>
+    <a class="aqui" href="#reportar">Cómo reportar un problema</a>
+  </nav>
+</aside>
+
+<main>
+  <div class="portada">
+    <p class="eyebrow">Cuando algo falla</p>
+    <h1>Errores y preguntas</h1>
+    <p class="entrada">Qué significa cada mensaje, qué hacer con él, y las dudas que salen una
+      y otra vez.</p>
+  </div>
+
+  <h2 id="mensajes">Mensajes del sistema</h2>
+  <p>Ninguno de estos es una falla del sistema: son avisos de que falta un dato o de que la
+    acción no se puede hacer todavía.</p>
+
+  <div class="mensajes">
+    <div class="mensaje">
+      <div class="dice">Guardado cancelado por validacion.</div>
+      <p class="quiere"><b>Qué significa:</b> falta un dato obligatorio o uno está mal escrito.
+        Junto al mensaje aparece cuál. <b>No se guardó nada</b>, así que corrige y vuelve a dar
+        Guardar — no se duplica.</p>
+    </div>
+    <div class="mensaje">
+      <div class="dice">Carga primero un registro (doble clic en la lista).</div>
+      <p class="quiere"><b>Qué significa:</b> le diste a Eliminar sin haber subido nada al panel.
+        Busca el registro, dale doble clic, y entonces elimínalo.</p>
+    </div>
+    <div class="mensaje">
+      <div class="dice">No hay datos para exportar.</div>
+      <p class="quiere"><b>Qué significa:</b> la lista está vacía. Exportar guarda lo que se ve;
+        busca algo primero.</p>
+    </div>
+    <div class="mensaje">
+      <div class="dice">Filtros restablecidos.</div>
+      <p class="quiere"><b>Qué significa:</b> se limpiaron todos los filtros. No es un error —
+        es la confirmación de que quedaron vacíos.</p>
+    </div>
+    <div class="mensaje">
+      <div class="dice">Se cerró la sesión por inactividad.</div>
+      <p class="quiere"><b>Qué significa:</b> pasaron 30 minutos sin usar el equipo. Vuelve a
+        entrar con tu usuario. Lo que ya estaba guardado está a salvo.</p>
+    </div>
+    <div class="mensaje">
+      <div class="dice">No se pudo conectar con la base de datos.</div>
+      <p class="quiere"><b>Qué significa:</b> el equipo perdió la red o el servidor no responde.
+        Esto sí hay que reportarlo. <b>No vuelvas a capturar lo mismo en otro equipo</b> hasta
+        confirmar si se guardó o no.</p>
+    </div>
+  </div>
+
+  <h2 id="no-aparece">No aparece lo que busco</h2>
+  <p>En orden, del más común al menos:</p>
+  <ol class="pasos">
+    <li><strong>Revisa «Filtrar en pantalla».</strong> Si quedó algo escrito ahí, esconde
+      renglones aunque la búsqueda sí los haya traído. Es la causa número uno.</li>
+    <li><strong>Revisa el rango de semanas.</strong> Week inicio y Week fin acotan más que
+      ningún otro filtro. Si buscas algo viejo, ábrelo.</li>
+    <li><strong>Marca «Últimos capturados».</strong> Sin marcar solo trae 50 registros;
+      marcado trae hasta 5,000.</li>
+    <li><strong>Da clic en «Limpiar filtros»</strong> y busca otra vez desde cero.</li>
+  </ol>
+
+  <h2 id="preguntas">Preguntas frecuentes</h2>
+
+  <div class="pregunta">
+    <h3>Capturé algo mal. ¿Lo puedo corregir?</h3>
+    <p>Sí. Búscalo, doble clic para subirlo al panel, corrige y guarda. No se crea un
+      registro nuevo: se modifica el mismo.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>Guardé dos veces sin querer. ¿Se duplicó?</h3>
+    <p>Depende de si el panel seguía cargado. Búscalo y revisa: si aparecen dos renglones,
+      elimina uno. Si el sistema te dio un mensaje de validación, ahí <em>no</em> se guardó
+      nada, aunque hayas dado Guardar varias veces.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>¿Por qué el registro de corte no me pide el operador?</h3>
+    <p>Porque no le toca. El operador sale de la <strong>asignación</strong> de esa WO. Si el
+      operador está mal, se corrige en la pantalla de asignación, no en la de registro.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>Una orden aparece sin nombre de operador o sin área. ¿Está mal capturada?</h3>
+    <p>No necesariamente. Significa que esa orden todavía no tiene asignación, o que el
+      empleado no tiene área o supervisor en el catálogo. El registro es válido; lo que falta
+      es el dato del catálogo. Se corrige en <em>Catálogos › Plantilla</em>.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>El tablero de mi línea muestra menos piezas de las que asigné.</h3>
+    <p>Lo primero que hay que revisar es el campo de línea en <em>Asignación Costura</em>. Si
+      ahí se escaneó un código de barras por error, o se escribió algo que no es un número de
+      línea, esas piezas no se cuentan en ninguna línea. No dan error, simplemente no
+      aparecen.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>El tablero de mi línea tiene campos en blanco.</h3>
+    <p>Operadores, Eficiencia, Minutos Disponibles y Capacidad Productiva salen en blanco
+      mientras nadie capture los datos del día en <em>Pantallas › Captura diaria</em>. Aparecen
+      en blanco y no en cero a propósito: un cero diría que hay cero operadores, y el blanco
+      dice que todavía no se ha capturado.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>¿Cada cuánto se actualiza la pantalla de TV?</h3>
+    <p>Sola, cada cinco minutos. No hay que refrescarla ni tocarla. Si capturas algo ahora,
+      tarda como mucho cinco minutos en verse.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>¿Puedo dejar la sesión abierta todo el día?</h3>
+    <p>No: a los 30 minutos sin actividad se cierra sola, avisando un minuto antes. Es a
+      propósito, para que nadie capture con la sesión de otra persona. Las pantallas de TV son
+      la excepción y sí se quedan encendidas.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>Exporté a Excel y salieron menos renglones de los que esperaba.</h3>
+    <p>Exportar guarda <strong>lo que está en la lista en ese momento</strong>, no toda la base.
+      Si tenías un filtro puesto, exporta lo filtrado. Limpia filtros, vuelve a buscar y
+      exporta otra vez.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>Aparecieron columnas raras que antes no estaban.</h3>
+    <p>Es la casilla <strong>Ver Ids</strong>, que muestra llaves internas del sistema. Quítale
+      la palomita y se vuelven a esconder. No afecta los datos.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>¿Puedo usar la versión anterior y la nueva al mismo tiempo?</h3>
+    <p>Sí. Las dos leen y escriben la misma información, así que nada se pierde ni se duplica
+      por usar una u otra. Lo que captures en una se ve en la otra.</p>
+  </div>
+
+  <h2 id="reportar">Cómo reportar un problema</h2>
+  <p>Para que se pueda resolver rápido, incluye:</p>
+  <ul>
+    <li><strong>En qué pantalla</strong> estabas (el nombre del menú).</li>
+    <li><strong>Qué estabas haciendo</strong> — capturando, buscando, exportando.</li>
+    <li><strong>El mensaje exacto</strong> que salió, o una foto de la pantalla.</li>
+    <li><strong>La WO</strong> u orden con la que pasó, si aplica.</li>
+    <li><strong>La hora aproximada.</strong> El sistema guarda un registro de errores y con la
+      hora es mucho más fácil encontrarlo.</li>
+  </ul>
+
+  <div class="ojo">
+    <b>Si el problema es que algo no se guardó</b>
+    <p>No lo vuelvas a capturar en otro equipo hasta que alguien confirme si quedó guardado o
+      no. Volver a capturar «por si acaso» es la forma más común de terminar con registros
+      duplicados.</p>
+  </div>
+
+  <div id="sinresultados">No hay nada con esa palabra en esta página.</div>
+
+  <footer>
+    <p>Manual de JV Program 5.0 · VLR México. Los ejemplos de este manual son ficticios:
+      no corresponden a órdenes, clientes ni personas reales.</p>
+  </footer>
+</main>
+
+</div>
+<script src="buscar.js"></script>
+</body>
+</html>

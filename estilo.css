@@ -1,0 +1,250 @@
+/* ==========================================================================
+   Manual de JV Program — hoja de estilo única.
+   Azul VLR (#0D47A1) tomado de la propia aplicación, para que el manual y el
+   sistema se vean como una sola cosa. Neutros con sesgo frío hacia ese azul.
+   ========================================================================== */
+
+:root{
+  --acento:#0D47A1;
+  --acento-vivo:#1B62D4;
+  --papel:#FCFCFD;
+  --tarjeta:#FFFFFF;
+  --tinta:#161A22;
+  --tinta-suave:#4A5567;
+  --tenue:#77839A;
+  --borde:#DFE4EC;
+  --borde-fuerte:#C3CCDC;
+  --marca-ojo:#FFF8E8;
+  --marca-ojo-borde:#E0B65A;
+  --marca-ojo-texto:#7A5410;
+  --marca-error:#FDF3F3;
+  --marca-error-borde:#D99A9A;
+  --marca-error-texto:#8A2F2F;
+  --codigo-fondo:#F1F4F9;
+
+  --display:"Archivo","Segoe UI",system-ui,sans-serif;
+  --texto:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",Consolas,ui-monospace,monospace;
+}
+
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --acento:#7FB0F2;
+    --acento-vivo:#A5C8F8;
+    --papel:#0E1319;
+    --tarjeta:#151C25;
+    --tinta:#E8EDF5;
+    --tinta-suave:#B3BFD1;
+    --tenue:#8492A8;
+    --borde:#26313F;
+    --borde-fuerte:#3A4757;
+    --marca-ojo:#231D0E;
+    --marca-ojo-borde:#6E5620;
+    --marca-ojo-texto:#E8C87A;
+    --marca-error:#251616;
+    --marca-error-borde:#6E3535;
+    --marca-error-texto:#E8A0A0;
+    --codigo-fondo:#1A222D;
+  }
+}
+:root[data-theme="dark"]{
+  --acento:#7FB0F2;
+  --acento-vivo:#A5C8F8;
+  --papel:#0E1319;
+  --tarjeta:#151C25;
+  --tinta:#E8EDF5;
+  --tinta-suave:#B3BFD1;
+  --tenue:#8492A8;
+  --borde:#26313F;
+  --borde-fuerte:#3A4757;
+  --marca-ojo:#231D0E;
+  --marca-ojo-borde:#6E5620;
+  --marca-ojo-texto:#E8C87A;
+  --marca-error:#251616;
+  --marca-error-borde:#6E3535;
+  --marca-error-texto:#E8A0A0;
+  --codigo-fondo:#1A222D;
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+body{
+  margin:0;
+  background:var(--papel);
+  color:var(--tinta);
+  font-family:var(--texto);
+  font-size:17px;
+  line-height:1.66;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- armazón ---------- */
+.envoltura{
+  display:grid;
+  grid-template-columns:262px minmax(0,1fr);
+  gap:clamp(24px,4vw,64px);
+  max-width:1240px;
+  margin:0 auto;
+  padding-block:clamp(24px,4vh,48px);
+  padding-left:clamp(16px,3vw,32px);
+  padding-right:clamp(16px,3vw,32px);
+  align-items:start;
+}
+
+/* ---------- navegación lateral ---------- */
+.lado{position:sticky;top:clamp(16px,3vh,32px);font-family:var(--display)}
+.lado .titulo{
+  font-weight:700;font-size:1.02rem;letter-spacing:-.01em;
+  margin:0 0 .15rem;color:var(--tinta);text-decoration:none;display:block;
+}
+.lado .sub{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tenue);margin-bottom:1.3rem}
+.lado nav{border-top:1px solid var(--borde);padding-top:1rem}
+.lado nav h4{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--tenue);margin:1.3rem 0 .5rem;font-weight:600;
+}
+.lado nav h4:first-child{margin-top:0}
+.lado nav a{
+  display:block;font-size:.92rem;line-height:1.4;padding:.28rem 0;
+  color:var(--tinta-suave);text-decoration:none;border-left:2px solid transparent;padding-left:.7rem;margin-left:-.7rem;
+}
+.lado nav a:hover{color:var(--acento);border-left-color:var(--borde-fuerte)}
+.lado nav a.aqui{color:var(--acento);font-weight:600;border-left-color:var(--acento)}
+
+#buscar{
+  width:100%;font-family:var(--display);font-size:.9rem;
+  padding:.5rem .7rem;margin-bottom:1rem;
+  border:1px solid var(--borde-fuerte);border-radius:4px;
+  background:var(--tarjeta);color:var(--tinta);
+}
+#buscar::placeholder{color:var(--tenue)}
+#sinresultados{display:none;font-family:var(--display);color:var(--tenue);font-size:.95rem;padding:2rem 0}
+
+/* ---------- contenido ---------- */
+main{min-width:0}
+.portada{border-bottom:3px solid var(--acento);padding-bottom:1.6rem;margin-bottom:2.4rem}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--acento);margin:0 0 .6rem}
+
+h1{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(2rem,4.4vw,2.9rem);line-height:1.06;letter-spacing:-.022em;
+  margin:0 0 .5rem;text-wrap:balance;
+}
+h2{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(1.4rem,2.6vw,1.85rem);line-height:1.16;letter-spacing:-.015em;
+  margin:3rem 0 .2rem;text-wrap:balance;scroll-margin-top:20px;
+}
+h3{
+  font-family:var(--display);font-weight:600;font-size:1.12rem;
+  margin:2rem 0 .4rem;letter-spacing:-.005em;scroll-margin-top:20px;
+}
+h4{font-family:var(--display);font-weight:600;font-size:.98rem;margin:1.4rem 0 .3rem}
+
+p{margin:0 0 1rem;max-width:68ch}
+.entrada{font-size:1.06rem;color:var(--tinta-suave);max-width:64ch}
+.chico{font-size:.92rem;color:var(--tinta-suave)}
+ul,ol{max-width:68ch;padding-left:1.35rem;margin:0 0 1.1rem}
+li{margin-bottom:.45rem}
+li>ul,li>ol{margin-top:.45rem}
+a{color:var(--acento);text-underline-offset:2px}
+a:hover{color:var(--acento-vivo)}
+strong{font-weight:600}
+hr{border:none;border-top:1px solid var(--borde);margin:2.6rem 0}
+
+kbd{
+  font-family:var(--mono);font-size:.82em;
+  background:var(--codigo-fondo);border:1px solid var(--borde-fuerte);
+  border-bottom-width:2px;border-radius:4px;padding:.08em .4em;
+  color:var(--tinta);white-space:nowrap;
+}
+code{
+  font-family:var(--mono);font-size:.87em;
+  background:var(--codigo-fondo);padding:.1em .35em;border-radius:3px;color:var(--tinta);
+}
+
+/* ---------- pieza: pantalla ---------- */
+.pantalla{
+  border-top:1px solid var(--borde);
+  padding-top:1.9rem;margin-top:2.6rem;
+}
+.pantalla:first-of-type{border-top:none;margin-top:1.4rem;padding-top:0}
+.ruta{
+  font-family:var(--mono);font-size:.76rem;color:var(--tenue);
+  letter-spacing:.04em;margin:0 0 .3rem;
+}
+.ruta b{color:var(--acento);font-weight:500}
+
+/* ---------- pieza: pasos ---------- */
+ol.pasos{list-style:none;padding:0;counter-reset:p;margin:1.1rem 0 1.3rem}
+ol.pasos>li{
+  counter-increment:p;position:relative;padding-left:2.5rem;margin-bottom:.85rem;
+}
+ol.pasos>li::before{
+  content:counter(p);position:absolute;left:0;top:.06em;
+  width:1.65rem;height:1.65rem;border-radius:50%;
+  background:var(--acento);color:var(--papel);
+  font-family:var(--display);font-weight:700;font-size:.82rem;
+  display:grid;place-items:center;
+}
+
+/* ---------- pieza: avisos ---------- */
+.ojo,.yerro{
+  border:1px solid;border-left-width:4px;border-radius:0 4px 4px 0;
+  padding:.9rem 1.1rem;margin:1.2rem 0;font-size:.96rem;max-width:68ch;
+}
+.ojo{background:var(--marca-ojo);border-color:var(--marca-ojo-borde);color:var(--marca-ojo-texto)}
+.yerro{background:var(--marca-error);border-color:var(--marca-error-borde);color:var(--marca-error-texto)}
+.ojo p:last-child,.yerro p:last-child{margin-bottom:0}
+.ojo b,.yerro b{font-family:var(--display);display:block;font-size:.88rem;margin-bottom:.15rem}
+
+/* ---------- pieza: mensaje del sistema ---------- */
+.mensajes{display:flex;flex-direction:column;gap:0;margin:1.2rem 0}
+.mensaje{
+  display:grid;grid-template-columns:minmax(0,1fr);gap:.3rem;
+  padding:1rem 0;border-top:1px solid var(--borde);
+}
+.mensaje:last-child{border-bottom:1px solid var(--borde)}
+.mensaje .dice{
+  font-family:var(--mono);font-size:.88rem;color:var(--tinta);
+  background:var(--codigo-fondo);padding:.4rem .6rem;border-radius:3px;
+  border-left:3px solid var(--borde-fuerte);
+}
+.mensaje .quiere{font-size:.95rem;color:var(--tinta-suave);margin:0}
+.mensaje .quiere b{color:var(--tinta);font-family:var(--display);font-size:.9rem}
+
+/* ---------- pieza: tabla ---------- */
+.tabla-caja{overflow-x:auto;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem;font-family:var(--display)}
+th{
+  text-align:left;font-family:var(--mono);font-size:.7rem;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--tenue);font-weight:600;
+  padding:0 1rem .55rem 0;border-bottom:1px solid var(--borde-fuerte);
+}
+td{padding:.62rem 1rem .62rem 0;border-bottom:1px solid var(--borde);vertical-align:top;color:var(--tinta-suave)}
+td:first-child{color:var(--tinta);font-weight:500;white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+
+/* ---------- pieza: preguntas ---------- */
+.pregunta{border-top:1px solid var(--borde);padding:1.4rem 0}
+.pregunta:last-child{border-bottom:1px solid var(--borde)}
+.pregunta h3{margin:0 0 .5rem;font-size:1.05rem;color:var(--tinta)}
+.pregunta p:last-child{margin-bottom:0}
+
+/* ---------- pie ---------- */
+footer{
+  margin-top:4rem;padding-top:1.4rem;border-top:1px solid var(--borde);
+  font-family:var(--display);font-size:.85rem;color:var(--tenue);
+}
+footer p{max-width:none}
+
+/* ---------- pantallas chicas ---------- */
+@media (max-width:860px){
+  .envoltura{grid-template-columns:minmax(0,1fr);gap:1.6rem}
+  .lado{position:static}
+  .lado nav{max-height:none}
+  body{font-size:16.5px}
+}

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Manual de JV Program</title>
+<meta name="description" content="Cómo se usa JV Program: captura, búsqueda, filtros, mensajes de error y preguntas frecuentes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<div class="envoltura">
+
+<aside class="lado">
+  <a class="titulo" href="index.html">Manual de JV&nbsp;Program</a>
+  <div class="sub">Versión 5.0</div>
+  <input type="search" id="buscar" placeholder="Buscar en esta página…" aria-label="Buscar en esta página">
+  <nav aria-label="Índice">
+    <h4>Empezar aquí</h4>
+    <a class="aqui" href="index.html">Cómo funcionan todas las pantallas</a>
+    <h4>Por módulo</h4>
+    <a href="produccion.html">Producción</a>
+    <span style="display:block;font-size:.82rem;color:var(--tenue);padding:.2rem 0 .2rem .7rem">Calidad · pendiente</span>
+    <span style="display:block;font-size:.82rem;color:var(--tenue);padding:.2rem 0 .2rem .7rem">Catálogos · pendiente</span>
+    <span style="display:block;font-size:.82rem;color:var(--tenue);padding:.2rem 0 .2rem .7rem">Reportes · pendiente</span>
+    <h4>Cuando algo falla</h4>
+    <a href="preguntas.html">Errores y preguntas frecuentes</a>
+  </nav>
+</aside>
+
+<main>
+  <div class="portada">
+    <p class="eyebrow">Empezar aquí</p>
+    <h1>Cómo funcionan todas las pantallas</h1>
+    <p class="entrada">JV Program tiene unas treinta pantallas, pero casi todas se manejan igual.
+      Si entiendes esta página, ya sabes usar la mayoría: lo único que cambia de una a otra
+      es qué datos pide.</p>
+  </div>
+
+  <h2 id="anatomia">Las tres zonas de una pantalla</h2>
+  <p>Casi toda pantalla de captura está dividida en tres partes, siempre en el mismo orden:</p>
+
+  <div class="tabla-caja">
+  <table>
+    <thead><tr><th>Zona</th><th>Dónde está</th><th>Para qué sirve</th></tr></thead>
+    <tbody>
+      <tr><td>El panel</td><td>Arriba</td><td>Donde escribes o escaneas lo que vas a guardar. Es la única zona que modifica datos.</td></tr>
+      <tr><td>Los filtros</td><td>En medio</td><td>Los criterios para buscar registros ya guardados.</td></tr>
+      <tr><td>La lista</td><td>Abajo</td><td>Lo que encontró la búsqueda. Solo muestra; no se escribe directamente sobre ella.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2 id="capturar">Capturar un registro</h2>
+  <ol class="pasos">
+    <li>Escribe o escanea los datos en el panel de arriba.</li>
+    <li>Presiona <kbd>Enter</kbd> o <kbd>Ctrl</kbd>+<kbd>S</kbd>, o da clic en <strong>GUARDAR</strong>.</li>
+    <li>El sistema confirma abajo y deja el panel listo para el siguiente registro.</li>
+  </ol>
+  <p>Si quieres vaciar el panel sin guardar, presiona <kbd>Esc</kbd> o da clic en <strong>Nuevo</strong>.
+    Si habías escrito algo, te pregunta antes de borrarlo.</p>
+
+  <div class="ojo">
+    <b>El número de nómina se teclea una sola vez</b>
+    <p>En las pantallas de escaneo rápido, escribes la nómina del operador al empezar el turno
+      y después solo escaneas WO tras WO. La nómina se queda puesta hasta que la cambies o
+      cierres la pantalla.</p>
+  </div>
+
+  <h2 id="buscar-registros">Buscar registros guardados</h2>
+  <p>Hay dos formas de traer datos a la lista, y conviene no confundirlas.</p>
+
+  <h3 id="ultimos">Últimos capturados</h3>
+  <p>La casilla <strong>Últimos capturados</strong> trae lo más reciente sin que tengas que
+    escribir nada:</p>
+  <ul>
+    <li><strong>Sin marcar</strong> — los últimos 50 registros. Es lo normal del día a día.</li>
+    <li><strong>Marcada</strong> — hasta 5,000. Úsala solo cuando de verdad busques algo viejo:
+      tarda más y llena la lista.</li>
+  </ul>
+
+  <h3 id="filtros">Filtros de búsqueda</h3>
+  <p>Debajo del panel hay una fila de filtros. Se llenan los que quieras y se presiona
+    <strong>Buscar</strong> o <kbd>F5</kbd>. Los que aparecen en casi todas las pantallas:</p>
+  <div class="tabla-caja">
+  <table>
+    <thead><tr><th>Filtro</th><th>Qué hace</th></tr></thead>
+    <tbody>
+      <tr><td>Week inicio / Week fin</td><td>Rango de semanas de producción. Es el filtro que más acota; úsalo siempre que puedas.</td></tr>
+      <tr><td>WO</td><td>Una orden exacta.</td></tr>
+      <tr><td>Item</td><td>Coincidencia parcial: escribir <code>1234</code> trae todo item que lo contenga.</td></tr>
+      <tr><td>PO</td><td>Orden de compra.</td></tr>
+      <tr><td>Customer</td><td>Cliente, también por coincidencia parcial.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>Limpiar filtros</strong> los vacía todos de golpe y avisa
+    <em>«Filtros restablecidos»</em>.</p>
+
+  <h3 id="filtrar-pantalla">Filtrar en pantalla</h3>
+  <p>Es distinto de buscar, y es la confusión más común. La caja
+    <strong>Filtrar en pantalla</strong> no va a la base de datos: solo esconde renglones
+    <em>de los que ya están en la lista</em>. Sirve para encontrar algo rápido dentro de un
+    resultado grande sin volver a buscar.</p>
+
+  <div class="ojo">
+    <b>Si no aparece lo que buscas</b>
+    <p>Revisa primero si tienes algo escrito en <strong>Filtrar en pantalla</strong>. Esconde
+      renglones aunque la búsqueda sí los haya traído, y no siempre se nota.</p>
+  </div>
+
+  <h2 id="modificar">Modificar o eliminar algo ya guardado</h2>
+  <ol class="pasos">
+    <li>Búscalo hasta que aparezca en la lista.</li>
+    <li>Dale <strong>doble clic</strong> al renglón. Sus datos suben al panel.</li>
+    <li>Corrige lo que necesites y presiona <strong>GUARDAR</strong>, o usa <strong>Eliminar</strong>.</li>
+  </ol>
+  <p>Eliminar siempre pregunta antes. Si le das a Eliminar sin haber cargado nada, avisa
+    <em>«Carga primero un registro (doble clic en la lista)»</em> y no hace nada.</p>
+
+  <h2 id="exportar">Exportar a Excel</h2>
+  <p>El botón <strong>Exportar Excel</strong> guarda <em>lo que está en la lista en ese
+    momento</em> — no toda la base. Si filtraste, exporta lo filtrado. Al terminar te dice
+    dónde quedó el archivo.</p>
+  <p>Con la lista vacía avisa <em>«No hay datos para exportar»</em>.</p>
+
+  <h2 id="ver-ids">Ver Ids</h2>
+  <p>Muestra columnas de llaves internas del sistema. <strong>No se usa en la operación
+    diaria</strong>: está para cuando alguien de soporte necesite un dato técnico. Si la
+    activaste sin querer, quítale la palomita y las columnas se vuelven a esconder.</p>
+
+  <h2 id="sesion">La sesión se cierra sola</h2>
+  <p>Después de <strong>30 minutos sin usar el equipo</strong> — sin mover el ratón ni teclear,
+    en JV Program o en cualquier otro programa — el sistema avisa y da un minuto para
+    responder. Cualquier tecla o movimiento cancela el cierre.</p>
+  <p>Si nadie responde, se cierra la sesión y aparece el login con el aviso
+    <em>«Se cerró la sesión por inactividad»</em>. No se pierde nada que estuviera guardado;
+    lo que quedó a medio capturar en un panel, sí.</p>
+
+  <h2 id="atajos">Atajos que sirven en todas</h2>
+  <div class="tabla-caja">
+  <table>
+    <thead><tr><th>Tecla</th><th>Qué hace</th></tr></thead>
+    <tbody>
+      <tr><td><kbd>Enter</kbd> o <kbd>Ctrl</kbd>+<kbd>S</kbd></td><td>Guardar lo que hay en el panel</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>Vaciar el panel (pregunta si hay captura sin guardar)</td></tr>
+      <tr><td><kbd>F5</kbd></td><td>Buscar con los filtros puestos</td></tr>
+      <tr><td>Doble clic</td><td>Subir un renglón de la lista al panel</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div id="sinresultados">No hay nada con esa palabra en esta página.</div>
+
+  <footer>
+    <p>Manual de JV Program 5.0 · VLR México. Los ejemplos de este manual son ficticios:
+      no corresponden a órdenes, clientes ni personas reales.</p>
+  </footer>
+</main>
+
+</div>
+<script src="buscar.js"></script>
+</body>
+</html>
