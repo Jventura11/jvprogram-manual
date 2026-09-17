@@ -55,19 +55,36 @@
   </div>
 
   <h2 id="capturar">Capturar un registro</h2>
+  <p>El orden importa: <strong>la WO va al final</strong>. Se llena todo lo demás primero y la
+    orden se escanea de último, porque ese escaneo es el que guarda.</p>
   <ol class="pasos">
-    <li>Escribe o escanea los datos en el panel de arriba.</li>
-    <li>Presiona <kbd>Enter</kbd> o <kbd>Ctrl</kbd>+<kbd>S</kbd>, o da clic en <strong>GUARDAR</strong>.</li>
-    <li>El sistema confirma abajo y deja el panel listo para el siguiente registro.</li>
+    <li>Escribe los datos del panel: operador, línea, cantidades — lo que pida la pantalla.</li>
+    <li><strong>Escanea la WO.</strong> La pistola manda un Enter al terminar la lectura, y ese
+      Enter guarda el registro. No hay que dar clic en GUARDAR ni soltar la pistola.</li>
+    <li>El sistema confirma abajo y el cursor vuelve solo al cuadro de la WO, listo para la
+      siguiente.</li>
   </ol>
-  <p>Si quieres vaciar el panel sin guardar, presiona <kbd>Esc</kbd> o da clic en <strong>Nuevo</strong>.
-    Si habías escrito algo, te pregunta antes de borrarlo.</p>
+  <p>Si prefieres teclear, <kbd>Enter</kbd> en el cuadro de la WO hace lo mismo. También
+    funcionan <kbd>Ctrl</kbd>+<kbd>S</kbd> y el botón <strong>GUARDAR</strong> desde cualquier
+    campo.</p>
+  <p>Para vaciar el panel sin guardar, <kbd>Esc</kbd> o <strong>Nuevo</strong>. Si habías escrito
+    algo, te pregunta antes de borrarlo.</p>
 
   <div class="ojo">
-    <b>El número de nómina se teclea una sola vez</b>
-    <p>En las pantallas de escaneo rápido, escribes la nómina del operador al empezar el turno
-      y después solo escaneas WO tras WO. La nómina se queda puesta hasta que la cambies o
-      cierres la pantalla.</p>
+    <b>Lo que no cambia, no se vuelve a capturar</b>
+    <p>Entre un registro y el siguiente, la pantalla <strong>conserva</strong> los datos que
+      suelen repetirse: el operador, la pareja, la línea o mesa, la nómina del auditor. Lo
+      único que se limpia es la WO.</p>
+    <p>Por eso se puede escanear orden tras orden sin tocar el teclado. Cuando de verdad cambie
+      el operador o la línea, te mueves a ese campo, lo corriges, y sigues encadenando.</p>
+  </div>
+
+  <div class="ojo">
+    <b>Tres pantallas todavía no lo hacen</b>
+    <p><em>Registro Empacado</em>, <em>Inspección final</em> e <em>Inspección Cut/Sew</em> sí
+      limpian todo al guardar, incluido el operador. Ahí hay que volver a capturarlo en cada
+      registro, así que el encadenado de escaneos no funciona igual. Está pendiente de
+      igualarlas con las demás.</p>
   </div>
 
   <h2 id="buscar-registros">Buscar registros guardados</h2>
@@ -140,12 +157,18 @@
     <em>«Se cerró la sesión por inactividad»</em>. No se pierde nada que estuviera guardado;
     lo que quedó a medio capturar en un panel, sí.</p>
 
+  <h2 id="abrir-manual">Cómo volver a abrir este manual</h2>
+  <p>Desde el sistema: barra lateral, hasta abajo, <strong>AYUDA › Manual de uso</strong>. Se abre
+    en el navegador. También está en <em>Acerca de</em>, con la dirección escrita por si quieres
+    copiarla o mandarla.</p>
+
   <h2 id="atajos">Atajos que sirven en todas</h2>
   <div class="tabla-caja">
   <table>
     <thead><tr><th>Tecla</th><th>Qué hace</th></tr></thead>
     <tbody>
-      <tr><td><kbd>Enter</kbd> o <kbd>Ctrl</kbd>+<kbd>S</kbd></td><td>Guardar lo que hay en el panel</td></tr>
+      <tr><td><kbd>Enter</kbd> en el cuadro de la WO</td><td>Guardar. Es lo que manda la pistola al escanear</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>S</kbd></td><td>Guardar desde cualquier campo</td></tr>
       <tr><td><kbd>Esc</kbd></td><td>Vaciar el panel (pregunta si hay captura sin guardar)</td></tr>
       <tr><td><kbd>F5</kbd></td><td>Buscar con los filtros puestos</td></tr>
       <tr><td>Doble clic</td><td>Subir un renglón de la lista al panel</td></tr>
