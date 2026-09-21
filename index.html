@@ -67,6 +67,10 @@
   <p>Si prefieres teclear, <kbd>Enter</kbd> en el cuadro de la WO hace lo mismo. También
     funcionan <kbd>Ctrl</kbd>+<kbd>S</kbd> y el botón <strong>GUARDAR</strong> desde cualquier
     campo.</p>
+  <p>Para moverte entre campos sin soltar el teclado: <kbd>Tab</kbd>, o <kbd>Enter</kbd> en
+    cualquier campo que no sea la WO. Las dos teclas siguen <strong>el mismo camino</strong>, y
+    ese camino es el orden en que se captura — no el orden en que se leen los cuadros en la
+    pantalla. Termina siempre en la WO, listo para escanear.</p>
   <p>Para vaciar el panel sin guardar, <kbd>Esc</kbd> o <strong>Nuevo</strong>. Si habías escrito
     algo, te pregunta antes de borrarlo.</p>
 
@@ -87,6 +91,15 @@
       a su valor neutro en cada registro.</p>
     <p>Es a propósito. Arrastrar un defecto a la siguiente WO le escribiría a esa orden algo que
       nadie revisó.</p>
+  </div>
+
+  <div class="ojo">
+    <b>El cuadro donde estás se pinta de azul</b>
+    <p>En las pantallas de captura, el campo que tiene el cursor se colorea. No hay que buscar
+      la rayita parpadeando para saber dónde va a entrar lo que escribas o escanees.</p>
+    <p>Se despinta solo al salir de él. <strong>Los cuadros de fecha y las listas
+      desplegables no se pintan</strong>: esos los dibuja Windows y no aceptan el color. No es
+      una falla de la pantalla.</p>
   </div>
 
   <h2 id="buscar-registros">Buscar registros guardados</h2>
@@ -140,6 +153,22 @@
   <p>Eliminar siempre pregunta antes. Si le das a Eliminar sin haber cargado nada, avisa
     <em>«Carga primero un registro (doble clic en la lista)»</em> y no hace nada.</p>
 
+  <h2 id="copiar">Copiar datos de la lista</h2>
+  <p><kbd>Ctrl</kbd>+<kbd>C</kbd> sobre la lista copia la fila completa — o todas las que
+    tengas seleccionadas —, tal como se ve en pantalla. Es lo que conviene usar para pegar
+    en Excel.</p>
+  <p>Si solo necesitas un dato suelto de esa fila — la WO, una referencia, la prioridad —
+    sin copiar todo lo demás:</p>
+  <ol class="pasos">
+    <li><strong>Clic derecho</strong> sobre la celda que quieres.</li>
+    <li>Elige <strong>Copiar valor</strong> en el menú que aparece.</li>
+    <li>Se copia solo el texto de esa celda, tal como se ve en pantalla — una fecha se
+      copia como fecha, no con la hora completa por dentro.</li>
+  </ol>
+  <p class="chico">No cambia nada de lo de arriba: <kbd>Ctrl</kbd>+<kbd>C</kbd> sigue
+    copiando la fila completa, y en las pantallas donde se pueden marcar varias filas para
+    eliminarlas, eso también sigue funcionando igual.</p>
+
   <h2 id="exportar">Exportar a Excel</h2>
   <p>El botón <strong>Exportar Excel</strong> guarda <em>lo que está en la lista en ese
     momento</em> — no toda la base. Si filtraste, exporta lo filtrado. Al terminar te dice
@@ -171,9 +200,13 @@
     <tbody>
       <tr><td><kbd>Enter</kbd> en el cuadro de la WO</td><td>Guardar. Es lo que manda la pistola al escanear</td></tr>
       <tr><td><kbd>Ctrl</kbd>+<kbd>S</kbd></td><td>Guardar desde cualquier campo</td></tr>
+      <tr><td><kbd>Tab</kbd></td><td>Pasar al siguiente campo, en el orden en que se captura</td></tr>
+      <tr><td><kbd>Enter</kbd> en cualquier otro campo</td><td>Pasar al siguiente, igual que <kbd>Tab</kbd></td></tr>
       <tr><td><kbd>Esc</kbd></td><td>Vaciar el panel (pregunta si hay captura sin guardar)</td></tr>
       <tr><td><kbd>F5</kbd></td><td>Buscar con los filtros puestos</td></tr>
       <tr><td>Doble clic</td><td>Subir un renglón de la lista al panel</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>C</kbd></td><td>Copiar la fila (o selección) completa de la lista</td></tr>
+      <tr><td>Clic derecho + <strong>Copiar valor</strong></td><td>Copiar solo el texto de esa celda</td></tr>
     </tbody>
   </table>
   </div>

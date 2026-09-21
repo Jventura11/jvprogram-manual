@@ -63,6 +63,8 @@
     </tbody>
   </table>
   </div>
+  <p class="chico">Eficiencia y Faltas se siguen capturando y calculando exactamente igual
+    que siempre. Lo que cambió es qué se muestra en la pantalla de TV — ver abajo.</p>
 
   <div class="ojo">
     <b>El SAM cambia por producto, no por línea</b>
@@ -158,11 +160,51 @@
         capturar con tu usuario.</p>
     </div>
 
+    <h3>Qué se ve hoy</h3>
+    <p>Producción pidió dejar la pantalla en lo que de verdad se revisa en el piso:
+      <strong>CALIDAD</strong>, <strong>PRODUCCIÓN REAL (DÍA)</strong> y la comparación
+      entre <strong>CAPACIDAD PRODUCTIVA</strong>, <strong>REAL ASIGNADO</strong> y
+      <strong>POR ASIGNAR</strong>. Eficiencia, Faltas, Recursos y Tiempo Disponible y SAH
+      (Horas) siguen ahí por dentro — se calculan exactamente igual que siempre — pero ya
+      no se muestran. Es una cuestión de qué se ve, no de qué se calcula.</p>
+
+    <p>CALIDAD flota como un anillo en el centro de la pantalla. Alrededor, en cruz, las
+      otras cuatro tarjetas:</p>
+    <div class="tabla-caja">
+    <table>
+      <thead><tr><th>Dónde</th><th>Tarjeta</th></tr></thead>
+      <tbody>
+        <tr><td>Arriba a la izquierda</td><td>Capacidad Productiva</td></tr>
+        <tr><td>Arriba a la derecha</td><td>Producción Real (Día)</td></tr>
+        <tr><td>Abajo a la izquierda</td><td>Real Asignado</td></tr>
+        <tr><td>Abajo a la derecha</td><td>Por Asignar</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="chico">La tarjeta de Producción Real ya no muestra la Meta junto al valor —
+      también a petición de producción, para que el número de piezas se lea más grande.</p>
+
+    <h3>Color condicional en Producción Real y Por Asignar</h3>
+    <p>Estas dos tarjetas cambian de color completo según qué tan bien va el día, para que
+      no haga falta leer el número para saber si algo necesita atención:</p>
+    <div class="tabla-caja">
+    <table>
+      <thead><tr><th>Tarjeta</th><th>Verde</th><th>Rojo</th></tr></thead>
+      <tbody>
+        <tr><td>Producción Real (Día)</td><td>La producción del día cumple o supera la meta</td><td>La producción del día está por debajo de la meta</td></tr>
+        <tr><td>Por Asignar</td><td>Ya no falta asignar piezas (o se asignó de más)</td><td>Todavía falta asignar piezas</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="chico">Capacidad Productiva y Real Asignado no cambian de color: son datos de
+      referencia, no un estado por cumplir.</p>
+
     <h3>Si ves campos en blanco</h3>
-    <p>Operadores, Eficiencia, Min. Disponibles y Capacidad Productiva salen en blanco
-      mientras nadie haya hecho la captura diaria. <strong>Es a propósito</strong>: un cero
-      diría que hay cero operadores; el blanco dice que todavía no se captura. En cuanto se
-      capture, aparecen solos en el siguiente refresco.</p>
+    <p>Capacidad Productiva, Real Asignado y Por Asignar muestran una raya
+      (<strong>—</strong>) en vez de un número mientras nadie haya hecho la captura diaria
+      de Operadores y Eficiencia de esa línea. <strong>Es a propósito</strong>: un cero
+      diría que hay cero operadores; la raya dice que todavía no se captura. En cuanto se
+      capture, los números aparecen solos en el siguiente refresco.</p>
 
     <h3>Si el número de piezas se ve bajo</h3>
     <p>Lo primero que hay que revisar es el campo de línea en

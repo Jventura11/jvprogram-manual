@@ -242,7 +242,8 @@
       <div class="mensaje">
         <div class="dice">Falta la cantidad de cajas. / Faltan las piezas por caja.</div>
         <p class="quiere"><b>Qué pasó:</b> las dos cantidades son obligatorias y ninguna puede
-          ser negativa.</p>
+          ser negativa. <strong>Cero sí se acepta</strong>, y ya no pregunta nada: antes pedía
+          confirmar «Vas a registrar 0 cajas», y ese cuadro rompía el encadenado de escaneos.</p>
       </div>
     </div>
   </div>
@@ -254,6 +255,21 @@
       Es la pantalla para <strong>consultar y corregir</strong>; la de escaneo es para capturar
       rápido.</p>
     <p>Para corregir una caja: búscala, doble clic para subirla al panel, corrige y guarda.</p>
+
+    <h3>El orden en que se captura</h3>
+    <p>Con <kbd>Tab</kbd> o con <kbd>Enter</kbd>, los campos se recorren en el orden en que se
+      llenan de verdad, que no es el orden en que se ven:</p>
+    <ol class="pasos">
+      <li>Empacador</li>
+      <li>No. de caja</li>
+      <li>Cajas</li>
+      <li>Piezas por caja</li>
+      <li><strong>WO</strong> — y aquí el escaneo guarda</li>
+    </ol>
+    <p><em>Línea / mesa</em> queda después de la WO a propósito: casi nunca cambia y se conserva
+      entre registros, así que ponerla en medio obligaría a saltarla en cada orden.</p>
+    <p>Como una misma caja puede llevar varias WO, el número de caja se conserva al guardar:
+      se escanea la siguiente orden y ya. Al cambiar de caja, se sobrescribe ese cuadro.</p>
   </div>
 
   <!-- ========================= EMBARQUE ============================ -->
