@@ -23,6 +23,7 @@
     <h4>Por módulo</h4>
     <a class="aqui" href="produccion.html">Producción</a>
     <a href="calidad.html">Calidad</a>
+    <a href="almacen.html">Almacén</a>
     <a href="lineas.html">Pantallas de línea</a>
     <a href="catalogos.html">Catálogos y usuarios</a>
     <a href="datos.html">Base de datos y reportes</a>
@@ -216,13 +217,19 @@
 
     <h3>Cómo se usa</h3>
     <ol class="pasos">
-      <li>Al empezar el turno, teclea tu <strong>número de nómina</strong>. Se queda puesto.</li>
-      <li>Captura el número de caja, cuántas cajas y cuántas piezas por caja.</li>
+      <li>Al empezar el turno, teclea tu <strong>número de nómina</strong>. Se queda puesto.
+        La pantalla abre con el cursor ahí.</li>
+      <li>Captura el número de caja, cuántas cajas y cuántas piezas por caja. Con
+        <kbd>Enter</kbd> o <kbd>Tab</kbd> se pasa de uno al siguiente en ese orden, y de
+        <em>Piezas por caja</em> el cursor baja a la <strong>WO</strong>.</li>
       <li><strong>Escanea la WO al final.</strong> Ese escaneo guarda: la pistola manda un Enter
         al terminar la lectura y eso basta. Dice <em>«Listo. Escanea la siguiente WO»</em> y el
         cursor se queda en la WO.</li>
       <li>Si la caja lleva varias WO, escanea la siguiente y ya: no hay que volver a teclear
         nada. La nómina, el número de caja, las piezas por caja y la línea se conservan.</li>
+      <li><strong>Cajas vuelve a 0</strong> después de cada registro (y así empieza al abrir):
+        como en una caja caben varias WO, la caja se cuenta una sola vez, con la WO que la
+        abre. Cuando empiezas una caja nueva, escribe 1 antes de escanear.</li>
       <li>Al cambiar de caja, sobreescribe el número de caja y sigue escaneando.</li>
     </ol>
     <p>Arriba a la derecha lleva la cuenta de cuántas cajas van en la sesión y cuál fue la
@@ -257,8 +264,9 @@
     <p>Para corregir una caja: búscala, doble clic para subirla al panel, corrige y guarda.</p>
 
     <h3>El orden en que se captura</h3>
-    <p>Con <kbd>Tab</kbd> o con <kbd>Enter</kbd>, los campos se recorren en el orden en que se
-      llenan de verdad, que no es el orden en que se ven:</p>
+    <p>La pantalla abre con el cursor en <strong>Empacador</strong>. Con <kbd>Tab</kbd> o con
+      <kbd>Enter</kbd>, los campos se recorren en el orden en que se llenan de verdad, que no
+      es el orden en que se ven:</p>
     <ol class="pasos">
       <li>Empacador</li>
       <li>No. de caja</li>
@@ -270,6 +278,9 @@
       entre registros, así que ponerla en medio obligaría a saltarla en cada orden.</p>
     <p>Como una misma caja puede llevar varias WO, el número de caja se conserva al guardar:
       se escanea la siguiente orden y ya. Al cambiar de caja, se sobrescribe ese cuadro.</p>
+    <p>En cambio <strong>Cajas vuelve a 0</strong> después de cada registro: la caja se cuenta
+      una sola vez, con la WO que la abre, y las demás WO de esa caja van con 0. Al empezar una
+      caja nueva, escribe 1.</p>
   </div>
 
   <!-- ========================= EMBARQUE ============================ -->
@@ -277,16 +288,17 @@
     <p class="ruta">Menú · <b>Empaque</b> › Escaneo En Contenedor</p>
     <h2 style="margin-top:0">Escaneo En Contenedor</h2>
     <p>Registra que una orden ya subió al contenedor. Funciona igual que el escaneo de
-      empaque: nómina una vez, y después WO tras WO.</p>
+      empaque: el contenedor una vez, y después WO tras WO.</p>
 
     <h3>Qué se captura</h3>
     <div class="tabla-caja">
     <table>
       <thead><tr><th>Campo</th><th>¿Obligatorio?</th><th>Notas</th></tr></thead>
       <tbody>
-        <tr><td>WO</td><td>Sí</td><td></td></tr>
-        <tr><td>Referencia del contenedor</td><td>Sí</td><td>Sin ella no se puede guardar.</td></tr>
-        <tr><td>Nómina</td><td>Sí</td><td>Se teclea una vez al empezar.</td></tr>
+        <tr><td>Referencia del contenedor</td><td>Sí</td><td>Va primero: la pantalla abre con
+            el cursor ahí. Sin ella no se puede guardar. Se queda puesta entre WO.</td></tr>
+        <tr><td>WO</td><td>Sí</td><td>Con <kbd>Enter</kbd> o <kbd>Tab</kbd> desde el
+            contenedor, el cursor baja aquí. Su escaneo guarda.</td></tr>
       </tbody>
     </table>
     </div>
@@ -307,6 +319,9 @@
       y edición por doble clic.</p>
     <p>Es la pantalla donde se revisa qué órdenes quedaron dentro de un contenedor antes de
       cerrarlo.</p>
+    <p>Al abrirla, el cursor está en <strong>Contenedor</strong>. Con <kbd>Enter</kbd> o
+      <kbd>Tab</kbd> baja a la <strong>WO</strong>, y el escaneo de la WO guarda. El contenedor
+      se queda puesto para la siguiente orden.</p>
   </div>
 
   <div id="sinresultados">No hay nada con esa palabra en esta página.</div>

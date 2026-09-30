@@ -23,6 +23,7 @@
     <h4>Por módulo</h4>
     <a href="produccion.html">Producción</a>
     <a href="calidad.html">Calidad</a>
+    <a href="almacen.html">Almacén</a>
     <a class="aqui" href="lineas.html">Pantallas de línea</a>
     <a href="catalogos.html">Catálogos y usuarios</a>
     <a href="datos.html">Base de datos y reportes</a>
@@ -43,7 +44,7 @@
   <h2 id="como-funciona">Cómo funciona, en una frase</h2>
   <p>La pantalla de TV <strong>no se toca</strong>: se abre en la mañana y se refresca sola
     cada cinco minutos. Lo único que alguien hace todos los días es capturar Operadores,
-    Eficiencia y Faltas de su línea.</p>
+    Eficiencia y Faltas de su línea; el SAM Promedio se captura solo cuando cambia.</p>
 
   <h2 id="de-donde-salen">De dónde sale cada número</h2>
   <div class="tabla-caja">
@@ -54,7 +55,7 @@
       <tr><td>Eficiencia&nbsp;%</td><td>Captura diaria del supervisor</td></tr>
       <tr><td>Faltas</td><td>Captura diaria del supervisor</td></tr>
       <tr><td>Min. Turno</td><td>Automático: 540 minutos de lunes a jueves, 450 el viernes, desde las 7:00</td></tr>
-      <tr><td>SAM Promedio</td><td>Calculado. Es el tiempo estándar por pieza de la categoría de producto de la línea</td></tr>
+      <tr><td>SAM Promedio</td><td>Captura del supervisor, en minutos por pieza. Se escribe cuando cambia; mientras no se cambie, se sigue usando el último que se capturó para esa línea</td></tr>
       <tr><td>Min. Disponibles</td><td>Operadores × Min. Turno × Eficiencia</td></tr>
       <tr><td>Capacidad Productiva</td><td>Min. Disponibles ÷ SAM Promedio</td></tr>
       <tr><td>Real Asignado</td><td>Lo escaneado hoy en <a href="produccion.html#asignacion-costura">Asignación Costura</a></td></tr>
@@ -67,11 +68,11 @@
     que siempre. Lo que cambió es qué se muestra en la pantalla de TV — ver abajo.</p>
 
   <div class="ojo">
-    <b>El SAM cambia por producto, no por línea</b>
-    <p>Dos líneas que hacen el mismo tipo de producto tienen el mismo SAM. Una almohada lleva
-      muchos menos minutos que un cuerpo, así que una línea de almohadas asigna cientos de
-      piezas donde otra asigna decenas. <strong>No significa que vaya más rápido</strong>: el
-      producto es otro.</p>
+    <b>El SAM depende del producto</b>
+    <p>Una almohada lleva muchos menos minutos que un cuerpo, así que una línea de almohadas
+      asigna cientos de piezas donde otra asigna decenas. <strong>No significa que vaya más
+      rápido</strong>: el producto es otro. Por eso, cuando una línea cambia de producto, hay
+      que actualizar su SAM en la Captura diaria.</p>
   </div>
 
   <!-- ===================================================== -->
@@ -87,10 +88,21 @@
       <li>Busca el renglón de tu línea.</li>
       <li>Escribe <strong>Operadores</strong>, <strong>Eficiencia&nbsp;%</strong> y
         <strong>Faltas</strong>.</li>
+      <li>Si el <strong>SAM Promedio</strong> de tu línea cambió, escribe el nuevo.</li>
       <li>Da clic en <strong>Guardar</strong>.</li>
     </ol>
-    <p>Las demás columnas de la tabla — Min. Turno, SAM Promedio, Real Asignado — son de solo
-      lectura: están ahí para que veas el efecto de lo que capturas, pero no se escriben.</p>
+    <p>Las demás columnas de la tabla — Min. Turno, Min. Disponibles, Capacidad Productiva,
+      Real Asignado, Por Asignar — son de solo lectura: están ahí para que veas el efecto de
+      lo que capturas, pero no se escriben.</p>
+
+    <h3>El SAM Promedio se escribe solo cuando cambia</h3>
+    <p>Si un día no escribes el SAM, el sistema usa el último que se capturó para esa línea.
+      Ese valor se ve en <strong>gris e inclinado</strong>; si dejas el cursor encima, dice de
+      qué fecha es. Si hoy es distinto, escribe el nuevo encima y guarda: desde ese día manda
+      el nuevo.</p>
+    <p class="chico">Para guardar el SAM de una línea también hay que capturar sus Operadores y
+      su Eficiencia de ese día. Si una línea nunca ha tenido SAM, Capacidad Productiva y Por
+      Asignar salen en blanco hasta que alguien lo escriba.</p>
 
     <h3>Qué se puede escribir</h3>
     <div class="tabla-caja">
@@ -100,6 +112,7 @@
         <tr><td>Operadores</td><td>Cero o más. No admite negativos.</td></tr>
         <tr><td>Eficiencia %</td><td>Entre 0 y 100.</td></tr>
         <tr><td>Faltas</td><td>Cero o más.</td></tr>
+        <tr><td>SAM Promedio</td><td>Minutos por pieza. Mayor que 0 y hasta 1440.</td></tr>
         <tr><td>Min. Turno (manual)</td><td>Entre 0 y 1440. Ver abajo.</td></tr>
       </tbody>
     </table>
@@ -132,6 +145,16 @@
         <div class="dice">Los minutos de turno (manual) deben estar entre 0 y 1440 (24 horas).</div>
         <p class="quiere"><b>Qué pasó:</b> se escribieron horas en vez de minutos. Media
           jornada son 270, no 4.5.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">El SAM Promedio debe ser mayor que 0 y no mayor que 1440 minutos por pieza.</div>
+        <p class="quiere"><b>Qué pasó:</b> se dejó en cero o se escribió en otra unidad. El SAM
+          va en minutos por pieza, no en horas.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">para guardar el SAM Promedio captura también Operadores y Eficiencia.</div>
+        <p class="quiere"><b>Qué pasó:</b> se escribió el SAM de una línea que todavía no tiene
+          Operadores y Eficiencia de ese día. Captúralos y guarda otra vez.</p>
       </div>
       <div class="mensaje">
         <div class="dice">El numero de operadores no puede ser negativo.</div>

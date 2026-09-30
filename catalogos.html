@@ -23,6 +23,7 @@
     <h4>Por módulo</h4>
     <a href="produccion.html">Producción</a>
     <a href="calidad.html">Calidad</a>
+    <a href="almacen.html">Almacén</a>
     <a href="lineas.html">Pantallas de línea</a>
     <a class="aqui" href="catalogos.html">Catálogos y usuarios</a>
     <a href="datos.html">Base de datos y reportes</a>
@@ -147,6 +148,34 @@
       <p>El rol es el que decide qué menús aparecen. Un usuario sin rol se queda sin ningún
         permiso y no puede usar el sistema, aunque su usuario y contraseña sean correctos.</p>
     </div>
+    <h3>Qué ve cada rol</h3>
+    <p>Todos ven <strong>Inicio</strong> y el <strong>Manual de uso</strong>. Además:</p>
+    <div class="tabla-caja">
+    <table>
+      <thead><tr><th>Rol</th><th>Menús</th></tr></thead>
+      <tbody>
+        <tr><td>ADMIN</td><td>Todos.</td></tr>
+        <tr><td>Supervisor</td><td>Corte, Preparación, Costura, Empaque, Inspección Cut/Sew,
+            Inspección final, Almacén (con Carga de inventario), Reportes, Catálogos y
+            Pantallas.</td></tr>
+        <tr><td>Líderes</td><td>Corte, Preparación, Costura, Inspección Cut/Sew y Reportes.</td></tr>
+        <tr><td>Corte</td><td>Corte y Reportes.</td></tr>
+        <tr><td>Preparación</td><td>Preparación y Reportes.</td></tr>
+        <tr><td>Costura</td><td>Costura y Reportes.</td></tr>
+        <tr><td>Calidad</td><td>Inspección final, Inspección Cut/Sew y Reportes.</td></tr>
+        <tr><td>Empaque</td><td>Empaque, Base de datos y Reportes.</td></tr>
+        <tr><td>Almacén</td><td>Solo Almacén: Surtido, Retorno, Cárdex del rollo y Carga de
+            inventario.</td></tr>
+        <tr><td>Pantalla</td><td>Solo Pantallas: es el rol de las computadoras de las TV de
+            línea.</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>Los accesos rápidos de la pantalla de Inicio siguen los mismos permisos: cada quien ve
+      solo los de sus menús. Qué menús tiene cada rol lo ajusta el administrador del sistema;
+      si a alguien le falta uno, pídelo ahí. Los cambios de permisos se ven
+      <strong>al volver a entrar</strong>: hay que cerrar sesión y abrirla de nuevo.</p>
+
     <div class="ojo">
       <b>Dos usuarios no deben llamarse igual</b>
       <p>Si dos personas comparten el mismo nombre de usuario, mientras tengan contraseñas

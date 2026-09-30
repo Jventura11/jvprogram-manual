@@ -11,6 +11,7 @@ sin instalar ni iniciar sesión.
 | `index.html` | Cómo funcionan todas las pantallas: capturar, buscar, filtrar, exportar, atajos |
 | `produccion.html` | Las diez pantallas de producción, de corte a embarque |
 | `calidad.html` | Inspecciones y los tres catálogos de calidad |
+| `almacen.html` | Almacén: carga de la foto diaria, surtido, retorno (PUT) y cárdex del rollo |
 | `lineas.html` | Pantallas de TV por línea y la captura diaria que las alimenta |
 | `catalogos.html` | Plantilla, áreas, supervisores, markers y usuarios |
 | `datos.html` | Master Plan, tiempos, cancelados y los tres reportes |
@@ -49,11 +50,15 @@ editor de texto y los cambios se ven al recargar el navegador.
 
 Para agregar una pantalla nueva, copiar un bloque `<div class="pantalla" id="...">`
 de `produccion.html`, cambiarle el contenido, y agregar el enlace correspondiente en
-el `<nav>` de las tres páginas.
+el `<nav>` de **todas** las páginas (hoy son ocho: el bloque `<aside class="lado">`
+es idéntico en todas, salvo la que lleva `class="aqui"`).
 
 ## Estado
 
-Las treinta pantallas del sistema están cubiertas. Lo que puede mejorar:
+Las pantallas del sistema están cubiertas, incluidas las cuatro del módulo de
+Almacén. Lo que ese módulo todavía no tiene está anotado en la sección
+*Lo que todavía no está* de `almacen.html`, para que el manual no prometa algo que
+no existe. Lo que puede mejorar en el manual:
 
 - Capturas de pantalla (hoy no lleva ninguna, a propósito: ver la regla de arriba
   antes de agregar una).

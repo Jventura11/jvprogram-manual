@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Almacén · Manual de JV Program</title>
+<meta name="description" content="Almacén: la foto diaria del inventario, el surtido de materia prima, el retorno y el cárdex del rollo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<div class="envoltura">
+
+<aside class="lado">
+  <a class="titulo" href="index.html">Manual de JV&nbsp;Program</a>
+  <div class="sub">Versión 5.0</div>
+  <input type="search" id="buscar" placeholder="Buscar en esta página…" aria-label="Buscar en esta página">
+  <nav aria-label="Índice">
+    <h4>Empezar aquí</h4>
+    <a href="index.html">Cómo funcionan todas las pantallas</a>
+    <h4>Por módulo</h4>
+    <a href="produccion.html">Producción</a>
+    <a href="calidad.html">Calidad</a>
+    <a class="aqui" href="almacen.html">Almacén</a>
+    <a href="lineas.html">Pantallas de línea</a>
+    <a href="catalogos.html">Catálogos y usuarios</a>
+    <a href="datos.html">Base de datos y reportes</a>
+    <h4>Cuando algo falla</h4>
+    <a href="preguntas.html">Errores y preguntas frecuentes</a>
+  </nav>
+</aside>
+
+<main>
+  <div class="portada">
+    <p class="eyebrow">Por módulo</p>
+    <h1>Almacén</h1>
+    <p class="entrada">Cuatro pantallas para seguirle la pista a la materia prima: la foto
+      diaria del inventario, lo que sale a producción, lo que regresa, y la historia
+      completa de cualquier rollo. Todas siguen las reglas de
+      <a href="index.html">Cómo funcionan todas las pantallas</a>.</p>
+    <p>Las ven los roles <strong>Almacén</strong> (que no ve nada más),
+      <strong>Supervisor</strong> y <strong>ADMIN</strong>. Ver
+      <a href="catalogos.html#usuarios">qué ve cada rol</a>.</p>
+  </div>
+
+  <h2 id="la-foto">Todo se apoya en la foto del día</h2>
+  <p>JDE genera cada día un archivo de Excel con el inventario del almacén: qué rollos hay,
+    de qué item, cuánto le queda a cada uno y cuánto cuesta. A ese archivo le decimos
+    <strong>la foto</strong>, y es la base de todo el módulo.</p>
+  <p>Cuando se escanea un serial en Surtido, lo que se resuelve —el item, el material, la
+    unidad, el costo— sale de la foto. <strong>Sin la foto del día, las demás pantallas no
+    pueden resolver nada.</strong></p>
+
+  <div class="yerro">
+    <b>Un día sin cargar se pierde para siempre</b>
+    <p>JDE sobrescribe siempre el mismo archivo. Si un día no se carga la foto, el archivo
+      de ese día ya no existe y <strong>no hay forma de recuperarlo</strong>.</p>
+    <p>Por eso la pantalla de Carga tiene una pestaña <strong>Días sin foto</strong>: es una
+      alarma, no un adorno. Si aparece algo ahí, ese día ya no se puede reconstruir.</p>
+  </div>
+
+  <div class="tabla-caja">
+  <table>
+    <thead><tr><th>Pantalla</th><th>Para qué</th><th>Quién la usa</th></tr></thead>
+    <tbody>
+      <tr><td>Carga de inventario</td><td>Subir la foto del día</td><td>Una vez al día, al empezar</td></tr>
+      <tr><td>Surtido</td><td>Registrar lo que sale a producción</td><td>El surtidor, todo el turno</td></tr>
+      <tr><td>Retorno (PUT)</td><td>Registrar lo que regresa</td><td>Quien recibe el material de vuelta</td></tr>
+      <tr><td>Cárdex del rollo</td><td>Consultar la historia de un rollo</td><td>Cuando algo no cuadra</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- ===================================================== -->
+  <div class="pantalla" id="carga-inventario">
+    <p class="ruta">Menú · <b>Almacén</b> › Carga de inventario</p>
+    <h2 style="margin-top:0">Carga de inventario</h2>
+    <p>Sube la foto del día. Es lo primero que hay que hacer, y solo toma un clic.</p>
+
+    <h3>Cómo se usa</h3>
+    <ol class="pasos">
+      <li>La <strong>ruta del archivo</strong> ya viene configurada. Solo se cambia si el
+        archivo se mueve de lugar.</li>
+      <li>Clic en <strong>Cargar foto del día</strong>.</li>
+      <li>Abajo aparece lo que quedó cargado: cuántos rollos y cuánta cantidad hay de tela,
+        de piel y de componentes.</li>
+    </ol>
+
+    <h3>Las dos pestañas de abajo</h3>
+    <ul>
+      <li><strong>Historial de cargas</strong> — una línea por día: cuándo se cargó, a qué
+        hora generó JDE el archivo, cuántos renglones traía y cuántos quedaron.</li>
+      <li><strong>Días sin foto</strong> — los días que faltan. Lo normal es que esté vacía.
+        <strong>Si falta un día, esta pestaña se abre sola.</strong></li>
+    </ul>
+
+    <div class="ojo">
+      <b>La columna «Faltaron» debe dar cero</b>
+      <p>Es <em>leídos − cargados − sin serial</em>. Si da otra cosa, el Excel traía
+        renglones que el cargador descartó por alguna razón, y vale la pena mirarlo.</p>
+      <p>Los renglones <strong>sin serial</strong> sí son normales: el archivo trae
+        resúmenes y encabezados que no son rollos.</p>
+    </div>
+
+    <h3>Mensajes que puede dar</h3>
+    <div class="mensajes">
+      <div class="mensaje">
+        <div class="dice">El archivo es idéntico al anterior.</div>
+        <p class="quiere"><b>Qué pasó:</b> JDE todavía no ha generado el archivo de hoy, o
+          se cargó dos veces el mismo. No se guardó nada, y está bien así.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">No se encontró el archivo en la ruta configurada.</div>
+        <p class="quiere"><b>Qué pasó:</b> el archivo se movió, o la carpeta compartida no
+          está disponible en este momento. Revisa la ruta del cuadro de arriba.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================== -->
+  <div class="pantalla" id="surtido">
+    <p class="ruta">Menú · <b>Almacén</b> › Surtido</p>
+    <h2 style="margin-top:0">Surtido</h2>
+    <p>Lo que sale del almacén hacia producción. Es la pantalla que más se usa, y está hecha
+      para escanear: <strong>fijar la WO, escanear, guardar</strong>.</p>
+
+    <h3>Casi nada se teclea</h3>
+    <p>De la WO salen solas <strong>la planeación</strong> (la semana) y <strong>el
+      requerido</strong> (lo que esa orden pide de ese material). Del serial escaneado sale
+      todo lo demás: item, material, unidad, costo y cuánto trae el rollo.</p>
+    <p>Por eso la WO es <strong>obligatoria</strong>: sin ella la salida nace sin semana y
+      sin requerido, y no se puede comparar contra nada.</p>
+
+    <h3>Los dos modos</h3>
+    <p>Arriba, en <strong>Modo</strong>, se elige cómo se va a capturar. La diferencia no es
+      cuántas WO hay, sino <strong>si la WO se repite o cambia en cada rollo</strong>:</p>
+    <div class="tabla-caja">
+    <table>
+      <thead><tr><th>Modo</th><th>La WO</th><th>Cuándo usarlo</th></tr></thead>
+      <tbody>
+        <tr><td>Misma WO en varios seriales</td><td>Se queda fija entre altas</td>
+            <td>Varios rollos contra la misma orden. Típico en piel.</td></tr>
+        <tr><td>Cada serial con su WO</td><td>Se limpia en cada salida</td>
+            <td>Cada rollo va a una orden distinta. También si es uno a uno.</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="ojo">
+      <b>¿Un rollo, una WO? Usa el segundo</b>
+      <p>Con una sola WO los dos modos dan exactamente el mismo número. Lo único que cambia
+        es que el primero <strong>deja la WO puesta</strong>, y si cada rollo lleva una orden
+        distinta eso obligaría a volver a fijarla en cada escaneo.</p>
+    </div>
+
+    <h3>La línea del medio lo dice todo</h3>
+    <p>Después de escanear, la pantalla muestra una línea como esta:</p>
+    <div class="tabla-caja">
+    <table>
+      <tbody>
+        <tr><td><b>Sale el rollo completo: 50.00 YD &nbsp;·&nbsp; Requerido de la WO: 32.71 YD
+            &nbsp;·&nbsp; deberían regresar 17.29 YD</b></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>Los tres números son lo que hay que mirar antes de guardar. El tercero
+      <strong>no se guarda en ningún lado</strong>: está ahí para que sepas qué tienes que
+      traer de vuelta, en vez de descubrirlo dos días después.</p>
+    <p>En <strong>piel</strong> el tercer número dice <em>«sobran …»</em> en vez de
+      «deberían regresar», porque lo que sobra de un paño cortado casi nunca vuelve. Si no
+      sobra nada, dice <em>«no sobra nada»</em>, que es lo normal. En <strong>tela</strong>,
+      si dice que no regresa nada, se pinta en color de aviso: ahí sí es raro.</p>
+
+    <div class="ojo">
+      <b>El último rollo lleva solo lo que le falta a la WO</b>
+      <p>Con la WO fija, cada paño se lleva como requerido lo que la orden todavía pide. Si
+        una WO pide 150.00 y ya salieron tres paños de 45.00, el cuarto lleva
+        <strong>15.00</strong> de requerido aunque el paño traiga más: el resto es sobrante,
+        no necesidad de la orden. Es igual en piel y en tela.</p>
+      <p>Si la WO ya está cubierta, el paño siguiente sale con requerido 0 y la pantalla lo
+        avisa: casi siempre es un paño de más.</p>
+    </div>
+
+    <div class="ojo">
+      <b>El rollo siempre sale completo</b>
+      <p>No se captura cuánto se entrega, porque siempre se entrega el rollo o el paño
+        entero: lo que sobra regresa por Retorno. La cantidad la resuelve el sistema con el
+        <strong>saldo real</strong> del rollo, no con lo que decía la foto — si ese rollo ya
+        salió hoy, lo descuenta.</p>
+    </div>
+
+    <h3>El ritmo</h3>
+    <ol class="pasos">
+      <li>Teclea tu <strong>nómina</strong>, el carro y el reason code. Se quedan puestos.</li>
+      <li>Elige el modo y <strong>fija la WO</strong>. La lista muestra qué pide y cuánto le
+        falta.</li>
+      <li><strong>Escanea el serial.</strong> La pistola manda el Enter y la pantalla
+        resuelve todo.</li>
+      <li>Revisa la línea del medio y guarda: <strong>Ctrl+S</strong>, Enter desde
+        Comentarios, o el botón <strong>GUARDAR</strong> verde de arriba.</li>
+    </ol>
+
+    <div class="ojo">
+      <b>El escaneo no guarda solo, a propósito</b>
+      <p>En las pantallas de producción el escaneo de la WO <em>es</em> el registro. Aquí no:
+        el escáner resuelve el rollo y deja el foco listo, pero guardar es un paso aparte.</p>
+      <p>Ese medio segundo es el único momento en que alguien mira la pantalla antes de que
+        la salida quede escrita. Un escaneo equivocado que se guarda solo no se nota hasta
+        el día siguiente.</p>
+    </div>
+
+    <h3>La lista de abajo</h3>
+    <ul>
+      <li>Va <strong>un renglón por WO</strong>. Si un rollo sirvió a varias órdenes, sale en
+        varios renglones, cada uno con su requerido; la cantidad surtida va solo en el primero,
+        porque el rollo salió una vez.</li>
+      <li><strong>Clic</strong> en un renglón lo selecciona y se pintan todos los renglones de
+        esa salida. Otro clic en la misma salida, o <kbd>Esc</kbd>, la deselecciona.</li>
+      <li><strong>Clic derecho</strong> → <em>Copiar valor</em> copia solo esa celda, y
+        <em>Ver cárdex del rollo</em> abre la historia de ese rollo.</li>
+    </ul>
+
+    <h3>Buscar salidas</h3>
+    <p>Debajo de la captura están los <strong>filtros de búsqueda</strong>: planeación, WO,
+      item, serial, material (piel o tela) y un rango de fechas que se activa con su casilla.
+      Basta con un pedazo: <em>«2701»</em> encuentra la planeación completa.</p>
+    <ul>
+      <li><strong>Buscar</strong> en la barra, <kbd>Enter</kbd> en cualquier filtro, o
+        <kbd>F5</kbd>. Si buscas una WO que iba con otras en el mismo rollo, sale la salida
+        completa.</li>
+      <li><strong>Últimos capturados</strong> vuelve a las últimas salidas, sin filtros.</li>
+      <li><strong>Limpiar filtros</strong> vacía los filtros y regresa a como se abre la
+        pantalla.</li>
+      <li><strong>Exportar Excel</strong> saca lo que se ve en la lista, con las mismas
+        columnas.</li>
+    </ul>
+    <p>Mientras hay una búsqueda activa, al guardar o anular la lista se vuelve a leer con la
+      misma búsqueda.</p>
+
+    <h3>Anular una salida</h3>
+    <p>El botón <strong>Anular</strong> de la barra anula la salida seleccionada en la lista.
+      No la borra: la deja marcada, con quién la anuló y cuándo, y deja de contar.</p>
+    <p>Solo se puede anular una salida <strong>del mismo día</strong> y <strong>que no tenga
+      ningún retorno</strong>. Con retorno ya hay otra captura colgando de ella; de otro día,
+      esa salida ya entró a la comparación contra la foto del día siguiente.</p>
+
+    <div class="ojo">
+      <b>Si el serial o la WO están mal, se anula y se vuelve a capturar</b>
+      <p>No se editan. Cambiarlos movería el saldo del rollo, el requerido acumulado de la WO
+        y el reparto de las salidas que vengan después en ese grupo, sin que nadie se entere.
+        Anular y recapturar deja rastro y no rompe nada.</p>
+    </div>
+
+    <h3>Mensajes que puede dar</h3>
+    <div class="mensajes">
+      <div class="mensaje">
+        <div class="dice">Falta la WO. De ella salen la planeación (la semana) y el requerido…</div>
+        <p class="quiere"><b>Qué pasó:</b> se intentó guardar sin fijar la WO. Si de verdad
+          no la tienes todavía, captura la salida cuando la tengas: el rollo no se pierde,
+          sigue en la foto.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">El serial no existe en ninguna foto del inventario.</div>
+        <p class="quiere"><b>Qué pasó:</b> o el escaneo se leyó mal, o no se ha cargado la
+          foto del día. Revisa las dos cosas.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">La cantidad surtida (…) es mayor que lo que le queda al rollo (…)</div>
+        <p class="quiere"><b>Qué pasó:</b> ese rollo ya salió antes y le queda menos de lo
+          que decía la foto. El mensaje te dice el saldo real. Casi siempre es el rollo
+          equivocado.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">La WO … no pide este item según el master plan…</div>
+        <p class="quiere"><b>Qué pasó:</b> es un aviso, no un rechazo — se puede guardar. Pero
+          casi siempre significa <strong>rollo equivocado</strong>. Vale la pena revisar antes
+          de seguir.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">La foto del inventario es del … (hace N días).</div>
+        <p class="quiere"><b>Qué pasó:</b> no se ha cargado la foto de hoy. Se puede capturar
+          igual, pero el costo que se guarda es el de esa fecha.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================== -->
+  <div class="pantalla" id="retorno">
+    <p class="ruta">Menú · <b>Almacén</b> › Retorno (PUT)</p>
+    <h2 style="margin-top:0">Retorno (PUT)</h2>
+    <p>Lo que regresa al almacén. Aquí no se captura un movimiento nuevo: se
+      <strong>cierra</strong> uno que estaba abierto.</p>
+
+    <h3>Cómo se usa</h3>
+    <ol class="pasos">
+      <li>Teclea tu <strong>nómina</strong>. Se queda puesta.</li>
+      <li><strong>Escanea el serial.</strong> La pantalla busca las salidas abiertas de ese
+        rollo y muestra de dónde salió, cuándo y para qué órdenes.</li>
+      <li>Si el rollo tiene más de una salida abierta, <strong>elige cuál estás cerrando</strong>.</li>
+      <li>Escribe <strong>la cantidad que regresa</strong> y guarda: <strong>Ctrl+S</strong>,
+        <kbd>Enter</kbd> desde la cantidad, o el botón <strong>GUARDAR</strong> verde de
+        arriba.</li>
+    </ol>
+    <p>La barra y los filtros son los mismos de Surtido: Buscar, Últimos capturados, Limpiar
+      filtros, Exportar Excel y Filtrar en pantalla. Aquí la fecha del filtro es la
+      <strong>del retorno</strong>.</p>
+
+    <div class="ojo">
+      <b>Cero es un dato válido</b>
+      <p>Significa <em>«se consumió todo el rollo»</em>, y es lo que cierra la salida. No es
+        lo mismo que no capturar nada: sin el retorno, esa salida se queda abierta para
+        siempre y el rollo aparece como si siguiera en el piso.</p>
+    </div>
+
+    <h3>Solo material que ya pasó por corte</h3>
+    <p>Retorno es para lo que sobró después de cortar. <strong>Un rollo que vuelve entero
+      nunca se cortó</strong>, así que no es un retorno: es una salida equivocada, y eso se
+      arregla anulando en Surtido.</p>
+
+    <div class="ojo">
+      <b>Si el rollo regresa completo, la pantalla te manda a Surtido</b>
+      <p>Cuando lo que regresa es el 99% o más de lo que salió, aparece un aviso que dice que
+        lo correcto es <strong>anular la salida</strong>, no capturar un retorno.</p>
+      <p>No es un capricho: anular libera el requerido que esa WO tiene acreditado. Un retorno
+        no lo libera, y entonces el siguiente rollo de ese grupo saldría con menos requerido
+        del que le toca.</p>
+      <p>Es un <strong>aviso</strong>, no un rechazo — se puede guardar igual si hay una razón.</p>
+    </div>
+
+    <h3>Mensajes que puede dar</h3>
+    <div class="mensajes">
+      <div class="mensaje">
+        <div class="dice">No se eligió la salida a la que corresponde este retorno.</div>
+        <p class="quiere"><b>Qué pasó:</b> el rollo tiene varias salidas abiertas y hay que
+          decir cuál se está cerrando. Elige el renglón en la lista de arriba.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">Regresan … pero solo salieron …</div>
+        <p class="quiere"><b>Qué pasó:</b> no puede volver más de lo que salió. Revisa la
+          cantidad, o si el rollo corresponde a otra salida.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">Este rollo lleva N días fuera del almacén.</div>
+        <p class="quiere"><b>Qué pasó:</b> solo un aviso. Se guarda igual.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================== -->
+  <div class="pantalla" id="cardex">
+    <p class="ruta">Menú · <b>Almacén</b> › Cárdex del rollo</p>
+    <h2 style="margin-top:0">Cárdex del rollo</h2>
+    <p>La historia completa de un rollo, o el estado de todos los rollos de un item. Es la
+      pantalla de <strong>cuando algo no cuadra</strong>.</p>
+
+    <h3>Cómo llegar</h3>
+    <ul>
+      <li>Desde el <strong>menú</strong>, escaneando o tecleando el serial.</li>
+      <li><strong>Clic derecho</strong> sobre cualquier renglón de la lista de Surtido o de
+        Retorno → <em>Ver cárdex del rollo</em>, ya cargado.</li>
+      <li><strong>Doble clic</strong> sobre un rollo en la pestaña del item salta a su
+        historia.</li>
+    </ul>
+
+    <h3>Pestaña «Un rollo»</h3>
+    <p>Arriba, la identidad del rollo y su costo. En medio, su historia en orden, mezclando
+      cuatro tipos de renglón:</p>
+    <div class="tabla-caja">
+    <table>
+      <thead><tr><th>Renglón</th><th>Qué dice</th></tr></thead>
+      <tbody>
+        <tr><td>FOTO</td><td>Lo que JDE vio ese día, y cuánto cambió contra la foto anterior.</td></tr>
+        <tr><td>SALIDA</td><td>Lo que capturamos que salió, con su WO y su requerido.</td></tr>
+        <tr><td>RETORNO</td><td>Lo que capturamos que regresó.</td></tr>
+        <tr><td>SE ACABÓ</td><td>La primera foto en la que el rollo ya no apareció.</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>Abajo, las WO que usaron ese rollo con lo asignado, lo requerido, lo retornado y lo
+      consumido.</p>
+
+    <div class="ojo">
+      <b>Un rollo consumido no llega a cero: desaparece</b>
+      <p>Cuando se acaba, deja de venir en la foto. Por eso el último renglón dice
+        <em>«Ya no aparece en la foto del …»</em> en vez de mostrar un cero.</p>
+    </div>
+
+    <h3>Pestaña «Todos los rollos de un item»</h3>
+    <p>Todos los rollos de ese item con su estado, y arriba un resumen: cuántos hay, cuántos
+      siguen vivos, cuántos se acabaron, cuánto queda y cuánto vale.</p>
+
+    <div class="ojo">
+      <b>«En la foto» y «Saldo» son dos números distintos, y los dos son ciertos</b>
+      <p><strong>En la foto</strong> es lo que JDE cree que tiene el rollo.
+         <strong>Saldo</strong> es lo que de verdad le queda, descontando lo que salió
+         después de esa foto.</p>
+      <p>Cuando difieren no hay nada roto: JDE todavía no ha visto un movimiento que nosotros
+        ya capturamos. La pantalla te lo dice con esas palabras.</p>
+    </div>
+
+    <h3>Exportar a Excel</h3>
+    <p><strong>Exportar Excel</strong>, en la barra de arriba, saca la pestaña que estás
+      viendo en un solo archivo:</p>
+    <ul>
+      <li><strong>Un rollo:</strong> una hoja con sus datos, otra con su historia y otra con
+        sus WO.</li>
+      <li><strong>Todos los rollos de un item:</strong> una hoja con el resumen y otra con los
+        rollos.</li>
+    </ul>
+    <p>Las dos llevan además una hoja <strong>«Notas»</strong> con los avisos de la pantalla.
+      Un Excel se reenvía sin la pantalla, y sin esos avisos el cárdex se lee mal. Se exporta
+      lo último que buscaste.</p>
+
+    <div class="yerro">
+      <b>Dos cosas que el cárdex todavía no puede decirte</b>
+      <p><strong>«Primera foto» es la primera vez que el sistema vio el rollo</strong>, no
+        cuándo llegó al almacén. Las fotos empiezan cuando se arrancó el módulo, así que un
+        rollo más viejo va a mostrar esa fecha.</p>
+      <p><strong>«Sin WO» quiere decir que no lo sabemos</strong>, no que el rollo no se usó.
+        Las WO solo aparecen para lo capturado en JV Program; un rollo movido con el proceso
+        anterior muestra sus cantidades pero sin órdenes.</p>
+      <p>Los dos avisos salen en la parte de arriba de la pantalla, y <strong>se apagan solos
+        cuando dejan de ser ciertos</strong>.</p>
+    </div>
+  </div>
+
+  <!-- ===================================================== -->
+  <h2 id="pendientes">Lo que todavía no está</h2>
+  <p>El módulo es nuevo. Esto es lo que falta, para que nadie lo busque en vano:</p>
+
+  <div class="tabla-caja">
+  <table>
+    <thead><tr><th>Falta</th><th>Qué se hace mientras tanto</th></tr></thead>
+    <tbody>
+      <tr><td><b>Reporte de ahorro y sobreconsumo</b><br>Comparar lo requerido contra lo
+          realmente consumido, en dólares.</td>
+          <td>El cálculo ya existe en la base; falta la pantalla que lo muestre. Se puede
+            consultar por reporte.</td></tr>
+      <tr><td><b>Pantalla de rollos que llevan días fuera</b><br>Los que salieron y nunca
+          regresaron.</td>
+          <td>Se ven filtrando por estado en la lista de Surtido.</td></tr>
+      <tr><td><b>Corregir una salida ya guardada</b><br>Surtidor, carro, reason code y
+          comentarios.</td>
+          <td>Por ahora se anula y se vuelve a capturar — solo el mismo día.</td></tr>
+      <tr><td><b>Anular un retorno</b></td>
+          <td>No existe, y es a propósito: la captura de Retorno es serial, cantidad y
+            comentarios, hay poco que equivocar.
+            <strong>Ojo:</strong> si un retorno se captura con la cantidad mal, tampoco se
+            puede anular la salida, porque ya tiene un retorno. Ese caso hay que corregirlo
+            con soporte.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="ojo">
+    <b>Una pregunta abierta para Almacén</b>
+    <p>En la primera comparación entre dos fotos aparecieron <strong>24 rollos que
+      crecieron solos</strong>: la foto nueva traía más cantidad que la anterior sin que
+      nadie capturara un retorno.</p>
+    <p>Puede ser sobrante devuelto al almacén, o un reconteo. Si es lo primero, la pantalla
+      de Retorno lo va a capturar y el caso desaparece. Falta confirmarlo.</p>
+  </div>
+
+  <div id="sinresultados">No hay nada con esa palabra en esta página.</div>
+
+  <footer>
+    <p>Manual de JV Program 5.0 · VLR México. Los ejemplos de este manual son ficticios:
+      no corresponden a órdenes, clientes ni personas reales.</p>
+  </footer>
+</main>
+
+</div>
+<script src="buscar.js"></script>
+</body>
+</html>

@@ -23,6 +23,7 @@
     <h4>Por módulo</h4>
     <a href="produccion.html">Producción</a>
     <a href="calidad.html">Calidad</a>
+    <a href="almacen.html">Almacén</a>
     <a href="lineas.html">Pantallas de línea</a>
     <a href="catalogos.html">Catálogos y usuarios</a>
     <a href="datos.html">Base de datos y reportes</a>
@@ -191,6 +192,46 @@
     <h3>¿Puedo usar la versión anterior y la nueva al mismo tiempo?</h3>
     <p>Sí. Las dos leen y escriben la misma información, así que nada se pierde ni se duplica
       por usar una u otra. Lo que captures en una se ve en la otra.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>En Surtido dice que el serial no existe en ninguna foto del inventario.</h3>
+    <p>Casi siempre es que <strong>no se cargó la foto del día</strong>. El serial se resuelve
+      contra la foto, así que sin ella no hay nada contra qué compararlo. Revisa en
+      <em>Almacén › Carga de inventario</em> si la de hoy ya está cargada. La otra causa es
+      que el rollo haya entrado al almacén <strong>después</strong> de que JDE generó el
+      archivo: en ese caso aparece hasta la foto del día siguiente.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>¿Por qué Surtido no me deja capturar cuánto entregué?</h3>
+    <p>Porque <strong>el rollo siempre sale completo</strong>. La cantidad la resuelve el
+      sistema con el saldo real del rollo, y lo que sobra regresa por <em>Retorno&nbsp;(PUT)</em>.
+      La línea del medio de la pantalla te dice cuánto debería regresar antes de guardar.
+      Está explicado en <a href="almacen.html#surtido">Surtido</a>.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>Capturé una salida de almacén con el serial o la WO equivocados.</h3>
+    <p>No se edita: se <strong>anula y se vuelve a capturar</strong>, con el botón Anular de la
+      barra. Solo se puede anular una salida <strong>del mismo día</strong> y <strong>que no
+      tenga ningún retorno</strong>. Si ya pasó de día, o ya le registraron un retorno,
+      repórtalo en vez de intentar arreglarlo desde la pantalla.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>Me equivoqué al capturar un retorno.</h3>
+    <p><strong>Retorno no tiene Anular</strong>, a propósito: hay que reportarlo. Y no es solo el
+      renglón del retorno — mientras ese retorno exista, <strong>la salida de la que cuelga
+      tampoco se puede anular</strong>, así que conviene avisar el mismo día.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>Un rollo ya está en cero y no sé en qué se usó.</h3>
+    <p>Eso es exactamente para lo que está el <a href="almacen.html#cardex">Cárdex del
+      rollo</a>: en qué foto apareció por primera vez, qué WO lo consumieron, y el renglón
+      <strong>SE ACABÓ</strong> con la fecha en que llegó a cero. Se abre desde el menú de
+      Almacén o con clic derecho sobre el serial en Surtido o en Retorno.</p>
   </div>
 
   <h2 id="reportar">Cómo reportar un problema</h2>
