@@ -36,12 +36,13 @@
   <div class="portada">
     <p class="eyebrow">Por módulo</p>
     <h1>Almacén</h1>
-    <p class="entrada">Cuatro pantallas para seguirle la pista a la materia prima: la foto
-      diaria del inventario, lo que sale a producción, lo que regresa, y la historia
-      completa de cualquier rollo. Todas siguen las reglas de
+    <p class="entrada">Cinco pantallas para seguirle la pista a la materia prima: la foto
+      diaria del inventario, lo que sale a producción —capturado o cargado desde Excel—, lo
+      que regresa, y la historia completa de cualquier rollo. Todas siguen las reglas de
       <a href="index.html">Cómo funcionan todas las pantallas</a>.</p>
     <p>Las ven los roles <strong>Almacén</strong> (que no ve nada más),
-      <strong>Supervisor</strong> y <strong>ADMIN</strong>. Ver
+      <strong>Supervisor</strong> y <strong>ADMIN</strong>. <em>Importar surtido</em> lleva un
+      permiso aparte y hoy solo lo tiene ADMIN. Ver
       <a href="catalogos.html#usuarios">qué ve cada rol</a>.</p>
   </div>
 
@@ -67,6 +68,7 @@
     <tbody>
       <tr><td>Carga de inventario</td><td>Subir la foto del día</td><td>Una vez al día, al empezar</td></tr>
       <tr><td>Surtido</td><td>Registrar lo que sale a producción</td><td>El surtidor, todo el turno</td></tr>
+      <tr><td>Importar surtido</td><td>Cargar un turno de salidas desde un Excel</td><td>Quien tenga el permiso, una vez por turno</td></tr>
       <tr><td>Retorno (PUT)</td><td>Registrar lo que regresa</td><td>Quien recibe el material de vuelta</td></tr>
       <tr><td>Cárdex del rollo</td><td>Consultar la historia de un rollo</td><td>Cuando algo no cuadra</td></tr>
     </tbody>
@@ -282,6 +284,95 @@
         <div class="dice">La foto del inventario es del … (hace N días).</div>
         <p class="quiere"><b>Qué pasó:</b> no se ha cargado la foto de hoy. Se puede capturar
           igual, pero el costo que se guarda es el de esa fecha.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================== -->
+  <div class="pantalla" id="importar-surtido">
+    <p class="ruta">Menú · <b>Almacén</b> › Importar surtido</p>
+    <h2 style="margin-top:0">Importar surtido</h2>
+    <p>Carga de una sola vez las salidas de un turno escritas en Excel, en lugar de escanear
+      renglón por renglón. Graba lo mismo que Surtido y con las mismas reglas: el item, el
+      material, la cantidad, la planeación, el requerido y el reparto los resuelve el sistema,
+      igual que en la pantalla.</p>
+
+    <h3>La plantilla</h3>
+    <p>Se usa la plantilla de Almacén, con una hoja llamada <strong>Surtido</strong>. Trae las
+      mismas columnas que la exportación de Surtido, pero <strong>solo se llenan cinco</strong>:</p>
+    <div class="tabla-caja">
+    <table>
+      <thead><tr><th>Columna</th><th>Qué va</th></tr></thead>
+      <tbody>
+        <tr><td>WO</td><td>La orden.</td></tr>
+        <tr><td>SERIAL</td><td>El rollo o paño.</td></tr>
+        <tr><td>REASON</td><td>El reason code.</td></tr>
+        <tr><td>CARRO</td><td>El carro, con el formato <em>CART</em> y su número (por
+            ejemplo <em>CART12</em>).</td></tr>
+        <tr><td>SURTIDOR</td><td>Su <strong>número de nómina</strong>. También acepta el
+            nombre completo tal como está en el padrón; si dos personas se llaman igual, el
+            renglón se rechaza y hay que poner la nómina.</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>Las demás columnas se quedan vacías: las genera el sistema.</p>
+
+    <div class="yerro">
+      <b>No se importa un archivo exportado</b>
+      <p>Si el archivo trae llenas las columnas FECHA y ESTADO, es una exportación de la
+        pantalla de Surtido, no la plantilla. Importarlo volvería a grabar salidas que ya
+        están capturadas, así que la pantalla lo rechaza completo.</p>
+    </div>
+
+    <h3>Una WO con varios rollos, o un rollo para varias WO</h3>
+    <p>No hay que elegir el modo: se deduce del archivo. Si una WO aparece con varios seriales,
+      se reparte como <em>Misma WO en varios seriales</em>; si un serial aparece con varias WO,
+      como <em>Cada serial con su WO</em>. La lista de revisión dice qué modo tomó cada renglón
+      y por qué.</p>
+    <p>Si en un mismo grupo se mezclan las dos cosas (un rollo que sirve a varias WO y una de
+      esas WO que además lleva otros rollos), el grupo se marca con error: hay que separarlo
+      en el archivo para que no quede en duda a quién le toca el saldo.</p>
+
+    <h3>Dos pasos: Revisar y después IMPORTAR</h3>
+    <ol class="pasos">
+      <li><strong>Examinar…</strong> y elige el archivo.</li>
+      <li><strong>Revisar.</strong> No guarda nada: enseña cada renglón con su item, cantidad,
+        requerido, modo y, si lo hay, el error o el aviso. Arriba dice cuántas salidas se
+        crearían, cuántos renglones traen error y cuántos aviso (en amarillo).</li>
+      <li>Si todo está bien, <strong>IMPORTAR</strong>. Pide confirmar y graba exactamente lo
+        que se revisó, con la fecha y hora del momento de importar.</li>
+    </ol>
+
+    <div class="ojo">
+      <b>Todo o nada</b>
+      <p>Si <strong>un solo renglón</strong> trae error, no se importa ninguno: se corrige el
+        archivo y se vuelve a revisar. Los <strong>avisos</strong> no detienen la importación,
+        pero conviene leerlos: casi siempre señalan un rollo equivocado.</p>
+    </div>
+
+    <h3>Mensajes que puede dar</h3>
+    <div class="mensajes">
+      <div class="mensaje">
+        <div class="dice">El archivo no tiene una hoja llamada 'Surtido'…</div>
+        <p class="quiere"><b>Qué pasó:</b> no es la plantilla, o se le cambió el nombre a la
+          hoja.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">El serial … no existe en ninguna foto del inventario.</div>
+        <p class="quiere"><b>Qué pasó:</b> serial mal escrito, o falta cargar la foto del día.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">La WO … no existe en el master plan.</div>
+        <p class="quiere"><b>Qué pasó:</b> WO mal escrita, o todavía no está en el plan.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">Este grupo mezcla los dos modos y no se puede deducir cual aplica…</div>
+        <p class="quiere"><b>Qué pasó:</b> ver arriba. Separa el grupo en el archivo.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">No encontre a '…' en el padron de personal. Escribe su numero de nomina.</div>
+        <p class="quiere"><b>Qué pasó:</b> el nombre del surtidor no coincide con el padrón.
+          Con el número de nómina no hay duda.</p>
       </div>
     </div>
   </div>

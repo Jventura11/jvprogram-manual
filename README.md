@@ -11,7 +11,7 @@ sin instalar ni iniciar sesión.
 | `index.html` | Cómo funcionan todas las pantallas: capturar, buscar, filtrar, exportar, atajos |
 | `produccion.html` | Las diez pantallas de producción, de corte a embarque |
 | `calidad.html` | Inspecciones y los tres catálogos de calidad |
-| `almacen.html` | Almacén: carga de la foto diaria, surtido, retorno (PUT) y cárdex del rollo |
+| `almacen.html` | Almacén: carga de la foto diaria, surtido, importar surtido desde Excel, retorno (PUT) y cárdex del rollo |
 | `lineas.html` | Pantallas de TV por línea y la captura diaria que las alimenta |
 | `catalogos.html` | Plantilla, áreas, supervisores, markers y usuarios |
 | `datos.html` | Master Plan, tiempos, cancelados y los tres reportes |
@@ -55,7 +55,7 @@ es idéntico en todas, salvo la que lleva `class="aqui"`).
 
 ## Estado
 
-Las pantallas del sistema están cubiertas, incluidas las cuatro del módulo de
+Las pantallas del sistema están cubiertas, incluidas las cinco del módulo de
 Almacén. Lo que ese módulo todavía no tiene está anotado en la sección
 *Lo que todavía no está* de `almacen.html`, para que el manual no prometa algo que
 no existe. Lo que puede mejorar en el manual:

@@ -71,7 +71,9 @@
         <tr><td>Resultado</td><td>Sí</td><td>Aprobado o no aprobado.</td></tr>
         <tr><td>Qty auditada</td><td>Sí</td><td>Cuántas piezas se revisaron.</td></tr>
         <tr><td>Qty rechazada</td><td>Sí</td><td>Si no hubo rechazos, <strong>escribe 0</strong>. No se puede dejar vacío.</td></tr>
-        <tr><td>Defecto · Parte · Unificación</td><td>No</td><td>Se eligen de sus catálogos.</td></tr>
+        <tr><td>Defecto</td><td><strong>Depende</strong></td><td>Obligatorio <strong>si hay piezas
+            rechazadas</strong>. Si Qty rechazada es 0, va en <em>Sin Defectos</em>.</td></tr>
+        <tr><td>Parte · Unificación</td><td>No</td><td>Se eligen de sus catálogos.</td></tr>
         <tr><td>Ubicación</td><td>No</td><td>Está arriba, en el mismo renglón que la WO,
             junto a la insignia <em>OPERACIÓN D10</em>.</td></tr>
         <tr><td>Línea / mesa · Comentarios</td><td>No</td><td></td></tr>
@@ -84,6 +86,24 @@
       <p>Si la inspección salió sin rechazos, hay que escribir <strong>0</strong> en Qty
         rechazada. Dejarlo vacío no significa cero para el sistema: significa que falta el
         dato, y no deja guardar.</p>
+    </div>
+
+    <div class="yerro">
+      <b>El rechazo y el defecto van juntos — y desde el 1 de octubre no deja guardar si no</b>
+      <p>Son dos reglas, las dos caras de lo mismo:</p>
+      <ul>
+        <li>Si <strong>Qty rechazada es 1 o más</strong>, hay que elegir el <strong>defecto</strong>
+          por el que se rechazaron. No se puede guardar un rechazo con <em>Sin Defectos</em>.</li>
+        <li>Si hay un <strong>defecto elegido</strong>, la <strong>Qty rechazada no puede ser
+          0</strong>. O se escribe cuántas piezas se rechazaron, o el defecto vuelve a
+          <em>Sin Defectos</em>.</li>
+      </ul>
+      <p>Antes salía un aviso con «¿Guardar de todos modos?» y se podía decir que sí.
+        <strong>Ahora no deja guardar.</strong> El cambio se hizo porque, de las inspecciones
+        que llevaban rechazo o defecto, alrededor de <strong>una de cada diez</strong> se
+        estaba guardando incompleta.</p>
+      <p>Una inspección sin rechazos no se entera de nada: 0 rechazadas y <em>Sin Defectos</em>
+        es la captura normal y pasa derecho.</p>
     </div>
 
     <h3>Mensajes que puede dar</h3>
@@ -101,6 +121,20 @@
         <div class="dice">La cantidad auditada no puede ser negativa.</div>
         <p class="quiere"><b>Qué pasó:</b> casi siempre un escaneo mal leído en el cuadro
           equivocado. Borra y vuelve a capturar.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">Hay N pieza(s) rechazada(s): elige el defecto por el que se rechazaron.
+          No se puede guardar un rechazo con "Sin Defectos".</div>
+        <p class="quiere"><b>Qué pasó:</b> se escribió una cantidad rechazada y el defecto se
+          quedó en <em>Sin Defectos</em>. Elige el defecto y vuelve a guardar. <b>No se guardó
+          nada</b>, así que no se duplica.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">Elegiste un defecto pero la cantidad rechazada es 0. Escribe cuantas
+          piezas se rechazaron, o pon el defecto en "Sin Defectos" si no se rechazo ninguna.</div>
+        <p class="quiere"><b>Qué pasó:</b> quedó un defecto elegido de una captura anterior, o
+          se eligió por error. Las dos salidas valen: poner la cantidad, o volver el defecto a
+          <em>Sin Defectos</em>.</p>
       </div>
     </div>
   </div>
@@ -124,6 +158,16 @@
     </ul>
 
     <div class="ojo">
+      <b>Al corregir también pide el defecto</b>
+      <p>La regla del rechazo y el defecto vale igual aquí, y también cuando abres un registro
+        viejo por doble clic para cambiarle otra cosa. Si ese registro venía incompleto, hay que
+        dejarlo coherente para poder guardarlo.</p>
+      <p>Si abres un registro viejo que tiene rechazo y no tiene defecto, elige el defecto
+        antes de guardar. Esos registros viejos se van a rellenar con <em>Ensamble Incorrecto
+        De Piezas</em>; mientras tanto, es la pantalla la que lo pide.</p>
+    </div>
+
+    <div class="ojo">
       <b>Week y Fecha no son lo mismo</b>
       <p><strong>Week</strong> es la semana de producción de la orden: cuándo se tenía que
         fabricar. <strong>Fecha</strong> es el día en que alguien hizo la inspección. Una
@@ -138,6 +182,14 @@
     <p>La inspección de corte y costura. Pide menos datos que la final: WO, auditor, defecto
       y las dos cantidades.</p>
     <p>Se busca y se corrige igual que las demás.</p>
+
+    <div class="ojo">
+      <b>Aquí el defecto todavía es un aviso, no un bloqueo</b>
+      <p>En Inspección final y en Escaneo Inspección no deja guardar un rechazo sin defecto.
+        Aquí sí: sale el aviso con «¿Guardar de todos modos?» y se puede continuar.</p>
+      <p>No es un olvido. En corte y costura no hay ni un registro con ese problema, así que
+        de momento el aviso alcanza.</p>
+    </div>
   </div>
 
   <!-- ===================================================== -->
