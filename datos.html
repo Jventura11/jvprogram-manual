@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Base de datos y reportes · Manual de JV Program</title>
-<meta name="description" content="Master Plan, tiempos, cancelados y los tres reportes de consulta.">
+<meta name="description" content="Master Plan, tiempos, cancelados, los tres reportes de consulta y el Panel de reportes.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
@@ -37,7 +37,8 @@
     <p class="eyebrow">Por módulo</p>
     <h1>Base de datos y reportes</h1>
     <p class="entrada">Aquí viven las dos pantallas que funcionan <em>distinto</em> al resto —
-      se editan como una hoja de cálculo — y los tres reportes, que solo consultan.</p>
+      se editan como una hoja de cálculo —, los tres reportes, que solo consultan, y el
+      <a href="#panel">Panel de reportes</a>, con indicadores en vivo.</p>
   </div>
 
   <h2 id="hoja-de-calculo">Las pantallas tipo hoja de cálculo</h2>
@@ -77,6 +78,16 @@
       <p>Las cantidades, semanas de producción y categorías que están aquí alimentan los
         tableros, los reportes y las pantallas de línea. Un cambio aquí se ve en todas partes.
         Si no estás seguro, pregunta antes de guardar.</p>
+    </div>
+    <div class="yerro">
+      <b>No importes un Excel que traiga las columnas de tiempo</b>
+      <p>Si el Excel que importas a Master Plan trae las columnas de tiempo (corte de tela, corte
+        de piel, precostura, costura, pespunte, inspección o empaque), un tiempo como
+        <code>1.042</code> puede entrar como <code>1042</code>: mil veces más. Pasa con los
+        valores de 1 o más que tienen exactamente tres decimales, y solo en órdenes que ya
+        existían. Quita esas columnas del Excel antes de importar: los tiempos de cada orden
+        salen solos de <a href="#tiempos">Tiempos Producción</a>.</p>
+      <p>Si ya pasó, no lo corrijas a mano celda por celda: repórtalo con las WO afectadas.</p>
     </div>
   </div>
 
@@ -121,6 +132,72 @@
     <b>Exportar guarda lo que se ve</b>
     <p>En los tres, el Excel sale con los filtros aplicados. Si filtraste en pantalla, exporta
       lo filtrado. Para el reporte completo, limpia el filtro rápido antes de exportar.</p>
+  </div>
+
+  <div class="pantalla" id="panel">
+    <p class="ruta">Barra lateral · <b>Panel</b> (justo debajo de Inicio)</p>
+    <h2 style="margin-top:0">Panel de reportes</h2>
+    <p>Los indicadores de la planta en un solo lugar, dentro de JV Program. No hay que abrir
+      otro programa ni otra página: se entra con tu usuario, como a cualquier otra pantalla.
+      También tiene su acceso rápido, el primero, en la pantalla de Inicio.</p>
+    <p class="chico">No lo confundas con <em>el panel</em> de captura de cada pantalla (el
+      recuadro de arriba donde se escribe): este es un tablero de consulta y no guarda nada.</p>
+
+    <p>Trae reportes <strong>en vivo</strong>, hechos para JV Program, y los informes de Power BI:</p>
+    <div class="tabla-caja">
+    <table>
+      <thead><tr><th>Reporte</th><th>Qué muestra</th></tr></thead>
+      <tbody>
+        <tr><td>Producción en tiempo real <em>(en vivo)</em></td><td>Cómo va una semana de
+          producción: % de cumplimiento, piezas en cada etapa (de liberada a embarcada),
+          cumplimiento por Body/Pillow y por cliente, y una tabla de etapa por operación.
+          <strong>Al tocar cualquier número</strong> aparecen abajo las WO que lo forman. Filtros de
+          semana, Body/Pillow (puedes elegir varios), prioridad, operación y WO.</td></tr>
+        <tr><td>Rechazos del día <em>(en vivo)</em></td><td>Inspección final y Cut/Sew: % de
+          rechazo del día contra el promedio de los días anteriores, la tendencia por día o por
+          semana, los rechazos por cliente, por supervisor (de costura o de corte) y por
+          defecto, y la lista de las inspecciones con rechazo. Se elige el día; el de hoy se
+          actualiza solo cada 5 minutos.</td></tr>
+        <tr><td>Informes de Power BI</td><td>Los informes de la empresa, agrupados por área
+          (Calidad, Producción, Personal, Materiales, Planeación). Se ven dentro de la misma
+          ventana.</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <ul>
+      <li>Los marcados <strong>«En vivo»</strong> leen la base de datos al momento, con una
+        conexión que <strong>solo puede leer</strong>: desde el Panel no se puede cambiar ningún
+        dato.</li>
+      <li><strong>Descargar CSV</strong> baja los datos que estás viendo, para abrirlos en
+        Excel. En la lista de WO se ven las primeras 300; el CSV las trae todas.</li>
+      <li>Arriba se cambia el idioma (español o inglés) y el modo claro u oscuro.</li>
+      <li>Los informes de Power BI piden tu cuenta de Microsoft 365 <strong>la primera
+        vez</strong>; después el equipo la recuerda.</li>
+    </ul>
+
+    <div class="ojo">
+      <b>Cómo leer los rechazos</b>
+      <p>El supervisor que aparece es el que tiene <strong>asignada la WO</strong> en costura o
+        en corte, no necesariamente quien hizo la pieza rechazada. Las inspecciones de Cut/Sew se
+        hacen antes de costura, así que ahí conviene ver al supervisor de corte. El % de rechazo
+        es piezas rechazadas entre piezas auditadas: una inspección capturada con 0 auditadas
+        cuenta como inspección, pero no mueve el porcentaje.</p>
+    </div>
+
+    <div class="ojo">
+      <b>Si no lo ves en la barra lateral</b>
+      <p>El Panel tiene permiso propio (ver <a href="catalogos.html#usuarios">Qué ve cada
+        rol</a>). Si tu rol lo tiene y aun así no aparece, tu equipo todavía no tiene la versión
+        de JV Program que lo trae.</p>
+    </div>
+
+    <div class="yerro">
+      <b>Es información interna</b>
+      <p>El Panel muestra nombres reales de supervisores y clientes. No compartas capturas de
+        pantalla ni archivos descargados fuera de la empresa. Desde fuera de la planta se entra
+        igual que al resto del programa, con la VPN de la empresa.</p>
+    </div>
   </div>
   <div id="sinresultados">No hay nada con esa palabra en esta página.</div>
   <footer>

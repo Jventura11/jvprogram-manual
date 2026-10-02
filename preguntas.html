@@ -78,6 +78,20 @@
         Esto sí hay que reportarlo. <b>No vuelvas a capturar lo mismo en otro equipo</b> hasta
         confirmar si se guardó o no.</p>
     </div>
+    <div class="mensaje">
+      <div class="dice">Este equipo no tiene instalado Microsoft Edge WebView2, que el panel necesita.</div>
+      <p class="quiere"><b>Qué significa:</b> sale al abrir el <a href="datos.html#panel">Panel de
+        reportes</a>. A ese equipo le falta un componente de Windows. El botón <em>Descargar
+        WebView2</em> lleva a la descarga oficial de Microsoft; si no tienes permiso para
+        instalar programas, pídeselo a sistemas. El resto de JV Program funciona igual.</p>
+    </div>
+    <div class="mensaje">
+      <div class="dice">Falta la conexión de solo lectura</div>
+      <p class="quiere"><b>Qué significa:</b> sale dentro del Panel de reportes. El equipo no
+        tiene configurada la conexión con la que el Panel lee. Los informes de Power BI sí se
+        ven; los «En vivo», no. Repórtalo a sistemas: se arregla en la configuración del equipo,
+        no en tu usuario.</p>
+    </div>
   </div>
 
   <h2 id="no-aparece">No aparece lo que busco</h2>
@@ -237,7 +251,7 @@
   <div class="pregunta">
     <h3>¿Se puede cargar el surtido de un turno desde Excel?</h3>
     <p>Sí, con <a href="almacen.html#importar-surtido">Importar surtido</a>, si tu usuario tiene
-      ese permiso (hoy solo ADMIN). Se usa la plantilla, no un archivo exportado; primero se
+      ese permiso (hoy ADMIN, Almacén y Supervisor). Se usa la plantilla, no un archivo exportado; primero se
       revisa y luego se importa, y si un renglón trae error no entra ninguno.</p>
   </div>
 
@@ -250,6 +264,22 @@
       <a href="calidad.html#escaneo-inspeccion">Escaneo Inspección</a>.</p>
     <p>Una inspección sin rechazos no cambia en nada: 0 rechazadas y <em>Sin Defectos</em> pasa
       derecho, como siempre.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>Importé un Excel en Master Plan y los tiempos salieron mil veces más grandes.</h3>
+    <p>Pasa cuando el Excel trae las columnas de tiempo: un <code>1.042</code> entra como
+      <code>1042</code>. Solo les pasa a los valores de 1 o más con exactamente tres decimales,
+      en órdenes que ya existían. <strong>No lo corrijas a mano</strong>: repórtalo con las WO
+      afectadas, y la próxima vez quita las columnas de tiempo del Excel antes de importar.
+      Está en <a href="datos.html#master-plan">Master Plan</a>.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>¿Por qué el Panel me pide mi cuenta de Microsoft?</h3>
+    <p>Solo los informes de Power BI la piden, y solo la primera vez en cada equipo. Los
+      reportes «En vivo» (Producción en tiempo real y Rechazos del día) no la piden: leen
+      directo con tu sesión de JV Program.</p>
   </div>
 
   <h2 id="reportar">Cómo reportar un problema</h2>
