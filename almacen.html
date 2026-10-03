@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Almacén · Manual de JV Program</title>
-<meta name="description" content="Almacén: la foto diaria del inventario, el surtido de materia prima, el retorno y el cárdex del rollo.">
+<meta name="description" content="Almacén: la foto diaria del inventario, el surtido de materia prima, el retorno, el cárdex del rollo y la carga de compras de tela.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
@@ -36,9 +36,10 @@
   <div class="portada">
     <p class="eyebrow">Por módulo</p>
     <h1>Almacén</h1>
-    <p class="entrada">Cinco pantallas para seguirle la pista a la materia prima: la foto
+    <p class="entrada">Seis pantallas para seguirle la pista a la materia prima: la foto
       diaria del inventario, lo que sale a producción —capturado o cargado desde Excel—, lo
-      que regresa, y la historia completa de cualquier rollo. Todas siguen las reglas de
+      que regresa, la historia completa de cualquier rollo y la
+      <a href="#carga-tela">carga de las compras de tela</a> que llegan en camino. Todas siguen las reglas de
       <a href="index.html">Cómo funcionan todas las pantallas</a>.</p>
     <p>Las ven los roles <strong>Almacén</strong> (que no ve nada más),
       <strong>Supervisor</strong> y <strong>ADMIN</strong>. <em>Importar surtido</em> lleva un
@@ -515,6 +516,76 @@
       <p>Los dos avisos salen en la parte de arriba de la pantalla, y <strong>se apagan solos
         cuando dejan de ser ciertos</strong>.</p>
     </div>
+  </div>
+
+  <!-- ===================================================== -->
+  <div class="pantalla" id="carga-tela">
+    <p class="ruta">Menú · <b>Almacén</b> › Carga compras de tela</p>
+    <h2 style="margin-top:0">Carga compras de tela</h2>
+    <p>Sube a JV Program los tres archivos de Excel donde Planeación lleva las compras de tela,
+      para que el <a href="datos.html#panel">Panel de reportes</a> calcule cuándo llega cada
+      embarque, cuánta tela trae y qué órdenes se pueden liberar con cada llegada. Los Excel se
+      siguen capturando igual que siempre; esta pantalla solo los lee.</p>
+
+    <div class="tabla-caja">
+    <table>
+      <thead><tr><th>Archivo</th><th>Qué se toma de él</th></tr></thead>
+      <tbody>
+        <tr><td><b>PO Tracking</b></td><td>Todo lo comprado: cada línea de compra (PO y tela),
+          con su cantidad y su estatus. De aquí sale la <em>PO abierta</em>.</td></tr>
+        <tr><td><b>Cargo in Transit</b></td><td>Los embarques en camino (contenedor o guía, con
+          sus fechas) y su lista de empaque: qué tela, de qué PO y cuánto trae cada uno.</td></tr>
+        <tr><td><b>Control de demanda</b></td><td>Las líneas de pedido que esperan tela, con la
+          tela y las yardas que necesitan.</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>Dos pasos: Revisar y después Cargar</h3>
+    <ol class="pasos">
+      <li>Las tres rutas ya salen llenas con la carpeta compartida de Planeación. Si un archivo
+        está en otro lugar, elígelo con <strong>…</strong>.</li>
+      <li><strong>1. Revisar.</strong> Lee los tres archivos (tarda unos segundos) y no guarda
+        nada. La pestaña <em>Lo que se leyó</em> dice cuántos renglones trae cada hoja, y la
+        pestaña <em>Avisos</em>, lo que conviene corregir en el Excel.</li>
+      <li><strong>2. Cargar.</strong> Pide confirmar y guarda exactamente lo que se revisó.</li>
+    </ol>
+
+    <div class="ojo">
+      <b>Cada carga reemplaza a la anterior</b>
+      <p>Es una foto de los Excel en ese momento, no un historial: lo que se cambie en los
+        archivos después no se ve en el Panel hasta la siguiente carga. Si algo falla a la mitad,
+        no se guarda nada y la carga anterior sigue igual. La pestaña <em>Historial de cargas</em>
+        dice cuándo se cargó cada vez y cómo salió.</p>
+    </div>
+
+    <ul>
+      <li>Los archivos se pueden leer aunque alguien los tenga abiertos en Excel.</li>
+      <li>Si cambias una ruta después de revisar, hay que volver a revisar.</li>
+      <li>Si a una hoja le falta una columna, la pantalla dice cuál y no carga nada: casi
+        siempre es que alguien le cambió el nombre al encabezado.</li>
+    </ul>
+
+    <h3>Los avisos más comunes</h3>
+    <div class="mensajes">
+      <div class="mensaje">
+        <div class="dice">viene XXXX-XX-OLD en camino y hay demanda de XXXX-XX: no se cuentan juntas…</div>
+        <p class="quiere"><b>Qué pasó:</b> en la lista de empaque el código de la tela trae un
+          sufijo. El sistema no adivina que son la misma tela: si lo son, corrige el código en el
+          Excel y vuelve a cargar.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">la referencia … no está en OCEAN-AIR.</div>
+        <p class="quiere"><b>Qué pasó:</b> la lista de empaque menciona un embarque que no está
+          dado de alta en la hoja de embarques.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">… tiene dos ETA a planta distintas…</div>
+        <p class="quiere"><b>Qué pasó:</b> el mismo embarque está en varios renglones con fechas
+          diferentes. Se toma la más tardía; conviene dejar una sola.</p>
+      </div>
+    </div>
+    <p class="chico">Tiene permiso propio: por ahora solo lo tiene ADMIN.</p>
   </div>
 
   <!-- ===================================================== -->

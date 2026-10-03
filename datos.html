@@ -166,6 +166,12 @@
           las demás que elijas), por Body/Pillow o por cliente, y una gráfica del ritmo del día.
           Arriba se elige el día; la tira de la semana muestra cuánto se hizo cada día. El de hoy
           se actualiza solo cada 2 minutos.</td></tr>
+        <tr><td>Tela y liberaciones <em>(en vivo, Materiales)</em></td><td>Cuándo llega cada
+          embarque de tela y cuánto trae, y <strong>qué órdenes se pueden liberar</strong> con lo
+          que hay hoy y con cada llegada. Tiene la línea de tiempo de llegadas, los embarques en
+          camino (con su lista de empaque), la cobertura por tela y la lista de órdenes que
+          esperan tela. Sale de la última <a href="almacen.html#carga-tela">carga de compras de
+          tela</a> y del inventario del día.</td></tr>
         <tr><td>Rechazos del día <em>(en vivo)</em></td><td>Inspección final y Cut/Sew: % de
           rechazo del día contra el promedio de los días anteriores, la tendencia por día o por
           semana, los rechazos por cliente, por supervisor (de costura o de corte) y por
@@ -214,6 +220,25 @@
         por el <strong>día en que se capturó</strong>, y su semana es la del calendario (lunes a
         domingo): en un mismo día se cortan WO de una semana y se inspeccionan de otra. Por eso sus
         números no tienen por qué coincidir.</p>
+    </div>
+
+    <div class="ojo">
+      <b>Cómo reparte la tela «Tela y liberaciones»</b>
+      <p>Va de la orden <strong>más antigua a la más nueva</strong> (por fecha en que se
+        recibió). Una orden de cliente entra solo si se puede hacer <strong>completa</strong>,
+        con todas sus telas; si le falta una, espera entera, y las más nuevas sí pueden usar
+        esa tela. Las órdenes de stock van de la más antigua a la más nueva. Primero se reparte
+        lo que hay hoy y después, en su fecha, lo que trae cada embarque.</p>
+      <p><strong>Disponible hoy</strong> = lo que hay en el almacén según el inventario del día
+        (sin retazos, rollos chicos, tela para pillows, entretela ni tela con defecto) + lo que
+        está en carros − lo que necesitan las órdenes ya liberadas. Pasa el cursor sobre el
+        número para ver el desglose.</p>
+      <p>En la cobertura por tela: <strong>Demanda total</strong> es lo que piden todas las
+        órdenes que esperan esa tela; <strong>Demanda cubierta</strong>, lo de las órdenes que sí
+        se pueden hacer (hoy o con alguna llegada); <strong>Sobra al final</strong>, lo que queda
+        después de repartir todo y no alcanza para la siguiente orden; <strong>Falta</strong>, lo
+        que tiene que venir de una PO abierta o de una compra nueva. Demanda cubierta + sobra +
+        falta = demanda total.</p>
     </div>
 
     <div class="ojo">
