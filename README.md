@@ -14,7 +14,7 @@ sin instalar ni iniciar sesión.
 | `almacen.html` | Almacén: carga de la foto diaria, surtido, importar surtido desde Excel, retorno (PUT) y cárdex del rollo |
 | `lineas.html` | Pantallas de TV por línea y la captura diaria que las alimenta |
 | `catalogos.html` | Plantilla, áreas, supervisores, markers y usuarios |
-| `datos.html` | Master Plan, tiempos, cancelados, los tres reportes y el Panel de reportes |
+| `datos.html` | Master Plan, tiempos, cancelados, los tres reportes y el Panel de reportes (en vivo y Power BI, con captura PNG) |
 | `preguntas.html` | Mensajes del sistema, qué hacer cuando algo no aparece, y preguntas frecuentes |
 | `estilo.css` | Hoja de estilo única, con tema claro y oscuro |
 | `buscar.js` | Buscador dentro de cada página. No consulta nada externo |
