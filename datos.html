@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Base de datos y reportes · Manual de JV Program</title>
-<meta name="description" content="Master Plan, tiempos, cancelados, los tres reportes de consulta y el Panel de reportes en vivo.">
+<meta name="description" content="Master Plan, tiempos, cancelados, los tres reportes de consulta y el Panel de reportes en vivo, también desde el celular.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
@@ -38,7 +38,8 @@
     <h1>Base de datos y reportes</h1>
     <p class="entrada">Aquí viven las dos pantallas que funcionan <em>distinto</em> al resto —
       se editan como una hoja de cálculo —, los tres reportes, que solo consultan, y el
-      <a href="#panel">Panel de reportes</a>, con indicadores en vivo.</p>
+      <a href="#panel">Panel de reportes</a>, con indicadores en vivo, que también se puede
+      <a href="#panel-celular">abrir desde el celular</a>.</p>
   </div>
 
   <h2 id="hoja-de-calculo">Las pantallas tipo hoja de cálculo</h2>
@@ -263,6 +264,52 @@
         imágenes de la cámara, otras capturas de pantalla ni archivos descargados fuera de la
         empresa. Desde fuera de la planta se entra
         igual que al resto del programa, con la VPN de la empresa.</p>
+    </div>
+  </div>
+  <div class="pantalla" id="panel-celular">
+    <p class="ruta">Celular · navegador (Chrome o Safari) · con la VPN de la empresa</p>
+    <h2 style="margin-top:0">El Panel en el celular</h2>
+    <p>El mismo Panel de reportes, con los mismos reportes en vivo, se puede abrir desde el
+      celular. Se entra con <strong>tu mismo usuario y contraseña de JV Program</strong> y solo
+      con el permiso del Panel. Es de consulta: no se captura nada.</p>
+
+    <h3>La primera vez</h3>
+    <ol>
+      <li><b>Instala el certificado</b> que te mande el administrador (un archivo
+        <code>.cer</code>). Sin él, el navegador avisa que «la conexión no es privada».
+        <ul>
+          <li><b>Android:</b> Ajustes → Seguridad → Cifrado y credenciales → Instalar un
+            certificado → <em>Certificado de CA</em>. Busca «certificado» en Ajustes si tu
+            celular lo tiene en otro lugar.</li>
+          <li><b>iPhone:</b> abre el archivo, ve a Ajustes → Perfil descargado → Instalar, y luego
+            Ajustes → General → Información → Ajustes de confianza de certificados y activa el
+            certificado del Panel.</li>
+        </ul></li>
+      <li><b>Conecta la VPN</b> de la empresa.</li>
+      <li><b>Abre la dirección</b> que te dio el administrador y entra con tu usuario.</li>
+      <li><b>Agrégalo a la pantalla principal</b> (Chrome: menú ⋮ → Agregar a pantalla principal;
+        Safari: Compartir → Agregar a inicio). Queda con su icono, «Panel JV», como una app.</li>
+    </ol>
+
+    <h3>Cosas que conviene saber</h3>
+    <ul>
+      <li>La sesión dura 12 horas. Si cambias tu contraseña en JV Program o te quitan el permiso,
+        el celular te vuelve a pedir que entres.</li>
+      <li>La contraseña se escribe <strong>exacta</strong>, igual que en JV Program: mayúsculas y
+        espacios cuentan. Cuidado con el teclado del celular, que pone la primera letra en
+        mayúscula.</li>
+      <li>Después de 5 intentos fallidos seguidos, tu usuario queda bloqueado en el celular
+        15 minutos. En JV Program puedes seguir entrando normal.</li>
+      <li>El botón de salir está arriba a la derecha. Úsalo si el celular no es tuyo.</li>
+      <li>La captura en PNG no está en el celular: usa la captura de pantalla del teléfono.</li>
+      <li>Los informes de Power BI pueden pedir tu cuenta de Microsoft 365; en iPhone, si no
+        cargan dentro del Panel, usa «Abrir en Power BI».</li>
+    </ul>
+
+    <div class="yerro">
+      <b>Es la misma información interna</b>
+      <p>Lo que ves en el celular tiene los mismos nombres reales que el Panel dentro de JV Program.
+        No compartas capturas fuera de la empresa.</p>
     </div>
   </div>
   <div id="sinresultados">No hay nada con esa palabra en esta página.</div>
