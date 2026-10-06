@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Almacén · Manual de JV Program</title>
-<meta name="description" content="Almacén: la foto diaria del inventario, el surtido de materia prima, el retorno, el cárdex del rollo y la carga de compras de tela.">
+<meta name="description" content="Almacén: la foto diaria del inventario, el surtido de materia prima, el retorno, el cárdex del rollo y las cargas de la sección Información: compras de tela, backlog, precios y componentes.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
@@ -38,9 +38,9 @@
     <h1>Almacén</h1>
     <p class="entrada">Cinco pantallas para seguirle la pista a la materia prima: la foto
       diaria del inventario, lo que sale a producción —capturado o cargado desde Excel—, lo
-      que regresa y la historia completa de cualquier rollo. Aquí también se explica la
-      <a href="#carga-tela">carga de las compras de tela</a> que llegan en camino, que en el menú
-      está aparte, en la sección Información. Todas siguen las reglas de
+      que regresa y la historia completa de cualquier rollo. Aquí también se explican las
+      <a href="#cargas">cuatro cargas de la sección Información</a> —compras de tela, backlog,
+      precios y componentes— que alimentan el Panel de reportes. Todas siguen las reglas de
       <a href="index.html">Cómo funcionan todas las pantallas</a>.</p>
     <p>Las ven los roles <strong>Almacén</strong> (que no ve nada más),
       <strong>Supervisor</strong> y <strong>ADMIN</strong>. <em>Importar surtido</em> lleva un
@@ -91,6 +91,10 @@
       <li>Abajo aparece lo que quedó cargado: cuántos rollos y cuánta cantidad hay de tela,
         de piel y de componentes.</li>
     </ol>
+    <p>La misma carga llena también el <strong>inventario de componentes</strong>, con la
+      ubicación de cada renglón, que usa el reporte <em>Stock Out by Components</em> del
+      <a href="datos.html#panel">Panel</a>. Por eso la <a href="#carga-componentes">Carga de
+      componentes</a> ya no pide el inventario: sale de aquí.</p>
 
     <h3>Las dos pestañas de abajo</h3>
     <ul>
@@ -217,6 +221,9 @@
 
     <h3>La lista de abajo</h3>
     <ul>
+      <li>Después de ITEM va la <strong>DESCRIPCIÓN</strong>: la descripción del item como
+        viene en el inventario de JDE (<em>Description 1</em>), no el nombre de la tela. Si el
+        rollo tiene la suya, sale esa; si no, la del item.</li>
       <li>Va <strong>un renglón por WO</strong>. Si un rollo sirvió a varias órdenes, sale en
         varios renglones, cada uno con su requerido; la cantidad surtida va solo en el primero,
         porque el rollo salió una vez.</li>
@@ -239,6 +246,9 @@
         pantalla.</li>
       <li><strong>Exportar Excel</strong> saca lo que se ve en la lista, con las mismas
         columnas.</li>
+      <li><strong>Filtrar en pantalla</strong>, en la barra, lleva un <strong>borde de
+        color</strong> para que se note cuando tiene algo escrito. Busca también en la
+        descripción: basta con escribir un pedazo de ella.</li>
     </ul>
     <p>Mientras hay una búsqueda activa, al guardar o anular la lista se vuelve a leer con la
       misma búsqueda.</p>
@@ -397,8 +407,9 @@
         arriba.</li>
     </ol>
     <p>La barra y los filtros son los mismos de Surtido: Buscar, Últimos capturados, Limpiar
-      filtros, Exportar Excel y Filtrar en pantalla. Aquí la fecha del filtro es la
-      <strong>del retorno</strong>.</p>
+      filtros, Exportar Excel y Filtrar en pantalla (con su borde de color). Aquí la fecha del
+      filtro es la <strong>del retorno</strong>. La lista también trae la columna
+      <strong>DESCRIPCIÓN</strong> después de ITEM, igual que Surtido.</p>
 
     <div class="ojo">
       <b>Cero es un dato válido</b>
@@ -494,8 +505,9 @@
     </div>
 
     <h3>Exportar a Excel</h3>
-    <p><strong>Exportar Excel</strong>, en la barra de arriba, saca la pestaña que estás
-      viendo en un solo archivo:</p>
+    <p><strong>Exportar Excel</strong> es el botón <strong>verde</strong> de la barra de
+      arriba —el mismo formato del GUARDAR de las otras pantallas, porque aquí es la acción
+      principal— y saca la pestaña que estás viendo en un solo archivo:</p>
     <ul>
       <li><strong>Un rollo:</strong> una hoja con sus datos, otra con su historia y otra con
         sus WO.</li>
@@ -520,13 +532,64 @@
   </div>
 
   <!-- ===================================================== -->
+  <h2 id="cargas">Las cargas de la sección Información</h2>
+  <p>Cuatro pantallas suben a JV Program los Excel que se siguen capturando o descargando
+    igual que siempre, para que el <a href="datos.html#panel">Panel de reportes</a> los lea al
+    momento. Están <strong>separadas a propósito</strong>: cada archivo tiene su dueño y su
+    ritmo, y así actualizar uno no obliga a cargar los demás.</p>
+
+  <div class="tabla-caja">
+  <table>
+    <thead><tr><th>Pantalla</th><th>Qué sube</th><th>Qué reporte la usa</th></tr></thead>
+    <tbody>
+      <tr><td><a href="#carga-tela"><b>Carga de tela</b></a></td><td>PO Tracking y Cargo in
+        Transit: lo comprado y lo que viene en camino.</td><td>Tela y liberaciones</td></tr>
+      <tr><td><a href="#carga-backlog"><b>Carga backlog</b></a></td><td>El Control VLR-ARIA:
+        las líneas de pedido que esperan producirse y su estatus de tela.</td><td>Backlog por
+        cliente, Tela y liberaciones, Stock Out by Components</td></tr>
+      <tr><td><a href="#carga-precios"><b>Carga de precios</b></a></td><td>La lista de precios
+        de JDE.</td><td>Backlog por cliente (el valor)</td></tr>
+      <tr><td><a href="#carga-componentes"><b>Carga de componentes</b></a></td><td>El BOM y las
+        órdenes de compra de componentes.</td><td>Stock Out by Components</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>Las cuatro funcionan igual:</p>
+  <ol class="pasos">
+    <li>Las rutas ya salen llenas con la carpeta compartida de siempre. Si un archivo está en
+      otro lugar, elígelo con <strong>…</strong>.</li>
+    <li><strong>1. Revisar.</strong> Lee los archivos y no guarda nada. La pestaña <em>Lo que se
+      leyó</em> dice cuántos renglones trae cada hoja, y la pestaña <em>Avisos</em>, lo que
+      conviene corregir en el Excel.</li>
+    <li><strong>2. Cargar.</strong> Pide confirmar y guarda exactamente lo que se revisó.</li>
+  </ol>
+
+  <div class="ojo">
+    <b>Cada carga reemplaza a la anterior, pero solo lo suyo</b>
+    <p>Es una foto de los Excel en ese momento, no un historial: lo que se cambie en los
+      archivos después no se ve en el Panel hasta la siguiente carga. Cargar tela no toca el
+      backlog, ni al revés. Si algo falla a la mitad, no se guarda nada y la carga anterior sigue
+      igual. La pestaña <em>Historial de cargas</em> dice cuándo se cargó cada vez, qué y cómo
+      salió.</p>
+  </div>
+
+  <ul>
+    <li>Los archivos se pueden leer aunque alguien los tenga abiertos en Excel.</li>
+    <li>Si cambias una ruta después de revisar, hay que volver a revisar.</li>
+    <li>Si a una hoja le falta una columna, la pantalla dice cuál y no carga nada: casi
+      siempre es que alguien le cambió el nombre al encabezado.</li>
+    <li>Las cuatro tienen <strong>permiso propio</strong>, y por ahora solo lo tiene
+      <strong>ADMIN</strong>. Ver <a href="catalogos.html#usuarios">Qué ve cada rol</a>.</li>
+  </ul>
+
+  <!-- ===================================================== -->
   <div class="pantalla" id="carga-tela">
     <p class="ruta">Menú · sección Información · <b>Carga de tela</b></p>
     <h2 style="margin-top:0">Carga compras de tela</h2>
-    <p>Sube a JV Program los tres archivos de Excel donde Planeación lleva las compras de tela,
-      para que el <a href="datos.html#panel">Panel de reportes</a> calcule cuándo llega cada
-      embarque, cuánta tela trae y qué órdenes se pueden liberar con cada llegada. Los Excel se
-      siguen capturando igual que siempre; esta pantalla solo los lee.</p>
+    <p>Sube los dos archivos de Excel donde Planeación lleva las compras de tela, para que el
+      reporte <em>Tela y liberaciones</em> calcule cuándo llega cada embarque, cuánta tela trae
+      y qué órdenes se pueden liberar con cada llegada.</p>
 
     <div class="tabla-caja">
     <table>
@@ -536,36 +599,12 @@
           con su cantidad y su estatus. De aquí sale la <em>PO abierta</em>.</td></tr>
         <tr><td><b>Cargo in Transit</b></td><td>Los embarques en camino (contenedor o guía, con
           sus fechas) y su lista de empaque: qué tela, de qué PO y cuánto trae cada uno.</td></tr>
-        <tr><td><b>Control de demanda</b></td><td>Las líneas de pedido que esperan tela, con la
-          tela y las yardas que necesitan.</td></tr>
       </tbody>
     </table>
     </div>
-
-    <h3>Dos pasos: Revisar y después Cargar</h3>
-    <ol class="pasos">
-      <li>Las tres rutas ya salen llenas con la carpeta compartida de Planeación. Si un archivo
-        está en otro lugar, elígelo con <strong>…</strong>.</li>
-      <li><strong>1. Revisar.</strong> Lee los tres archivos (tarda unos segundos) y no guarda
-        nada. La pestaña <em>Lo que se leyó</em> dice cuántos renglones trae cada hoja, y la
-        pestaña <em>Avisos</em>, lo que conviene corregir en el Excel.</li>
-      <li><strong>2. Cargar.</strong> Pide confirmar y guarda exactamente lo que se revisó.</li>
-    </ol>
-
-    <div class="ojo">
-      <b>Cada carga reemplaza a la anterior</b>
-      <p>Es una foto de los Excel en ese momento, no un historial: lo que se cambie en los
-        archivos después no se ve en el Panel hasta la siguiente carga. Si algo falla a la mitad,
-        no se guarda nada y la carga anterior sigue igual. La pestaña <em>Historial de cargas</em>
-        dice cuándo se cargó cada vez y cómo salió.</p>
-    </div>
-
-    <ul>
-      <li>Los archivos se pueden leer aunque alguien los tenga abiertos en Excel.</li>
-      <li>Si cambias una ruta después de revisar, hay que volver a revisar.</li>
-      <li>Si a una hoja le falta una columna, la pantalla dice cuál y no carga nada: casi
-        siempre es que alguien le cambió el nombre al encabezado.</li>
-    </ul>
+    <p>Las órdenes que esperan tela ya no se leen aquí: salen de la última
+      <a href="#carga-backlog">Carga backlog</a>. Por eso conviene cargar el backlog primero
+      cuando cambiaron los dos.</p>
 
     <h3>Los avisos más comunes</h3>
     <div class="mensajes">
@@ -586,7 +625,81 @@
           diferentes. Se toma la más tardía; conviene dejar una sola.</p>
       </div>
     </div>
-    <p class="chico">Tiene permiso propio: por ahora solo lo tiene ADMIN.</p>
+  </div>
+
+  <!-- ===================================================== -->
+  <div class="pantalla" id="carga-backlog">
+    <p class="ruta">Menú · sección Información · <b>Carga backlog</b></p>
+    <h2 style="margin-top:0">Carga backlog</h2>
+    <p>Sube el <strong>Control VLR-ARIA</strong>: las líneas de pedido que esperan producirse,
+      con cliente, PO, item, sección, cantidad, la tela que necesitan y su estatus (la hoja de
+      FABRIC STATUS). Va aparte de la carga de tela porque se actualiza más seguido que las
+      compras.</p>
+    <p>Pide <strong>una sola ruta</strong>, la del Control VLR-ARIA. De esta carga leen tres
+      reportes del Panel: <em>Backlog por cliente</em>, <em>Tela y liberaciones</em> (las órdenes
+      que esperan tela) y <em>Stock Out by Components</em> (lo que pide el backlog).</p>
+
+    <div class="mensajes">
+      <div class="mensaje">
+        <div class="dice">El archivo no trajo datos: demanda …, FABRIC STATUS ….</div>
+        <p class="quiere"><b>Qué pasó:</b> una de las dos hojas salió vacía o no se encontró.
+          Revisa que sea el archivo correcto y que no le hayan cambiado los encabezados.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================== -->
+  <div class="pantalla" id="carga-precios">
+    <p class="ruta">Menú · sección Información · <b>Carga de precios</b></p>
+    <h2 style="margin-top:0">Carga de precios</h2>
+    <p>Sube la <strong>lista de precios de JDE</strong> (ALL PRICES JDE). De ella sale la columna
+      <em>Valor total</em> del reporte <em>Backlog por cliente</em>. Se carga cuando Compras publica
+      una lista nueva, no a diario.</p>
+    <ul>
+      <li><strong>Las hojas no se buscan por nombre.</strong> Se lee toda hoja que tenga las
+        columnas <em>2nd Item Number</em> y <em>Unit Price</em>; las demás (una tabla dinámica, por
+        ejemplo) se ignoran solas. Así no importa cómo se llamen las pestañas.</li>
+      <li>Son decenas de miles de renglones: <em>Revisar</em> tarda unos segundos.</li>
+      <li>Arriba dice qué hay cargado hoy en la base: cuántos items y de cuándo.</li>
+      <li>Se guardan <strong>todos</strong> los precios con su vigencia, y el reporte toma el
+        <strong>vigente hoy</strong>, no el más alto: un precio viejo puede ser más caro que el
+        actual.</li>
+    </ul>
+    <div class="ojo">
+      <b>Lo que no tiene precio vale 0, y se avisa</b>
+      <p>Un item que no está en la lista cuenta sus piezas en el backlog pero no suma dinero. El
+        reporte dice arriba cuántas piezas quedaron así, para que nadie lea el total como si
+        estuviera completo. Mientras no se haga la primera carga, todo el valor sale en 0.</p>
+    </div>
+  </div>
+
+  <!-- ===================================================== -->
+  <div class="pantalla" id="carga-componentes">
+    <p class="ruta">Menú · sección Información · <b>Carga de componentes</b></p>
+    <h2 style="margin-top:0">Carga de componentes</h2>
+    <p>Sube dos descargas para el reporte <em>Stock Out by Components</em>:</p>
+    <div class="tabla-caja">
+    <table>
+      <thead><tr><th>Archivo</th><th>Qué se toma de él</th></tr></thead>
+      <tbody>
+        <tr><td><b>BOMS</b></td><td>Qué lleva cada frame item: sus componentes, cuánto de cada
+          uno, en qué operación se usa y para qué tela (un kit genérico trae un bloque por
+          tela).</td></tr>
+        <tr><td><b>PO Tracking Components</b></td><td>Lo pedido y lo que viene en camino de cada
+          componente.</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <ul>
+      <li><strong>El inventario no se pide aquí.</strong> Lo llena la
+        <a href="#carga-inventario">Carga de inventario</a> de Almacén con la foto del día; arriba
+        dice de qué fecha es el que está en la base.</li>
+      <li>El BOM trae cientos de miles de renglones: <em>Revisar</em> tarda más que las otras
+        cargas.</li>
+      <li>Las hojas también se reconocen por sus columnas, no por su nombre.</li>
+      <li>Se cargan los dos juntos o ninguno: un BOM nuevo con compras viejas daría faltantes
+        que no existen.</li>
+    </ul>
   </div>
 
   <!-- ===================================================== -->

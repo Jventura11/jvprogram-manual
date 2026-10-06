@@ -172,7 +172,22 @@
           que hay hoy y con cada llegada. Tiene la línea de tiempo de llegadas, los embarques en
           camino (con su lista de empaque), la cobertura por tela y la lista de órdenes que
           esperan tela. Sale de la última <a href="almacen.html#carga-tela">carga de compras de
-          tela</a> y del inventario del día.</td></tr>
+          tela</a>, de la última <a href="almacen.html#carga-backlog">carga backlog</a> y del
+          inventario del día.</td></tr>
+        <tr><td>Backlog por cliente <em>(en vivo, Planeación)</em></td><td>Por sección y cliente:
+          piezas <strong>disponibles a programar</strong>, <strong>no disponibles</strong> (separadas
+          en <em>falta tela</em> y <em>en tránsito</em>), <strong>liberadas</strong> (en piso), el
+          backlog total y su <strong>valor</strong> en dólares. Dos vistas: <em>Sin liberado</em> y
+          <em>Con liberado</em>. Sale de la última <a href="almacen.html#carga-backlog">carga
+          backlog</a>, del Master Plan y de la <a href="almacen.html#carga-precios">lista de
+          precios</a>.</td></tr>
+        <tr><td>Stock Out by Components <em>(en vivo, Materiales)</em></td><td>Qué componente (y
+          qué tela o piel) falta para lo que hay que producir: lo que pide el backlog, lo que pide
+          el piso, lo que hay en almacén, en tránsito y pedido, y la <strong>falta hoy</strong> y
+          <strong>con lo pedido</strong>. Filtros de tipo, cliente, búsqueda (código o descripción)
+          y con o sin uso; <em>Solo los que faltan</em>. Al abrir un renglón se ve el desglose por
+          cliente. Sale de la <a href="almacen.html#carga-componentes">carga de componentes</a>,
+          de la foto del día de Almacén, de la carga backlog y del Master Plan.</td></tr>
         <tr><td>Rechazos del día <em>(en vivo)</em></td><td>Inspección final y Cut/Sew: % de
           rechazo del día contra el promedio de los días anteriores, la tendencia por día o por
           semana, los rechazos por cliente, por supervisor (de costura o de corte) y por
@@ -240,6 +255,50 @@
         después de repartir todo y no alcanza para la siguiente orden; <strong>Falta</strong>, lo
         que tiene que venir de una PO abierta o de una compra nueva. Demanda cubierta + sobra +
         falta = demanda total.</p>
+    </div>
+
+    <div class="ojo">
+      <b>Cómo leer «Backlog por cliente»</b>
+      <p><strong>Liberado</strong> es lo que está en piso y cuyo contenedor todavía no sale: el
+        contenedor de una semana de producción sale el <strong>jueves</strong> de esa semana, la
+        misma regla de <em>Próximos contenedores</em> en Inicio. La vista <em>Sin liberado</em> lo
+        deja fuera del total.</p>
+      <p>El valor es piezas × el <strong>precio vigente hoy</strong>. Un item sin precio cuenta
+        sus piezas pero suma 0 dólares; arriba dice cuántas piezas quedaron así (el CSV trae la
+        columna). No se muestran los clientes que en esa vista dan cero.</p>
+      <p><strong>Órdenes rezagadas:</strong> WO abiertas cuyo contenedor salió hace más de dos
+        semanas. No entran en el backlog; salen aparte, como aviso, con sus días de retraso, para
+        que alguien las cierre o las cancele.</p>
+    </div>
+
+    <div class="ojo">
+      <b>Cómo leer «Stock Out by Components»</b>
+      <p><strong>El piso deja de pedir en distinto momento según el material:</strong> la tela y
+        la piel se consumen al cortar, así que una WO ya cortada no vuelve a pedirlas; un
+        componente se sigue pidiendo hasta que la WO se empaca.</p>
+      <p><strong>En almacén</strong> es lo disponible: el almacén <strong>más los carros
+        (CART)</strong>, sin las ubicaciones que no cuentan como inventario (defectos, retazos,
+        entretela y las demás que se dieron de baja; el aviso de arriba las nombra). Por eso ya no
+        hay columna aparte de carro: va sumada, y el título lo dice.</p>
+      <p><strong>El cliente es el de la orden</strong>, no el del BOM. Con un cliente elegido, el
+        renglón cuenta <strong>solo lo de ese cliente</strong>, como si todo el almacén fuera para
+        él: sirve para saber cuánto material necesita ese cliente por sí solo. Lo que piden los
+        demás no se resta, y un aviso arriba lo recuerda.</p>
+      <p>Cada componente va en su propia unidad (yardas, piezas, pies): las columnas no se suman
+        entre renglones.</p>
+    </div>
+
+    <div class="ojo">
+      <b>Lo que no se pudo explotar</b>
+      <p>Para saber qué componentes pide una orden, su kit se busca en el BOM. Si no aparece, la
+        orden <strong>no se cuenta</strong> en el tablero y sale en un aviso: al tocarlo se ve la
+        lista con el motivo, y <strong>Descargar CSV</strong> la baja para corregir el BOM o el
+        kit.</p>
+      <p>Antes de rendirse, el reporte intenta el kit <strong>sin su revisión</strong> (las
+        terminaciones R1, R2… de cualquier kit) y el kit armado desde el item. Los kits genéricos
+        traen <strong>un bloque por tela</strong>: se usa solo el de la tela de la orden. Si el kit
+        tiene bloques y ninguno es de esa tela, la orden sale en la lista como «el kit no trae esa
+        tela».</p>
     </div>
 
     <div class="ojo">
