@@ -122,7 +122,7 @@
   <table>
     <thead><tr><th>Reporte</th><th>Qué muestra</th></tr></thead>
     <tbody>
-      <tr><td>Seguimiento de Órdenes</td><td>Por dónde va cada orden en el proceso, con quién la trabajó en cada etapa</td></tr>
+      <tr><td>Seguimiento de Órdenes</td><td>Por dónde va cada orden en el proceso, con quién la trabajó en cada etapa. Si inspección la rechazó, sale además una fila <strong>B54</strong> en rojo con la fecha del rechazo, y en todas sus filas las columnas <em>FECHA_RECHAZO</em>, <em>FECHA_APROBADO</em>, <em>DIAS_FUERA</em> (hasta hoy si sigue fuera) y <em>VECES_RECHAZADA</em>.</td></tr>
       <tr><td>Reporte Master</td><td>El plan maestro con sus avances</td></tr>
       <tr><td>Reporte Empaque-Frame</td><td>Lo empacado, para cuadrar contra embarque</td></tr>
     </tbody>
@@ -153,7 +153,7 @@
           producción: % de cumplimiento, piezas en cada etapa (de liberada a embarcada),
           cumplimiento por Body/Pillow y por cliente, y una tabla de etapa por operación.
           <strong>Al tocar cualquier número</strong> aparecen abajo las WO que lo forman. Filtros de
-          semana, Body/Pillow (puedes elegir varios), prioridad, operación y WO.</td></tr>
+          semana, Body/Pillow (puedes elegir varios), prioridad, operación y WO. Las órdenes rechazadas por inspección (B54) salen en rojo y con un aviso arriba: tocarlo deja en la lista solo esas.</td></tr>
         <tr><td>Horas de producción por semana <em>(en vivo)</em></td><td>Piezas, horas estándar
           y eficiencia (piezas por hora) de una semana, por cliente, por operación y por
           Body/Pillow, con los récords y la tendencia de las últimas semanas. Con
@@ -167,6 +167,25 @@
           las demás que elijas), por Body/Pillow o por cliente, y una gráfica del ritmo del día.
           Arriba se elige el día; la tira de la semana muestra cuánto se hizo cada día. El de hoy
           se actualiza solo cada 2 minutos.</td></tr>
+        <tr><td>Eficiencia por operario <em>(en vivo, con permiso)</em></td><td>Cuántos minutos
+          ganó cada persona —de <strong>costura</strong>, <strong>preparación</strong> y
+          <strong>sobrecostura</strong>, todo junto— contra sus minutos de turno
+          (<strong>eficiencia</strong>) y contra su meta de la <a href="lineas.html#carga-eficiencia">plantilla
+          de eficiencia</a> (<strong>cumplimiento</strong>). Los minutos salen de las WOs que se le
+          asignaron en <a href="produccion.html#asignacion-costura">Asignación Costura</a>; si la
+          WO se <a href="produccion.html#dividir-orden">dividió</a>, cada quien se lleva la parte de
+          sus piezas. La preparación y la sobrecostura cuentan si se capturaron en
+          <a href="produccion.html#asignacion-tiempos">Asignación de tiempos</a>. El turno es de 540 minutos de lunes a
+          jueves y 450 el viernes, o el que se capturó a mano en la Captura diaria. Se elige un
+          <strong>día</strong> (hoy por omisión) y con <em>Ver</em> si las tarjetas y las tablas son
+          de ese día, de su semana o de los 30 días que terminan en él; la eficiencia se compara con
+          el promedio de los días anteriores. La gráfica trae la eficiencia del equipo de los últimos
+          30 días o 12 semanas con el día elegido marcado, y tocar un día lo elige. Barras por
+          persona con la raya de su meta, la tabla por persona (al tocar a alguien salen sus WOs)
+          y, aparte, <strong>quién no tuvo tiempo</strong> y por qué: no entra a los porcentajes.
+          Filtros de supervisor, Body/Pillow y persona; CSV de cada tabla. Con el día de hoy se
+          actualiza solo cada 5 minutos. Solo lo ven
+          Administrador y Supervisor, de inicio.</td></tr>
         <tr><td>Tela y liberaciones <em>(en vivo, Materiales)</em></td><td>Cuándo llega cada
           embarque de tela y cuánto trae, y <strong>qué órdenes se pueden liberar</strong> con lo
           que hay hoy y con cada llegada. Tiene la línea de tiempo de llegadas, los embarques en
@@ -180,7 +199,9 @@
           backlog total y su <strong>valor</strong> en dólares. Dos vistas: <em>Sin liberado</em> y
           <em>Con liberado</em>. Sale de la última <a href="almacen.html#carga-backlog">carga
           backlog</a>, del Master Plan y de la <a href="almacen.html#carga-precios">lista de
-          precios</a>.</td></tr>
+          precios</a>. Abajo trae el <strong>detalle por orden</strong>: un buscador por PO, orden,
+          WO, item o tela, y <strong>Descargar CSV</strong>. Tocar cualquier número de las tablas
+          deja en el detalle solo las órdenes que lo forman.</td></tr>
         <tr><td>Stock Out by Components <em>(en vivo, Materiales)</em></td><td>Qué componente (y
           qué tela o piel) falta para lo que hay que producir: lo que pide el backlog, lo que pide
           el piso, lo que hay en almacén, en tránsito y pedido, y la <strong>falta hoy</strong> y
@@ -192,7 +213,14 @@
           rechazo del día contra el promedio de los días anteriores, la tendencia por día o por
           semana, los rechazos por cliente, por supervisor (de costura o de corte) y por
           defecto, y la lista de las inspecciones con rechazo. Se elige el día; el de hoy se
-          actualiza solo cada 5 minutos.</td></tr>
+          actualiza solo cada 5 minutos. Arriba trae la lista de las <strong>órdenes rechazadas que siguen sin aprobar</strong>, con los días que llevan fuera; la más vieja primero.</td></tr>
+        <tr><td>Calculadora <em>(solo ADMIN y Dirección)</em></td><td>Los tres reportes de la
+          Calculadora de capacidad —<strong>Staffing Needs</strong>, <strong>Machines Needs</strong> y
+          <strong>What-if</strong>— en su propio apartado del Panel, también desde el celular o la
+          computadora con el Panel web. Son las mismas páginas del menú Calculadora de JV Program,
+          con los datos de la última carga del libro. En el Panel el botón CSV descarga el archivo y
+          la foto la toma el botón de cámara del Panel. Cargar el libro sigue siendo desde JV Program
+          (<em>Calculadora › Carga de datos</em>; ADMIN y Dirección).</td></tr>
         <tr><td>Informes de Power BI</td><td>Los informes de la empresa, agrupados por área
           (Producción, Planeación, Materiales, Personal, Calidad). Se ven dentro de la misma
           ventana. Algunos que ya reemplazó un reporte en vivo dejaron de aparecer.</td></tr>
@@ -236,6 +264,11 @@
         por el <strong>día en que se capturó</strong>, y su semana es la del calendario (lunes a
         domingo): en un mismo día se cortan WO de una semana y se inspeccionan de otra. Por eso sus
         números no tienen por qué coincidir.</p>
+      <p><strong>Qué semana abre cada uno.</strong> Producción en tiempo real y Carga por línea abren
+        en la semana del <strong>próximo contenedor</strong> (la que sale este jueves o después);
+        Horas de producción, en la última semana cuyo contenedor <strong>ya salió</strong>. Cambian
+        solas cada viernes, aunque queden piezas rezagadas de la semana anterior. Cualquier otra
+        semana se elige en la lista.</p>
     </div>
 
     <div class="ojo">
@@ -284,6 +317,11 @@
         renglón cuenta <strong>solo lo de ese cliente</strong>, como si todo el almacén fuera para
         él: sirve para saber cuánto material necesita ese cliente por sí solo. Lo que piden los
         demás no se resta, y un aviso arriba lo recuerda.</p>
+      <p><strong>En tránsito y pedido salen de distinto archivo según el material.</strong> Los
+        componentes, de las compras de componentes. La tela y la piel, de la
+        <a href="almacen.html#carga-tela">carga de compras de tela</a>: <em>en tránsito</em> es lo
+        que traen los embarques en camino (el mismo número de <em>Tela y liberaciones</em>) y
+        <em>pedido</em>, lo que está comprado y todavía no va en ningún embarque.</p>
       <p>Cada componente va en su propia unidad (yardas, piezas, pies): las columnas no se suman
         entre renglones.</p>
     </div>

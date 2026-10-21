@@ -36,7 +36,7 @@
   <div class="portada">
     <p class="eyebrow">Por módulo</p>
     <h1>Calidad</h1>
-    <p class="entrada">Tres pantallas para capturar inspecciones y tres catálogos que las
+    <p class="entrada">Tres pantallas para capturar inspecciones y cuatro catálogos que las
       alimentan. Todas siguen las reglas de
       <a href="index.html">Cómo funcionan todas las pantallas</a>.</p>
   </div>
@@ -74,6 +74,10 @@
         <tr><td>Defecto</td><td><strong>Depende</strong></td><td>Obligatorio <strong>si hay piezas
             rechazadas</strong>. Si Qty rechazada es 0, va en <em>Sin Defectos</em>.</td></tr>
         <tr><td>Parte · Unificación</td><td>No</td><td>Se eligen de sus catálogos.</td></tr>
+        <tr><td>Incidencia · Qty incidencias</td><td><strong>Depende</strong></td><td>Debajo de Defecto.
+            Normalmente <em>Sin Incidencias</em> y 0. Si hubo, van <strong>las dos</strong>: la
+            incidencia y cuántas. El Enter de Qty rechazada sigue saltando a la WO; para llegar aquí,
+            tabulador o clic.</td></tr>
         <tr><td>Ubicación</td><td>No</td><td>Está arriba, en el mismo renglón que la WO,
             junto a la insignia <em>OPERACIÓN D10</em>.</td></tr>
         <tr><td>Línea / mesa · Comentarios</td><td>No</td><td></td></tr>
@@ -146,15 +150,28 @@
     <p>Los mismos datos que el escaneo, pero con lista, filtros, exportación y corrección.
       Es la pantalla para <strong>revisar y arreglar</strong>.</p>
 
+    <h3>Incidencias</h3>
+    <p>Dos campos más, debajo de Defecto y junto a las cantidades (también están en el Escaneo
+      Inspección):</p>
+    <ul>
+      <li><strong>Qty incidencias</strong> — cuántas incidencias hubo. Empieza en <strong>0</strong>.</li>
+      <li><strong>Incidencia</strong> — cuál, de la lista del
+        <a href="#catalogos-calidad">Actualizador de Incidencias</a>. Empieza en <em>Sin Incidencias</em>.</li>
+    </ul>
+    <p>Van juntas, como el rechazo y el defecto: si Qty incidencias es 1 o más hay que elegir la
+      incidencia, y si se eligió una incidencia la cantidad no puede ser 0. Si no, no deja guardar.</p>
+    <p>En la lista salen como <em>QTY incidencia</em> e <em>Incidencia</em>, entre
+      <em>Description defect</em> y <em>Part defect</em>.</p>
+
     <h3>Filtros propios</h3>
     <p>Además de los de siempre (Week, WO, Item, PO, Customer), tiene tres que solo existen
       aquí:</p>
     <ul>
       <li><strong>Resultado</strong> — aprobadas, no aprobadas o todas.</li>
-      <li><strong>Defecto</strong> y <strong>Unificación</strong> — para ver todo lo que salió
-        con un mismo problema.</li>
-      <li><strong>Fecha inicio / Fecha fin</strong> — por fecha de inspección, no por semana
-        de producción. Son cosas distintas.</li>
+      <li><strong>Defecto</strong>, <strong>Unificación</strong> e <strong>Incidencia</strong> — para
+        ver todo lo que salió con un mismo problema.</li>
+      <li><strong>Desde / Hasta</strong> — por fecha de inspección, no por semana de producción. Son
+        cosas distintas. Se activan con la casilla <em>Desde</em>.</li>
     </ul>
 
     <div class="ojo">
@@ -166,6 +183,29 @@
         antes de guardar. Esos registros viejos se van a rellenar con <em>Ensamble Incorrecto
         De Piezas</em>; mientras tanto, es la pantalla la que lo pide.</p>
     </div>
+
+    <h3 id="no-aprobado">NO APROBADO: la orden regresa a costura</h3>
+    <p>Cuando el <strong>Resultado</strong> es <strong>NO APROBADO</strong> —en esta pantalla o en
+      el Escaneo Inspección—, la orden <strong>regresa a costura</strong>: en el Master Plan pasa a
+      <em>3.COSTURA</em> con la operación <strong>B54 (rechazo de inspección)</strong> y se ve en rojo.
+      Mientras siga así <strong>no se puede empacar</strong>, y aparece en el Panel como prioridad.
+      El sistema guarda la fecha del rechazo.</p>
+    <p>Elegir NO APROBADO es lo único que manda la orden de regreso: una inspección APROBADA con
+      alguna pieza rechazada sigue su camino normal.</p>
+    <ol class="pasos">
+      <li>Cuando la orden regrese de costura, escanéala otra vez en Inspección final (o en Escaneo
+        Inspección).</li>
+      <li>La pantalla avisa que la orden fue rechazada y pregunta si registrar la captura como su
+        <strong>reinspección</strong>. Contesta que sí.</li>
+      <li>Si el Resultado es <strong>APROBADO</strong>, la orden vuelve a Inspección y ya se puede
+        empacar. El sistema guarda la fecha de aprobación, y el
+        <a href="datos.html#reportes">Reporte de Seguimiento</a> dice cuántos días estuvo fuera.
+        Si es NO APROBADO otra vez, sigue rechazada.</li>
+    </ol>
+    <p class="chico">La reinspección reemplaza los datos de la inspección anterior en esta pantalla,
+      pero el rechazo queda guardado aparte con su fecha, sus piezas rechazadas y su defecto. Si se
+      borra la inspección por un error de captura, el rechazo queda anulado y la orden vuelve a
+      costura normal.</p>
 
     <div class="ojo">
       <b>Week y Fecha no son lo mismo</b>
@@ -194,11 +234,12 @@
 
   <!-- ===================================================== -->
   <div class="pantalla" id="catalogos-calidad">
-    <p class="ruta">Menú · <b>Calidad</b> › Actualizador de Defectos · de Partes · Unificadores</p>
-    <h2 style="margin-top:0">Los tres catálogos de calidad</h2>
+    <p class="ruta">Menú · <b>Calidad</b> › Actualizador de Defectos · de Partes · de Incidencias · Unificadores</p>
+    <h2 style="margin-top:0">Los cuatro catálogos de calidad</h2>
     <p>Son las listas de las que la captura elige. Las tres viven en la misma pantalla,
       en pestañas: <strong>Defectos</strong>, <strong>Partes del mueble</strong> y
-      <strong>Unificaciones</strong>.</p>
+      <strong>Unificaciones</strong>. El de <strong>Incidencias</strong> es igual y alimenta la
+      lista Incidencia de Inspección final.</p>
 
     <h3>Qué se captura</h3>
     <p>Cada renglón lleva un <strong>código</strong> y una <strong>descripción</strong>. El
@@ -210,6 +251,8 @@
       <p>Si cambias el código de un defecto que ya se usó en inspecciones anteriores, las
         inspecciones viejas quedan apuntando a otro lado. Para corregir un nombre, cambia la
         <em>descripción</em> y deja el código como está.</p>
+      <p>En <strong>Incidencias</strong> el sistema ya no lo permite: una incidencia que ya se usó no
+        se puede borrar ni cambiarle el código, solo el nombre.</p>
     </div>
 
     <div class="mensajes">

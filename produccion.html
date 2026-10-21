@@ -170,6 +170,32 @@
   </div>
 
   <!-- ========================== COSTURA ============================ -->
+  <div class="pantalla" id="asignacion-tiempos">
+    <p class="ruta">Menú · <b>Costura</b> › Asignación de tiempos (prep. / sobrecostura)</p>
+    <h2 style="margin-top:0">Asignación de tiempos</h2>
+    <p>Quién hizo la <strong>preparación</strong> o la <strong>sobrecostura</strong> de una orden.
+      Sirve para medir la eficiencia de cada persona: una persona puede preparar, coser y
+      sobrecoser el mismo día, y el reporte <a href="datos.html#panel">Eficiencia por operario</a>
+      suma todo contra su turno. <strong>No cambia el estado de la orden</strong> ni aparece en
+      ninguna otra pantalla.</p>
+
+    <h3>Cómo se usa</h3>
+    <ol class="pasos">
+      <li>Elige la <strong>operación</strong>: Preparación o Sobrecostura.</li>
+      <li>Revisa el <strong>día trabajado</strong> (hoy, si no lo cambias).</li>
+      <li>Escribe la <strong>nómina</strong> de la persona.</li>
+      <li>Escanea las WOs que hizo. Cada Enter guarda y la nómina se queda para la siguiente.</li>
+    </ol>
+    <p>Si la orden la hicieron varias personas, marca <strong>Dividir orden entre varias
+      personas</strong> y captura igual que en <a href="#dividir-orden">Asignación Costura</a>: la
+      nómina y las piezas de cada quien, hasta que el letrero diga <strong>cuadra</strong>, y
+      <strong>Guardar</strong>.</p>
+    <p class="chico">Abajo aparece lo capturado ese día en esa operación. Con doble clic se abre
+      un registro para corregirlo o eliminarlo. Si escaneas una orden que ya estaba capturada en
+      esa operación, pregunta antes de reemplazarla. Si la orden no trae minutos de esa operación
+      en el Master Plan, se guarda pero avisa que no le suma tiempo a nadie.</p>
+  </div>
+
   <div class="pantalla" id="asignacion-costura">
     <p class="ruta">Menú · <b>Costura</b> › Asignación Costura</p>
     <h2 style="margin-top:0">Asignación Costura</h2>
@@ -198,6 +224,36 @@
       <p>Si el tablero de una línea muestra menos piezas de las que esperas, esto es lo
         primero que hay que revisar.</p>
     </div>
+
+    <h3 id="dividir-orden">Dividir una orden entre varias personas</h3>
+    <p>Cuando una WO la cosen entre varias personas —por ejemplo 6 piezas entre 3, 2 cada
+      quien— se marca la casilla <strong>Dividir orden entre varias personas</strong>. Si no se
+      marca, la pantalla funciona igual que siempre.</p>
+    <ol class="pasos">
+      <li>Marca <strong>Dividir orden entre varias personas</strong>. Abajo aparece una tabla y
+        los cuadros de Operador se desactivan.</li>
+      <li>Escanea la <strong>WO</strong>. Con la casilla marcada, el Enter <strong>no
+        guarda</strong>: trae las piezas y los minutos de costura de la WO y baja a la tabla.</li>
+      <li>En cada renglón escribe la <strong>nómina</strong> y las <strong>piezas</strong> de cada
+        persona. El nombre y los minutos salen solos. <strong>Partes iguales</strong> reparte las
+        piezas entre los renglones escritos, en piezas enteras (5 entre 2 = 3 y 2; lo que sobra
+        va a los primeros); <strong>Quitar renglón</strong>
+        borra el renglón elegido.</li>
+      <li>Revisa el letrero de abajo: debe decir <strong>cuadra</strong>. Si dice
+        <em>sobran</em> o <em>faltan</em>, la suma de las piezas no es la de la WO.</li>
+      <li>Da clic en <strong>Guardar</strong>.</li>
+    </ol>
+    <p class="chico">Se necesitan al menos 2 personas, sin repetir. Como operador de la orden
+      queda la primera persona de la tabla. Para quitar la división, abre la WO con doble clic,
+      quita la casilla y guarda. Cada persona gana los minutos de costura de la WO en proporción
+      a sus piezas: es lo que mide el reporte <a href="datos.html#panel">Eficiencia por
+      operario</a>.</p>
+    <div class="ojo">
+      <b>Si dice que la asignación se guardó pero el reparto no</b>
+      <p>La orden ya quedó asignada; falta la división. Corrige lo que diga el mensaje (por
+        ejemplo, una nómina que no existe) y vuelve a <strong>Guardar</strong>: la división se
+        reescribe completa, no se duplica.</p>
+    </div>
   </div>
 
   <div class="pantalla" id="costurado">
@@ -214,6 +270,12 @@
     <p class="ruta">Menú · <b>Empaque</b> › Escaneo Empaque</p>
     <h2 style="margin-top:0">Escaneo Empaque</h2>
     <p>La pantalla rápida de piso: una caja tras otra, sin soltar la pistola.</p>
+    <div class="yerro">
+      <b>Una orden rechazada por inspección no se puede empacar</b>
+      <p>Si Inspección final la marcó <a href="calidad.html#no-aprobado">NO APROBADO</a> y todavía
+        no se reinspecciona y aprueba, la pantalla no la registra y dice desde cuándo está
+        rechazada. Es la orden que en el Master Plan sale en rojo con B54.</p>
+    </div>
 
     <h3>Cómo se usa</h3>
     <ol class="pasos">

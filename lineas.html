@@ -164,6 +164,50 @@
   </div>
 
   <!-- ===================================================== -->
+  <div class="pantalla" id="carga-eficiencia">
+    <p class="ruta">Menú · <b>Pantallas</b> › Carga eficiencia de operarios</p>
+    <h2 style="margin-top:0">Carga eficiencia de operarios</h2>
+    <p>Sube la plantilla de Excel con la eficiencia que cada supervisor le asigna a cada persona
+      (por ejemplo 0.75 = 75%). Es la <strong>meta</strong> contra la que se mide a cada quien en
+      el reporte <a href="datos.html#panel">Eficiencia por operario</a>. Solo la ven los
+      usuarios con permiso (Administrador y Supervisor, de inicio).</p>
+
+    <h3>Cómo se usa</h3>
+    <ol class="pasos">
+      <li>Elige el archivo con <strong>...</strong>.</li>
+      <li>En <strong>Vale desde</strong> pon la fecha desde la que aplica la plantilla.</li>
+      <li>Da clic en <strong>1. Revisar</strong>. No se guarda nada: en la pestaña
+        <em>Lo que se leyó</em> ves cada persona con su eficiencia, y en <em>Avisos</em> lo que se
+        saltó y por qué.</li>
+      <li>Si está bien, da clic en <strong>2. Cargar</strong>.</li>
+    </ol>
+
+    <h3>Qué debe traer el archivo</h3>
+    <p>Una hoja con las columnas <strong>ID_NUMBER</strong> (la nómina) y
+      <strong>EFICIENCIA</strong>. Las demás columnas (nombre, supervisor…) son para que se sepa de
+      quién es cada renglón; no hace falta que estén.</p>
+    <div class="tabla-caja">
+    <table>
+      <thead><tr><th>Si la eficiencia viene…</th><th>Qué hace</th></tr></thead>
+      <tbody>
+        <tr><td>0.75</td><td>La guarda como 75%.</td></tr>
+        <tr><td>75 o 75%</td><td>También la guarda como 75%.</td></tr>
+        <tr><td>Vacía o en 0</td><td>No la carga: esa persona se queda con la que tenía.</td></tr>
+        <tr><td>Más de 200%</td><td>La salta: es un dato mal capturado.</td></tr>
+        <tr><td>Nómina repetida</td><td>Se queda el último renglón.</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="ojo">
+      <b>Cargar dos veces la misma fecha no duplica</b>
+      <p>La carga reemplaza la de esa misma fecha. Una carga con otra fecha no borra las
+        anteriores: para cada día, el reporte usa la carga más reciente de ese día o de antes.
+        La pestaña <em>Historial de cargas</em> dice quién cargó qué y cuándo.</p>
+    </div>
+  </div>
+
+  <!-- ===================================================== -->
   <div class="pantalla" id="pantalla-tv">
     <p class="ruta">Menú · <b>Pantallas</b> › (nombre de la línea)</p>
     <h2 style="margin-top:0">La pantalla de TV</h2>
