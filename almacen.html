@@ -551,6 +551,8 @@
         de JDE.</td><td>Backlog por cliente (el valor)</td></tr>
       <tr><td><a href="#carga-componentes"><b>Carga de componentes</b></a></td><td>El BOM y las
         órdenes de compra de componentes.</td><td>Stock Out by Components</td></tr>
+      <tr><td><a href="#morganton-external"><b>Morganton / External</b></a></td><td>No es una carga: la lista
+        de familias con su clasificación, que se edita a mano.</td><td>Mexico Production Report</td></tr>
     </tbody>
   </table>
   </div>
@@ -653,7 +655,8 @@
     <p class="ruta">Menú · sección Información · <b>Carga de precios</b></p>
     <h2 style="margin-top:0">Carga de precios</h2>
     <p>Sube la <strong>lista de precios de JDE</strong> (ALL PRICES JDE). De ella sale la columna
-      <em>Valor total</em> del reporte <em>Backlog por cliente</em>. Se carga cuando Compras publica
+      <em>Valor total</em> del reporte <em>Backlog por cliente</em> y el <em>Approximate Revenue</em> del
+      <a href="datos.html#panel">Mexico Production Report</a>. Se carga cuando Compras publica
       una lista nueva, no a diario.</p>
     <ul>
       <li><strong>Las hojas no se buscan por nombre.</strong> Se lee toda hoja que tenga las
@@ -670,6 +673,40 @@
       <p>Un item que no está en la lista cuenta sus piezas en el backlog pero no suma dinero. El
         reporte dice arriba cuántas piezas quedaron así, para que nadie lea el total como si
         estuviera completo. Mientras no se haga la primera carga, todo el valor sale en 0.</p>
+    </div>
+  </div>
+
+  <!-- ===================================================== -->
+  <div class="pantalla" id="morganton-external">
+    <p class="ruta">Menú · sección Información · <b>Morganton / External</b></p>
+    <h2 style="margin-top:0">Morganton / External</h2>
+    <p>La lista que decide, en el <a href="datos.html#panel">Mexico Production Report</a>, qué producción es
+      <strong>MORGANTON</strong> y cuál es <strong>EXTERNAL</strong>. Solo lo EXTERNAL lleva revenue, y los totales de
+      kits se parten en las dos. Solo la ve ADMIN.</p>
+    <h3>Qué se captura</h3>
+    <div class="tabla-caja">
+    <table>
+      <thead><tr><th>Campo</th><th>Notas</th></tr></thead>
+      <tbody>
+        <tr><td>Familia</td><td>La familia del Master Plan, tal cual. Es lo que decide la clasificación.</td></tr>
+        <tr><td>Solo para el cliente</td><td>Opcional: una <strong>excepción</strong> para un solo cliente de esa familia.
+          Le gana a la regla general (por ejemplo, una familia MORGANTON que para un cliente es EXTERNAL).</td></tr>
+        <tr><td>Cliente · Body/Pillow</td><td>Como vienen en la lista; son informativos.</td></tr>
+        <tr><td>Clasificación</td><td>MORGANTON o EXTERNAL.</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <ul>
+      <li>La lista dice cuántas WO del Master Plan tiene cada familia y su última semana. Si sale 0, el nombre
+        no coincide con como está escrito en el Master Plan.</li>
+      <li><strong>Ver las familias SIN clasificar</strong> muestra las que están en el Master Plan y no en la lista.
+        Doble clic en una la sube para darla de alta: elige MORGANTON o EXTERNAL y guarda.</li>
+      <li>Doble clic en un renglón de la lista para cambiarlo o eliminarlo.</li>
+    </ul>
+    <div class="ojo">
+      <b>Una familia nueva cuenta como MORGANTON</b>
+      <p>Mientras nadie la clasifique, el reporte la cuenta como MORGANTON y avisa arriba cuáles faltan. El cambio
+        se ve en el reporte en el siguiente minuto.</p>
     </div>
   </div>
 

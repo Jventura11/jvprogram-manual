@@ -11,10 +11,10 @@ sin instalar ni iniciar sesión.
 | `index.html` | Cómo funcionan todas las pantallas: capturar, buscar, filtrar, exportar, atajos |
 | `produccion.html` | Las diez pantallas de producción, de corte a embarque |
 | `calidad.html` | Inspecciones (con el rechazo que regresa la orden a costura y las incidencias) y los cuatro catálogos de calidad |
-| `almacen.html` | Almacén: carga de la foto diaria, surtido, importar surtido desde Excel, retorno (PUT), cárdex del rollo y las cargas de la sección Información (tela, backlog, precios y componentes) |
+| `almacen.html` | Almacén: carga de la foto diaria, surtido, importar surtido desde Excel, retorno (PUT), cárdex del rollo y las cargas de la sección Información (tela, backlog, precios y componentes) y la lista Morganton / External |
 | `lineas.html` | Pantallas de TV por línea y la captura diaria que las alimenta |
 | `catalogos.html` | Plantilla, áreas, supervisores, markers y usuarios |
-| `datos.html` | Master Plan, tiempos, cancelados, los tres reportes y el Panel de reportes (en vivo —incluidos Backlog por cliente y Stock Out by Components—, la Calculadora y Power BI, con captura PNG) |
+| `datos.html` | Master Plan, tiempos, cancelados, los tres reportes y el Panel de reportes (en vivo —incluidos Backlog por cliente y Stock Out by Components—, la Calculadora, el Mexico Production Report y Power BI, con captura PNG) |
 | `preguntas.html` | Mensajes del sistema, qué hacer cuando algo no aparece, y preguntas frecuentes |
 | `estilo.css` | Hoja de estilo única, con tema claro y oscuro |
 | `buscar.js` | Buscador dentro de cada página. No consulta nada externo |

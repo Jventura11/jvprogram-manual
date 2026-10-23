@@ -153,7 +153,9 @@
           producción: % de cumplimiento, piezas en cada etapa (de liberada a embarcada),
           cumplimiento por Body/Pillow y por cliente, y una tabla de etapa por operación.
           <strong>Al tocar cualquier número</strong> aparecen abajo las WO que lo forman. Filtros de
-          semana, Body/Pillow (puedes elegir varios), prioridad, operación y WO. Las órdenes rechazadas por inspección (B54) salen en rojo y con un aviso arriba: tocarlo deja en la lista solo esas.</td></tr>
+          semana, Body/Pillow (puedes elegir varios), prioridad, operación y WO. Las órdenes rechazadas por inspección (B54) salen en rojo y con un aviso arriba: tocarlo deja en la lista solo esas.
+          La tabla <em>Cumplimiento por Body/Pillow y cliente</em> abre <strong>contraída</strong> (solo los totales de
+          cada Body/Pillow) y la de etapa por operación abre completa; cada una se abre y se cierra por su cuenta.</td></tr>
         <tr><td>Horas de producción por semana <em>(en vivo)</em></td><td>Piezas, horas estándar
           y eficiencia (piezas por hora) de una semana, por cliente, por operación y por
           Body/Pillow, con los récords y la tendencia de las últimas semanas. Con
@@ -166,7 +168,39 @@
           cada hora del día en cada operación (corte, asignación a costura, costura, inspección y
           las demás que elijas), por Body/Pillow o por cliente, y una gráfica del ritmo del día.
           Arriba se elige el día; la tira de la semana muestra cuánto se hizo cada día. El de hoy
-          se actualiza solo cada 2 minutos.</td></tr>
+          se actualiza solo cada 2 minutos. Abajo trae el <strong>acumulado semanal de
+          inspección</strong>, de viernes a jueves hasta el día elegido: kits por cliente, accesorios
+          (base, pillow, ticking) y otros (muestra, reparación, swatch), con el total de cada día y de la
+          semana. Ese acumulado no cambia con los filtros de operación ni de Body/Pillow de arriba: tiene
+          <strong>su propio filtro</strong> de Body/Pillow. Debajo del total trae <strong>Scheduled Target</strong> (lo
+          programado en el Master Plan para la semana de producción de esa ventana) y <strong>Variance</strong>
+          (acumulado menos programado, en verde arriba y en rojo abajo). <em>Descargar CSV</em> baja la tabla
+          tal como se ve, con sus sumatorias.</td></tr>
+        <tr><td>Mexico Production Report <em>(en vivo, con permiso)</em></td><td>El reporte semanal de
+          producción de la planta. Se elige la <strong>semana de producción</strong> (abre en la del próximo
+          contenedor); los días van de viernes a jueves. Trae:
+          <ul>
+            <li><strong>Métricas de los kits</strong> programados: Volumen (WO de más de 3 piezas), MTO (de 3 o
+              menos), Slip cover (items con «SC»), Leather, Topstitching (piezas con tiempo de sobrecostura) y el
+              tiempo estándar promedio por pieza (precostura + costura + sobrecostura).</li>
+            <li>La gráfica <strong>Weekly Kits Produced</strong> del año: kits inspeccionados por semana, los días de
+              asueto del calendario (Holiday) y los días hábiles sin ningún escaneo (DayOff). Se filtra por
+              trimestre y mes, y trae la <strong>curva de crecimiento</strong> (la tendencia, punteada) con cuántos kits
+              por semana sube o baja.</li>
+            <li>Cuatro tablas por cliente —FABRIC, LEATHER, PILLOW/OTHERS y REPAIR/SAMPLE— con
+              <strong>Scheduled</strong> (lo programado en la semana), <strong>Output</strong> (lo inspeccionado de viernes
+              a jueves) y <strong>Shipped</strong> (de lo programado, lo ya embarcado), cada una con su SUMMARY. El renglón
+              SWATCH se abre al tocarlo y dice de qué cliente son.</li>
+            <li>La columna <strong>Approximate Revenue from External Customers</strong>: solo para lo que está
+              clasificado como EXTERNAL; piezas embarcadas por el precio vigente de la
+              <a href="almacen.html#carga-precios">lista de precios</a>. Si falta el precio exacto del item se usa el más
+              común de su modelo y el importe sale con «≈».</li>
+            <li>Abajo, <strong>KIT TOTALS</strong> partido en <strong>MORGANTON</strong> y <strong>EXTERNAL</strong>.</li>
+          </ul>
+          Qué es MORGANTON y qué es EXTERNAL se decide por familia en
+          <a href="almacen.html#morganton-external">Morganton / External</a>; si aparece una familia que no está ahí, el
+          reporte lo avisa arriba y la cuenta como MORGANTON. <em>Descargar CSV</em> baja todo con las mismas
+          sumatorias. Lo ven ADMIN, Dirección y Supervisor.</td></tr>
         <tr><td>Eficiencia por operario <em>(en vivo, con permiso)</em></td><td>Cuántos minutos
           ganó cada persona —de <strong>costura</strong>, <strong>preparación</strong> y
           <strong>sobrecostura</strong>, todo junto— contra sus minutos de turno
@@ -209,7 +243,7 @@
           y con o sin uso; <em>Solo los que faltan</em>. Al abrir un renglón se ve el desglose por
           cliente. Sale de la <a href="almacen.html#carga-componentes">carga de componentes</a>,
           de la foto del día de Almacén, de la carga backlog y del Master Plan.</td></tr>
-        <tr><td>Rechazos del día <em>(en vivo)</em></td><td>Inspección final y Cut/Sew: % de
+        <tr><td>Rechazos del día <em>(en vivo)</em></td><td>Tres pestañas: Inspección final, Incidencias y Cut/Sew. % de
           rechazo del día contra el promedio de los días anteriores, la tendencia por día o por
           semana, los rechazos por cliente, por supervisor (de costura o de corte) y por
           defecto, y la lista de las inspecciones con rechazo. Se elige el día; el de hoy se
@@ -255,6 +289,9 @@
         hacen antes de costura, así que ahí conviene ver al supervisor de corte. El % de rechazo
         es piezas rechazadas entre piezas auditadas: una inspección capturada con 0 auditadas
         cuenta como inspección, pero no mueve el porcentaje.</p>
+      <p>La pestaña <strong>Incidencias</strong> lee las mismas inspecciones de Inspección final,
+        pero cuenta la <em>Qty incidencias</em> en lugar de las piezas rechazadas y agrupa por
+        <em>tipo de incidencia</em> en lugar de defecto. Su % es incidencias entre piezas auditadas.</p>
     </div>
 
     <div class="ojo">
