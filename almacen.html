@@ -640,6 +640,10 @@
     <p>Pide <strong>una sola ruta</strong>, la del Control VLR-ARIA. De esta carga leen tres
       reportes del Panel: <em>Backlog por cliente</em>, <em>Tela y liberaciones</em> (las órdenes
       que esperan tela) y <em>Stock Out by Components</em> (lo que pide el backlog).</p>
+    <p>También alimenta el <strong>KPI de cumplimiento</strong>. Además de las hojas de lo pendiente y de lo
+      embarcado o cancelado, lee la <strong>hoja de archivo</strong> del mismo libro (lo embarcado y cancelado de
+      meses anteriores), así el KPI conserva la historia que el control va moviendo al archivo. Si el libro no
+      trae esa hoja, la carga sigue igual.</p>
 
     <div class="mensajes">
       <div class="mensaje">
@@ -707,6 +711,14 @@
       <b>Una familia nueva cuenta como MORGANTON</b>
       <p>Mientras nadie la clasifique, el reporte la cuenta como MORGANTON y avisa arriba cuáles faltan. El cambio
         se ve en el reporte en el siguiente minuto.</p>
+    </div>
+    <div class="ojo">
+      <b>La regla va por familia, no por el cliente que se lee en el reporte</b>
+      <p>En la tabla REPAIR/SAMPLE del reporte los renglones llevan el nombre del <strong>cliente</strong>, pero
+        la familia de esas órdenes es <em>REPAIR/SAMPLE</em>. Para cambiar a un cliente de esa tabla, captura
+        Familia <strong>REPAIR/SAMPLE</strong>, <em>Solo para el cliente</em> con ese cliente, y la clasificación.
+        Una regla con el nombre del cliente en Familia no cambia nada. Si una regla «no hace nada», revisa primero
+        cuál es la familia de esas WO en el Master Plan.</p>
     </div>
   </div>
 

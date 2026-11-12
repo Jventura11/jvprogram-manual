@@ -274,7 +274,7 @@
       <b>Una orden rechazada por inspección no se puede empacar</b>
       <p>Si Inspección final la marcó <a href="calidad.html#no-aprobado">NO APROBADO</a> y todavía
         no se reinspecciona y aprueba, la pantalla no la registra y dice desde cuándo está
-        rechazada. Es la orden que en el Master Plan sale en rojo con B54.</p>
+        rechazada. Es la orden que en el Master Plan sale en rojo con B54. La regla la comprueba la base de datos, así que aplica igual en todos los equipos.</p>
     </div>
 
     <h3>Cómo se usa</h3>
@@ -351,6 +351,11 @@
     <h2 style="margin-top:0">Escaneo En Contenedor</h2>
     <p>Registra que una orden ya subió al contenedor. Funciona igual que el escaneo de
       empaque: el contenedor una vez, y después WO tras WO.</p>
+    <div class="yerro">
+      <b>Una orden rechazada por inspección no se puede embarcar</b>
+      <p>Igual que en el empaque: si Inspección final la marcó <a href="calidad.html#no-aprobado">NO APROBADO</a>
+        y sigue sin aprobarse, el escaneo no se registra. Primero se reinspecciona y sale APROBADA.</p>
+    </div>
 
     <h3>Qué se captura</h3>
     <div class="tabla-caja">
@@ -370,6 +375,11 @@
         <div class="dice">Falta la referencia del contenedor.</div>
         <p class="quiere"><b>Qué pasó:</b> es el único dato que esta pantalla exige además de
           la WO, porque es lo que amarra la orden a un embarque.</p>
+      </div>
+      <div class="mensaje">
+        <div class="dice">La WO … fue RECHAZADA por inspección el … y sigue sin aprobarse. No se puede embarcar: primero debe reinspeccionarse y salir APROBADA en Inspección final.</div>
+        <p class="quiere"><b>Qué pasó:</b> la orden tiene un rechazo abierto. Sepárala y avisa a Calidad; cuando
+          la aprueben, se escanea normal.</p>
       </div>
     </div>
   </div>

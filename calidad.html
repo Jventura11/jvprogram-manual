@@ -188,10 +188,22 @@
     <p>Cuando el <strong>Resultado</strong> es <strong>NO APROBADO</strong> —en esta pantalla o en
       el Escaneo Inspección—, la orden <strong>regresa a costura</strong>: en el Master Plan pasa a
       <em>3.COSTURA</em> con la operación <strong>B54 (rechazo de inspección)</strong> y se ve en rojo.
-      Mientras siga así <strong>no se puede empacar</strong>, y aparece en el Panel como prioridad.
+      Mientras siga así <strong>no se puede empacar ni escanear en contenedor</strong>, y aparece en el Panel como prioridad.
       El sistema guarda la fecha del rechazo.</p>
     <p>Elegir NO APROBADO es lo único que manda la orden de regreso: una inspección APROBADA con
       alguna pieza rechazada sigue su camino normal.</p>
+    <ul>
+      <li><strong>El bloqueo lo hace la base de datos</strong>, no cada computadora: aplica en cualquier equipo
+        y con cualquier versión instalada. Empaque y Embarque ven un mensaje con la WO y desde cuándo está
+        rechazada.</li>
+      <li><strong>Una orden que ya se embarcó no se puede marcar NO APROBADO.</strong> Esa pieza ya salió de la
+        planta. Aprobarla sí se puede: es la forma de cerrar un rechazo que no debió abrirse.</li>
+      <li><strong>NO APROBADO con solo una incidencia también detiene la orden.</strong> En el Panel sale con la
+        etiqueta <em>Incidencia</em>. Y si se marca NO APROBADO sin defecto ni incidencia, sale como
+        <em>Sin capturar</em>: captura siempre el motivo.</li>
+      <li>Si después del rechazo alguien completa el defecto o las piezas rechazadas y la deja NO APROBADA, el
+        Panel muestra los datos nuevos; la fecha del rechazo no cambia.</li>
+    </ul>
     <ol class="pasos">
       <li>Cuando la orden regrese de costura, escanéala otra vez en Inspección final (o en Escaneo
         Inspección).</li>

@@ -153,7 +153,7 @@
           producción: % de cumplimiento, piezas en cada etapa (de liberada a embarcada),
           cumplimiento por Body/Pillow y por cliente, y una tabla de etapa por operación.
           <strong>Al tocar cualquier número</strong> aparecen abajo las WO que lo forman. Filtros de
-          semana, Body/Pillow (puedes elegir varios), prioridad, operación y WO. Las órdenes rechazadas por inspección (B54) salen en rojo y con un aviso arriba: tocarlo deja en la lista solo esas.
+          semana, Body/Pillow (puedes elegir varios), prioridad, operación y WO. Las órdenes rechazadas por inspección (B54) salen en rojo y con un aviso arriba: tocarlo deja en la lista solo esas. Si hay rechazadas en <strong>otra semana</strong>, debajo sale un segundo aviso con la semana como enlace: al tocarla, el reporte se va a esa semana. En la tabla de etapa por operación, el cliente que tiene <strong>más de una familia</strong> lleva flecha y se abre en sus familias.
           La tabla <em>Cumplimiento por Body/Pillow y cliente</em> abre <strong>contraída</strong> (solo los totales de
           cada Body/Pillow) y la de etapa por operación abre completa; cada una se abre y se cierra por su cuenta.</td></tr>
         <tr><td>Horas de producción por semana <em>(en vivo)</em></td><td>Piezas, horas estándar
@@ -175,7 +175,7 @@
           <strong>su propio filtro</strong> de Body/Pillow. Debajo del total trae <strong>Scheduled Target</strong> (lo
           programado en el Master Plan para la semana de producción de esa ventana) y <strong>Variance</strong>
           (acumulado menos programado, en verde arriba y en rojo abajo). <em>Descargar CSV</em> baja la tabla
-          tal como se ve, con sus sumatorias.</td></tr>
+          tal como se ve, con sus sumatorias. Las piezas que inspección marcó <a href="calidad.html#no-aprobado">NO APROBADO</a> <strong>no cuentan</strong> como inspeccionadas; cuando se reinspeccionan y pasan, cuentan el día en que se aprueban.</td></tr>
         <tr><td>Mexico Production Report <em>(en vivo, con permiso)</em></td><td>El reporte semanal de
           producción de la planta. Se elige la <strong>semana de producción</strong> (abre en la del próximo
           contenedor); los días van de viernes a jueves. Trae:
@@ -189,7 +189,7 @@
               por semana sube o baja.</li>
             <li>Cuatro tablas por cliente —FABRIC, LEATHER, PILLOW/OTHERS y REPAIR/SAMPLE— con
               <strong>Scheduled</strong> (lo programado en la semana), <strong>Output</strong> (lo inspeccionado de viernes
-              a jueves) y <strong>Shipped</strong> (de lo programado, lo ya embarcado), cada una con su SUMMARY. El renglón
+              a jueves) y <strong>Shipped</strong> (todo lo que lleva el <strong>contenedor de la semana</strong>, sea de la semana que sea, más lo de la semana que salió por paquetería), cada una con su SUMMARY. El renglón
               SWATCH se abre al tocarlo y dice de qué cliente son.</li>
             <li>La columna <strong>Approximate Revenue from External Customers</strong>: solo para lo que está
               clasificado como EXTERNAL; piezas embarcadas por el precio vigente de la
@@ -218,8 +218,7 @@
           persona con la raya de su meta, la tabla por persona (al tocar a alguien salen sus WOs)
           y, aparte, <strong>quién no tuvo tiempo</strong> y por qué: no entra a los porcentajes.
           Filtros de supervisor, Body/Pillow y persona; CSV de cada tabla. Con el día de hoy se
-          actualiza solo cada 5 minutos. Solo lo ven
-          Administrador y Supervisor, de inicio.</td></tr>
+          actualiza solo cada 5 minutos. Solo lo ve ADMIN, en JV Program y en el Panel web.</td></tr>
         <tr><td>Tela y liberaciones <em>(en vivo, Materiales)</em></td><td>Cuándo llega cada
           embarque de tela y cuánto trae, y <strong>qué órdenes se pueden liberar</strong> con lo
           que hay hoy y con cada llegada. Tiene la línea de tiempo de llegadas, los embarques en
@@ -243,11 +242,21 @@
           y con o sin uso; <em>Solo los que faltan</em>. Al abrir un renglón se ve el desglose por
           cliente. Sale de la <a href="almacen.html#carga-componentes">carga de componentes</a>,
           de la foto del día de Almacén, de la carga backlog y del Master Plan.</td></tr>
+        <tr><td>Explosión de materiales <em>(en vivo, Materiales)</em></td><td>Qué material lleva lo
+          programado de una <strong>semana de producción</strong>: cada componente (y cada tela o piel) con sus
+          <strong>Piezas</strong> —cuánta producción pide ese componente— y su <strong>Consumo total</strong>, que es
+          el material. Filtros de semana (la más reciente primero), subsemana, operación, cliente, Body/Pillow y un
+          buscador. Arriba hay <strong>un total por cada unidad</strong> (yardas, piezas, pies cuadrados); no hay total
+          general, porque las unidades no se suman entre sí. Cada renglón se abre a sus <strong>frames</strong> y cada
+          frame a sus <strong>WO</strong>. Entran todas las WO de la semana menos las canceladas y las mandadas a
+          almacén; los swatch sí entran. <em>Descargar CSV</em> baja el consumo por componente tal como se ve, con
+          los filtros puestos. Sale de la <a href="almacen.html#carga-componentes">carga de componentes</a> (el BOM)
+          y del Master Plan.</td></tr>
         <tr><td>Rechazos del día <em>(en vivo)</em></td><td>Tres pestañas: Inspección final, Incidencias y Cut/Sew. % de
           rechazo del día contra el promedio de los días anteriores, la tendencia por día o por
           semana, los rechazos por cliente, por supervisor (de costura o de corte) y por
           defecto, y la lista de las inspecciones con rechazo. Se elige el día; el de hoy se
-          actualiza solo cada 5 minutos. Arriba trae la lista de las <strong>órdenes rechazadas que siguen sin aprobar</strong>, con los días que llevan fuera; la más vieja primero.</td></tr>
+          actualiza solo cada 5 minutos. Arriba trae la lista de las <strong>órdenes rechazadas que siguen sin aprobar</strong>, con los <strong>turnos que llevan fuera</strong>; la que más lleva, primero. Una etiqueta avisa cuando la orden está detenida por una <strong>incidencia</strong> y no por un defecto, o cuando se marcó NO APROBADO <strong>sin capturar</strong> ni defecto ni incidencia.</td></tr>
         <tr><td>Calculadora <em>(solo ADMIN y Dirección)</em></td><td>Los tres reportes de la
           Calculadora de capacidad —<strong>Staffing Needs</strong>, <strong>Machines Needs</strong> y
           <strong>What-if</strong>— en su propio apartado del Panel, también desde el celular o la
@@ -292,6 +301,42 @@
       <p>La pestaña <strong>Incidencias</strong> lee las mismas inspecciones de Inspección final,
         pero cuenta la <em>Qty incidencias</em> en lugar de las piezas rechazadas y agrupa por
         <em>tipo de incidencia</em> en lugar de defecto. Su % es incidencias entre piezas auditadas.</p>
+    </div>
+
+    <div class="ojo">
+      <b>Turnos fuera, no días</b>
+      <p>En la lista de órdenes rechazadas sin aprobar, el tiempo se cuenta en <strong>turnos de trabajo</strong>
+        (de 07:00 a 16:30), no en días de calendario: «1.3» es poco más de un turno. Un día sin ningún escaneo en
+        la planta —un domingo, un festivo, un paro— no suma; un sábado en que sí se trabajó, sí. Al pasar el cursor
+        sobre el número salen las horas laborales, los días hábiles y los días de calendario.</p>
+      <p><strong>Las etiquetas.</strong> Sin etiqueta, la orden tiene piezas rechazadas con su defecto.
+        <em>Incidencia</em>: no tiene piezas rechazadas, pero se marcó NO APROBADO con una incidencia; también
+        queda detenida hasta que se reinspecciona. <em>Sin capturar</em>: se marcó NO APROBADO sin defecto ni
+        incidencia; hay que completar la inspección.</p>
+    </div>
+
+    <div class="ojo">
+      <b>Cómo leer el Mexico Production Report</b>
+      <p><strong>Shipped es lo que lleva el contenedor.</strong> El encabezado dice cuál es el contenedor de la
+        semana: el que se llevó más WO de esa semana. Shipped cuenta todo lo que va en él, aunque sea de otra
+        semana, más lo de la semana que salió por paquetería. Por eso <strong>Shipped puede ser mayor que
+        Scheduled</strong> cuando el contenedor se lleva piezas adelantadas de la semana siguiente, y está bien.</p>
+      <p><strong>Output no cuenta lo rechazado.</strong> Igual que el acumulado de Seguimiento por hora, deja fuera
+        las inspecciones NO APROBADAS hasta que se aprueban. Los dos reportes dan los mismos kits si se miran en el
+        mismo momento.</p>
+    </div>
+
+    <div class="ojo">
+      <b>Cómo leer «Explosión de materiales»</b>
+      <p>El kit de cada orden se busca en el BOM igual que en Stock Out by Components: primero tal cual, luego
+        <strong>sin su revisión</strong> (R1, R2…), y de un kit genérico se usa solo el <strong>bloque de la tela</strong>
+        de la orden.</p>
+      <p>Las órdenes que no se pudieron contar salen en un aviso con su lista. <strong>SIN KIT</strong>: el kit no
+        está en el BOM de ninguna forma. <strong>SIN TELA</strong>: el kit sí está, pero su BOM no trae la tela de esa
+        orden; la lista dice el kit sin revisión y cuántas telas tiene, para saber qué dar de alta.</p>
+      <p><strong>Los swatch</strong> cuyo kit no está en el BOM entran solo con su tela, tomada de las yardas
+        totales del Master Plan. Esos renglones llevan la etiqueta <em>De la maestra</em> y el aviso los cuenta
+        aparte: sí están contados, pero solo con su tela.</p>
     </div>
 
     <div class="ojo">
@@ -387,8 +432,7 @@
 
     <div class="ojo">
       <b>Si no lo ves en la barra lateral</b>
-      <p>El Panel tiene permiso propio (ver <a href="catalogos.html#usuarios">Qué ve cada
-        rol</a>). Si tu rol lo tiene y aun así no aparece, tu equipo todavía no tiene la versión
+      <p>El Panel dentro de JV Program tiene permiso propio, <strong>aparte del Panel web</strong> (ver <a href="catalogos.html#usuarios">Qué ve cada rol</a>): hay roles que lo ven solo en el celular. Si tu rol lo tiene y aun así no aparece, tu equipo todavía no tiene la versión
         de JV Program que lo trae.</p>
     </div>
 
@@ -405,7 +449,7 @@
     <h2 style="margin-top:0">El Panel en el celular</h2>
     <p>El mismo Panel de reportes, con los mismos reportes en vivo, se puede abrir desde el
       celular. Se entra con <strong>tu mismo usuario y contraseña de JV Program</strong> y solo
-      con el permiso del Panel. Es de consulta: no se captura nada.</p>
+      con el permiso del Panel web, que va aparte del permiso del Panel dentro de JV Program: se puede tener uno sin el otro. Es de consulta: no se captura nada.</p>
 
     <h3>La primera vez</h3>
     <ol>

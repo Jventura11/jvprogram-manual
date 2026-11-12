@@ -105,6 +105,25 @@
         falló por otra razón. Vuelve a intentar una vez; si sigue, repórtalo con el nombre del
         reporte y la hora: sistemas encuentra la causa en la bitácora de ese equipo.</p>
     </div>
+    <div class="mensaje">
+      <div class="dice">La WO … fue RECHAZADA por inspección … y sigue sin aprobarse.</div>
+      <p class="quiere"><b>Qué significa:</b> sale al empacar o al escanear en contenedor. La orden tiene un
+        <a href="calidad.html#no-aprobado">rechazo de inspección</a> abierto y no se puede empacar ni embarcar
+        hasta que Calidad la reinspeccione y la apruebe. No es una falla: sepárala y avisa a Calidad.</p>
+    </div>
+    <div class="mensaje">
+      <div class="dice">La WO … ya se EMBARCÓ … NO SE PUEDE marcar NO APROBADO.</div>
+      <p class="quiere"><b>Qué significa:</b> sale en Inspección. Una orden que ya subió al contenedor no se
+        puede rechazar: la pieza ya salió. Si la WO está mal escaneada, corrígela; si de verdad hay un problema
+        con algo embarcado, repórtalo a tu supervisor.</p>
+    </div>
+    <div class="mensaje">
+      <div class="dice">Puedes cerrar esta pantalla y seguir trabajando; si se repite, cierra y vuelve a entrar. El detalle quedó anotado en: …</div>
+      <p class="quiere"><b>Qué significa:</b> una pantalla tuvo un error inesperado. El programa sigue abierto y
+        lo que ya estaba guardado está a salvo. El cuadro dice en qué carpeta quedó anotado el detalle: repórtalo
+        con la hora y la pantalla, para que sistemas lo encuentre en la bitácora de ese equipo. Si el cuadro dice
+        «El programa se va a cerrar», vuelve a entrar y repórtalo igual.</p>
+    </div>
   </div>
 
   <h2 id="no-aparece">No aparece lo que busco</h2>
@@ -337,6 +356,52 @@
     <p>Con el botón de la cámara, arriba a la derecha, en cualquier reporte en vivo. La imagen
       queda en <em>Imágenes › Panel JV_Program</em> y también queda copiada: pégala con
       <kbd>Ctrl</kbd>+<kbd>V</kbd>. Es información interna: solo dentro de la empresa.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>Veo el Panel en el celular pero no en JV Program.</h3>
+    <p>Son dos permisos distintos: uno para el Panel dentro de JV Program y otro para el Panel web. Hay roles que
+      solo tienen el del celular. Ver <a href="catalogos.html#usuarios">Qué ve cada rol</a>.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>Ya no veo el reporte Eficiencia por operario.</h3>
+    <p>Ahora es solo del rol ADMIN, en JV Program y en el Panel web. La pantalla que carga la plantilla de
+      eficiencia no cambió.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>En el Mexico Production Report, Shipped salió mayor que Scheduled.</h3>
+    <p>Es correcto. Shipped cuenta todo lo que lleva el contenedor de la semana, y a veces el contenedor se lleva
+      piezas de la semana siguiente. Ver <a href="datos.html#panel">Cómo leer el Mexico Production Report</a>.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>Di de alta una regla en Morganton / External y el reporte no cambió.</h3>
+    <p>Casi siempre es porque la regla se capturó con el nombre del cliente en lugar de la <strong>familia</strong>.
+      En la tabla REPAIR/SAMPLE se lee el cliente, pero la familia es REPAIR/SAMPLE. Ver
+      <a href="almacen.html#morganton-external">Morganton / External</a>.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>Una orden sale como rechazada en el Panel y no tiene piezas rechazadas.</h3>
+    <p>Se marcó NO APROBADO con una incidencia (etiqueta <em>Incidencia</em>) o sin capturar nada (etiqueta
+      <em>Sin capturar</em>). En los dos casos la orden está detenida: no se empaca ni se embarca hasta que se
+      reinspecciona y se aprueba. Ver <a href="calidad.html#no-aprobado">NO APROBADO</a>.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>Hay una orden rechazada y no la veo en Producción en tiempo real.</h3>
+    <p>Seguramente es de otra semana de producción. Debajo del aviso rojo sale un segundo renglón con las
+      rechazadas de otras semanas: toca la semana y el reporte se va allá.</p>
+  </div>
+
+  <div class="pregunta">
+    <h3>En Explosión de materiales hay órdenes que «no tienen su material contado».</h3>
+    <p>Su kit no está en el BOM (<em>SIN KIT</em>) o está pero sin la tela de la orden (<em>SIN TELA</em>). Abre la
+      lista del aviso: dice qué kit y qué tela faltan. Se corrige en el BOM y se ve bien en la siguiente
+      <a href="almacen.html#carga-componentes">Carga de componentes</a>. Los swatch se cuentan aparte, solo con
+      su tela.</p>
   </div>
 
   <h2 id="reportar">Cómo reportar un problema</h2>
